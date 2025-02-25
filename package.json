@@ -1,6 +1,6 @@
 {
 	"name": "@webwriter/slides",
-	"version": "2.0.2",
+	"version": "2.0.3",
 	"description": "WORK IN PROGRESS: Present content as a sequence of screens (slides, tabs, etc.).",
 	"keywords": [
 		"webwriter-widget"
@@ -28,7 +28,8 @@
 			"source": "./src/widgets/webwriter-slide.ts",
 			"default": "./dist/widgets/webwriter-slide.*"
 		},
-		"./snippets/beispiel.html": "./snippets/beispiel.html"
+		"./snippets/beispiel.html": "./snippets/beispiel.html",
+		"./icon": "./icon.svg"
 	},
 	"editingConfig": {
 		"./widgets/webwriter-slides": {
