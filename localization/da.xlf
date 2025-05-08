@@ -1,0 +1,26 @@
+<xliff xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd" xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="lit-localize-inputs" datatype="plaintext" source-language="en" target-language="da">
+    <body>
+      <trans-unit id="se898a5a880c57718">
+        <source>Remove slide</source>
+        <target>Fjern slæden</target>
+      </trans-unit>
+      <trans-unit id="sac2eb5c63a7b6c71">
+        <source>Add slide</source>
+        <target>Tilføj dias</target>
+      </trans-unit>
+      <trans-unit id="sa2322449a142ad50">
+        <source>Go to previous slide</source>
+        <target>Gå til forrige slide</target>
+      </trans-unit>
+      <trans-unit id="se8d0deb65adf4544">
+        <source>Go to next slide</source>
+        <target>Gå til næste slide</target>
+      </trans-unit>
+      <trans-unit id="see7c7a973a9b2d6c">
+        <source>Show in fullscreen</source>
+        <target>Vis i fuld skærm</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

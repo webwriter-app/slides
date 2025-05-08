@@ -5,9 +5,13 @@ import {customElement, property} from "lit/decorators.js"
 
 import "@shoelace-style/shoelace/dist/themes/light.css"
 
+/** Single slide for the `webwriter-slides` widget.
+* @slot - Content of the slide
+*/
 @customElement("webwriter-slide")
 export class WebwriterSlide extends LitElementWw {
 
+  /** Whether the slide is selected/shown. */
   @property({type: Boolean, attribute: true, reflect: true})
   accessor active = false
 

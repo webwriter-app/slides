@@ -1,0 +1,37 @@
+{
+  ".": {
+    "description": {
+      "de": "WIP - Präsentation von Inhalten in Form einer Abfolge von Bildschirmen (Folien, Registerkarten usw.).",
+      "ar": "WIP - عرض المحتوى كسلسلة من الشاشات (شرائح، علامات تبويب، إلخ).",
+      "bg": "WIP - Представяне на съдържанието като поредица от екрани (слайдове, раздели и др.).",
+      "cs": "WIP - Prezentujte obsah jako sled obrazovek (snímků, karet atd.).",
+      "da": "WIP - Præsentér indhold som en sekvens af skærmbilleder (slides, faner osv.).",
+      "nl": "WIP - Inhoud presenteren als een opeenvolging van schermen (dia's, tabbladen, enz.).",
+      "et": "WIP - sisu esitamine ekraanide (slaidide, vahekaartide jne) jadana.",
+      "fi": "WIP - Sisällön esittäminen näyttöjen (diojen, välilehtien jne.) sarjana.",
+      "fr": "WIP - Présenter le contenu sous la forme d'une séquence d'écrans (diapositives, onglets, etc.).",
+      "el": "WIP - Παρουσίαση περιεχομένου ως ακολουθία οθονών (διαφάνειες, καρτέλες κ.λπ.).",
+      "hu": "WIP - A tartalom megjelenítése képernyők (diák, lapok stb.) sorozataként.",
+      "it": "WIP - Presentare i contenuti come una sequenza di schermate (diapositive, schede, ecc.).",
+      "lv": "WIP - Satura prezentēšana kā ekrānu (diapozitīvu, cilņu utt.) secība.",
+      "lt": "WIP - pateikite turinį kaip ekranų seką (skaidres, skirtukus ir pan.).",
+      "nb": "WIP - Presentere innhold som en sekvens av skjermbilder (lysbilder, faner osv.).",
+      "pl": "WIP - Prezentowanie treści jako sekwencji ekranów (slajdów, kart itp.).",
+      "pt-PT": "WIP - Apresentar conteúdos como uma sequência de ecrãs (diapositivos, separadores, etc.).",
+      "ro": "WIP - Prezentați conținutul ca o secvență de ecrane (diapozitive, file etc.).",
+      "ru": "WIP - Представление содержимого в виде последовательности экранов (слайдов, вкладок и т. д.).",
+      "sk": "WIP - Prezentujte obsah ako postupnosť obrazoviek (snímok, kariet atď.).",
+      "sl": "WIP - Predstavite vsebino kot zaporedje zaslonov (diapozitivov, zavihkov itd.).",
+      "es": "WIP - Presentar el contenido como una secuencia de pantallas (diapositivas, fichas, etc.).",
+      "sv": "WIP - Presentera innehåll som en sekvens av skärmar (bilder, flikar etc.).",
+      "tr": "WIP - İçeriği bir dizi ekran (slaytlar, sekmeler, vb.) olarak sunun.",
+      "uk": "WIP - представлення контенту у вигляді послідовності екранів (слайдів, вкладок тощо).",
+      "pt-BR": "WIP - Apresente o conteúdo como uma sequência de telas (slides, guias, etc.).",
+      "ko": "WIP - 콘텐츠를 일련의 화면(슬라이드, 탭 등)으로 표시합니다.",
+      "ja": "WIP - コンテンツを一連のスクリーン（スライド、タブなど）として提示する。",
+      "id": "WIP - Menyajikan konten sebagai urutan layar (slide, tab, dll.).",
+      "zh-hans": "WIP - 以一系列屏幕（幻灯片、标签等）的形式呈现内容。",
+      "zh-hant": "WIP - 以一連串的畫面（幻燈片、標籤等）呈現內容。"
+    }
+  }
+}

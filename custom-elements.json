@@ -1,0 +1,222 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "src/widgets/webwriter-slides.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Slideshow container for sequential display of content.",
+          "name": "WebwriterSlides",
+          "slots": [
+            {
+              "description": "Content of the slideshow (should be slides only)",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "privacy": "protected",
+              "static": true,
+              "default": "{ \"sl-button\": SlButton, \"sl-icon-button\": SlIconButton }"
+            },
+            {
+              "kind": "field",
+              "name": "activeSlideIndex",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "Index of the active slide."
+            },
+            {
+              "kind": "field",
+              "name": "activeSlide",
+              "type": {
+                "text": "WebwriterSlide"
+              },
+              "description": "Active slide element.",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "isFullscreen",
+              "privacy": "protected",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "iconSrc",
+              "privacy": "protected",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "slides",
+              "type": {
+                "text": "WebwriterSlide[]"
+              },
+              "privacy": "protected"
+            },
+            {
+              "kind": "method",
+              "name": "addSlide",
+              "description": "Add a new empty slide element."
+            },
+            {
+              "kind": "method",
+              "name": "removeSlide",
+              "description": "Remove the currently active slide element."
+            },
+            {
+              "kind": "method",
+              "name": "nextSlide",
+              "parameters": [
+                {
+                  "name": "backwards",
+                  "default": "false"
+                },
+                {
+                  "name": "step",
+                  "default": "1"
+                }
+              ],
+              "description": "Activate the next slide element."
+            },
+            {
+              "kind": "field",
+              "name": "hasNextSlide",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "False if slideshow is on the last slide.",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "hasPreviousSlide",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "False if slideshow is on the last slide.",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "handleNextSlideClick",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "MouseEvent"
+                  }
+                },
+                {
+                  "name": "backwards",
+                  "default": "false"
+                }
+              ]
+            }
+          ],
+          "superclass": {
+            "name": "LitElementWw",
+            "package": "@webwriter/lit"
+          },
+          "tagName": "webwriter-slides",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "WebwriterSlides",
+          "declaration": {
+            "name": "WebwriterSlides",
+            "module": "src/widgets/webwriter-slides.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "webwriter-slides",
+          "declaration": {
+            "name": "WebwriterSlides",
+            "module": "src/widgets/webwriter-slides.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/widgets/webwriter-slide.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Single slide for the `webwriter-slides` widget.",
+          "name": "WebwriterSlide",
+          "slots": [
+            {
+              "description": "Content of the slide",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "active",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether the slide is selected/shown.",
+              "attribute": "active",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "active",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether the slide is selected/shown.",
+              "fieldName": "active"
+            }
+          ],
+          "superclass": {
+            "name": "LitElementWw",
+            "package": "@webwriter/lit"
+          },
+          "tagName": "webwriter-slide",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "WebwriterSlide",
+          "declaration": {
+            "name": "WebwriterSlide",
+            "module": "src/widgets/webwriter-slide.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "webwriter-slide",
+          "declaration": {
+            "name": "WebwriterSlide",
+            "module": "src/widgets/webwriter-slide.ts"
+          }
+        }
+      ]
+    }
+  ]
+}
