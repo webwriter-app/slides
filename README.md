@@ -1,5 +1,5 @@
-# Slides (`@webwriter/slides@2.0.7`)
-[License: MIT](LICENSE) | Version: 2.0.7
+# Slides (`@webwriter/slides@2.1.0`)
+[License: MIT](LICENSE) | Version: 2.1.0
 
 WIP - Present content as a sequence of screens (slides, tabs, etc.).
 
