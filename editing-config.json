@@ -33,5 +33,41 @@
       "zh-hans": "WIP - 以一系列屏幕（幻灯片、标签等）的形式呈现内容。",
       "zh-hant": "WIP - 以一連串的畫面（幻燈片、標籤等）呈現內容。"
     }
+  },
+  "./snippets/example": {
+    "label": {
+      "_": "Example",
+      "cs": "Příklad",
+      "ar": "مثال على ذلك",
+      "de": "Beispiel",
+      "bg": "Пример:",
+      "da": "Eksempel",
+      "hu": "Példa",
+      "nl": "Voorbeeld",
+      "it": "Esempio",
+      "lv": "Piemērs",
+      "lt": "Pavyzdys",
+      "et": "Näide",
+      "nb": "Eksempel",
+      "fr": "Exemple",
+      "ru": "Пример",
+      "sl": "Primer",
+      "sk": "Príklad",
+      "ro": "Exemplu",
+      "sv": "Exempel",
+      "pt-PT": "Exemplo",
+      "uk": "Приклад",
+      "es": "Ejemplo",
+      "fi": "Esimerkki",
+      "pt-BR": "Exemplo",
+      "ko": "예",
+      "tr": "Örnek",
+      "pl": "Przykład",
+      "el": "Παράδειγμα",
+      "zh-hans": "示例",
+      "zh-hant": "範例",
+      "ja": "例",
+      "id": "Contoh"
+    }
   }
 }
