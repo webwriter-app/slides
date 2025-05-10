@@ -5,6 +5,7 @@ import {customElement, property, queryAll, queryAssignedElements} from "lit/deco
 import {msg} from "@lit/localize"
 import SlButton from "@shoelace-style/shoelace/dist/components/button/button.component.js"
 import SlIconButton from "@shoelace-style/shoelace/dist/components/icon-button/icon-button.component.js"
+import LOCALIZE from "../../localization/generated"
 
 import "@shoelace-style/shoelace/dist/themes/light.css"
 
@@ -21,6 +22,8 @@ import { WebwriterSlide } from "./webwriter-slide"
 */
 @customElement("webwriter-slides")
 export class WebwriterSlides extends LitElementWw {
+
+  localize = LOCALIZE
   
   constructor() {
     super()
