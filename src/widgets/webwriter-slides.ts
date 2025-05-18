@@ -23,7 +23,7 @@ import { WebwriterSlide } from "./webwriter-slide"
 @customElement("webwriter-slides")
 export class WebwriterSlides extends LitElementWw {
 
-  localize = LOCALIZE
+  protected localize = LOCALIZE
   
   constructor() {
     super()
@@ -157,7 +157,7 @@ export class WebwriterSlides extends LitElementWw {
     return this.activeSlideIndex < this.slides?.length - 1
   }
 
-  /** False if slideshow is on the last slide. */
+  /** False if slideshow is on the first slide. */
   get hasPreviousSlide(): boolean {
     return this.activeSlideIndex > 0
   }

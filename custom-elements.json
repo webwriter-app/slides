@@ -19,6 +19,12 @@
           "members": [
             {
               "kind": "field",
+              "name": "localize",
+              "privacy": "protected",
+              "default": "LOCALIZE"
+            },
+            {
+              "kind": "field",
               "name": "scopedElements",
               "type": {
                 "text": "object"
@@ -105,7 +111,7 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "False if slideshow is on the last slide.",
+              "description": "False if slideshow is on the first slide.",
               "readonly": true
             },
             {

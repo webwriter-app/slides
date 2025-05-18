@@ -1,5 +1,5 @@
-# Slides (`@webwriter/slides@2.1.0`)
-[License: MIT](LICENSE) | Version: 2.1.0
+# Slides (`@webwriter/slides@2.2.0`)
+[License: MIT](LICENSE) | Version: 2.2.0
 
 WIP - Present content as a sequence of screens (slides, tabs, etc.).
 
@@ -42,7 +42,7 @@ npm install @webwriter/slides
 | `activeSlideIndex` | `number` | Index of the active slide. | `0` | ✗ |
 | `activeSlide` | `WebwriterSlide` | Active slide element. | - | ✗ |
 | `hasNextSlide` | `boolean` | False if slideshow is on the last slide. | - | ✗ |
-| `hasPreviousSlide` | `boolean` | False if slideshow is on the last slide. | - | ✗ |
+| `hasPreviousSlide` | `boolean` | False if slideshow is on the first slide. | - | ✗ |
 
 *Fields including [properties](https://developer.mozilla.org/en-US/docs/Glossary/Property/JavaScript) and [attributes](https://developer.mozilla.org/en-US/docs/Glossary/Attribute) define the current state of the widget and offer customization options.*
 
@@ -126,4 +126,4 @@ npm install @webwriter/slides
 
 
 ---
-*Generated with @webwriter/build@1.4.0*
+*Generated with @webwriter/build@1.5.0*
