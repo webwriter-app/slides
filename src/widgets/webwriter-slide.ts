@@ -15,6 +15,9 @@ export class WebwriterSlide extends LitElementWw {
   @property({type: Boolean, attribute: true, reflect: true})
   accessor active = false
 
+  @property({type: String, attribute: true, reflect: true})
+  accessor thumbnail = ""
+
   static styles = css`
     :host {
       height: 100%;
