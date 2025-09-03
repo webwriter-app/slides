@@ -62,6 +62,9 @@ export const slides_styles = css`
         flex-direction: row;
         align-items: center;
         gap: 4px;
+        border-radius: 5px;
+        border: 2px solid #ccc;
+        margin: 5px 0px;
     }
 
     .slide-thumbs {
@@ -123,6 +126,7 @@ export const slides_styles = css`
         gap: 5px;
         padding: 5px 5px 0px 5px;
         overflow-x: auto;
+        cursor: pointer;
     }
 
     .slide-tab {
@@ -132,6 +136,7 @@ export const slides_styles = css`
         padding: 0px 10px;
         align-items: center;
         border: 2px solid #ccc;
+        flex-shrink: 0;
     }
 
     .slide-tab.active {
