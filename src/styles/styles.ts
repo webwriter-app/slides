@@ -88,7 +88,7 @@ export const slides_styles = css`
         flex: 0 0 auto;
     }
 
-    .slide-thumb.dragging {
+    .slide-thumb.dragging, .slide-tab.dragging {
         opacity: 0.5;
     }
 

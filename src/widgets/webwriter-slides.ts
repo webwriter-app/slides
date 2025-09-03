@@ -68,6 +68,9 @@ export class WebwriterSlides extends LitElementWw {
   
   private draggingIndex: number | null = null;
 
+  // Index of slide the currently dragged slide was dragged over
+  private lastDraggedOver = -1
+
   static styles = slides_styles
 
   protected get isFullscreen() {
@@ -187,26 +190,18 @@ duplicateSlide(index: number) {
     (e.currentTarget as HTMLElement).classList.add('dragging');
     e.dataTransfer?.setData('text/plain', index.toString());
     e.dataTransfer!.effectAllowed = 'move';
+    console.log("START")
   }
 
   private onDragEnd(e: DragEvent) {
-    (e.currentTarget as HTMLElement).classList.remove('dragging');
-    this.draggingIndex = null;
-  }
-
-  private onDragOver(e: DragEvent, index: number) {
-    e.preventDefault();
     const draggingIdx = this.draggingIndex;
-    if (draggingIdx === null || draggingIdx === index) return;
+    if (draggingIdx === null || draggingIdx === this.lastDraggedOver) return;
   
     const draggedSlide = this.slides[draggingIdx];
-    const targetSlide = this.slides[index];
-
-
-    console.log(draggingIdx + " to " + index)
+    const targetSlide = this.slides[this.lastDraggedOver];
   
     if (draggedSlide && targetSlide && draggedSlide !== targetSlide) {
-      if (draggingIdx < index) {
+      if (draggingIdx < this.lastDraggedOver) {
         // Move draggedSlide after targetSlide
         targetSlide.insertAdjacentElement('afterend', draggedSlide);
       } else {
@@ -214,14 +209,19 @@ duplicateSlide(index: number) {
         targetSlide.insertAdjacentElement('beforebegin', draggedSlide);
       }
   
+      this.activeSlideIndex = this.lastDraggedOver;
       this.requestUpdate();
     }
+
+    (e.currentTarget as HTMLElement).classList.remove('dragging');
+    this.draggingIndex = null;
+    this.lastDraggedOver = -1;
   }
-  
-  // draggable="true"
-  // @dragstart=${(e: DragEvent) => this.onDragStart(e, index)}
-  // @dragend=${this.onDragEnd}
-  // @dragover=${(e: DragEvent) => this.onDragOver(e, index)}
+
+  private onDragOver(e: DragEvent, index: number) {
+    e.preventDefault();
+    this.lastDraggedOver = index
+  }
 
   render() {
 
@@ -287,6 +287,10 @@ duplicateSlide(index: number) {
               <div
                 class="slide-tab ${index === this.activeSlideIndex ? 'active' : ''}"
                 @click=${() => {this.changeSlide(index)}}
+                draggable="true"
+                @dragstart=${(e: DragEvent) => this.onDragStart(e, index)}
+                @dragend=${this.onDragEnd}
+                @dragover=${(e: DragEvent) => this.onDragOver(e, index)}
               >
                 <div class="slide-number">${index+1}</div>
 
@@ -305,8 +309,12 @@ duplicateSlide(index: number) {
               <div
                 class="slide-thumb ${index === this.activeSlideIndex ? 'active' : ''}"
                 @click=${() => {this.changeSlide(index)}}
+                draggable="true"
+                @dragstart=${(e: DragEvent) => this.onDragStart(e, index)}
+                @dragend=${this.onDragEnd}
+                @dragover=${(e: DragEvent) => this.onDragOver(e, index)}
               >
-                ${slide.thumbnail ? html`<img class="slide-thumb-img" src=${slide.thumbnail} />` :  html`<div class="slide-thumb-img"></div>`}
+                ${slide.thumbnail ? html`<img class="slide-thumb-img" draggable="false" src=${slide.thumbnail} />` :  html`<div class="slide-thumb-img"></div>`}
 
                 <div class="slide-options">
                   <div class="slide-number-flying">${index+1}</div>
