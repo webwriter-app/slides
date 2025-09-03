@@ -181,6 +181,17 @@ duplicateSlide(index: number) {
     const tmpSlideIndex = this.activeSlideIndex
     // Wait until rendering of slide is finished (approximately latest)
     await new Promise(resolve => setTimeout(resolve, 100));
+
+    // Scroll slide tab or thumbnail into view
+    const active = this.renderRoot.querySelector('.active');
+    if (active) {
+      active.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'nearest'
+      });
+    }
+
     // Check if user changed slide in the meantime
     if(this.activeSlideIndex == tmpSlideIndex) {
       const result = await snapdom(this.slides[tmpSlideIndex], { width: 240, height: 140 });

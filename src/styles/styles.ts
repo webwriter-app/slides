@@ -25,6 +25,7 @@ export const slides_styles = css`
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
         gap: 4px;
     }
 
