@@ -20,7 +20,7 @@ import { WebwriterSlide } from "./webwriter-slide"
 import IconRemove from 'bootstrap-icons/icons/x-circle.svg';
 import IconAdd from 'bootstrap-icons/icons/plus-circle.svg';
 import IconDuplicate from 'bootstrap-icons/icons/copy.svg';
-import { SlTooltip } from "@shoelace-style/shoelace"
+import { SlChangeEvent, SlOption, SlSelect, SlTooltip } from "@shoelace-style/shoelace"
 
 import { snapdom } from '@zumer/snapdom';
 
@@ -51,7 +51,9 @@ export class WebwriterSlides extends LitElementWw {
   protected static scopedElements = {
     "sl-button": SlButton,
     "sl-icon-button": SlIconButton,
-    "sl-tooltip": SlTooltip
+    "sl-tooltip": SlTooltip,
+    'sl-select': SlSelect,
+    'sl-option': SlOption
   }
 
   /** Index of the active slide. */
@@ -218,6 +220,13 @@ export class WebwriterSlides extends LitElementWw {
   @queryAssignedElements()
   protected accessor slides: WebwriterSlide[]
 
+
+  /**
+  * View of the slides
+  */
+  @property({ type: String, attribute: true, reflect: true })
+  public accessor type: 'tabs' | 'slides' = 'slides';
+
  /** Add a new empty slide element. Optionally insert after given index. */
 addSlide(index?: number) {
   const slide = this.ownerDocument.createElement("webwriter-slide") as WebwriterSlide
@@ -354,7 +363,21 @@ duplicateSlide(index: number) {
 
   render() {
     return html`
-      <aside part="tabs">
+      ${this.hasAttribute("contenteditable") ? html`<aside class="settings" part="options">
+                <sl-select
+                    label=${msg("View")}
+                    .value=${this.type}
+                    @sl-change=${(e: SlChangeEvent) => {
+                        this.type = (e.target as SlSelect).value as any;
+                        this.requestUpdate();
+                    }}
+                    name="view"
+                >
+                    <sl-option value="tabs">${msg("Tabs")}</sl-option>
+                    <sl-option value="slides">${msg("Slides")}</sl-option>
+                </sl-select>
+            </aside>` : html``}
+      ${this.type == "tabs" ? html`<aside part="tabs">
         <div class="slide-tabs">
           ${this.slides.map(
             (slide, index) => html`
@@ -405,11 +428,11 @@ duplicateSlide(index: number) {
           <sl-icon-button @click=${(e: MouseEvent) => this.handleNextSlideClick(e)} src=${chevronRightIcon}  ?disabled=${!this.hasNextSlide} title=${msg("Go to next slide")}></sl-icon-button>
           <sl-icon-button id="fullscreen" src=${this.iconSrc} @click=${() => !this.isFullscreen? this.requestFullscreen(): this.ownerDocument.exitFullscreen()} title=${msg("Show in fullscreen")}></sl-icon-button>
         </div>
-      </aside>
+      </aside>` : html``}
       <slot></slot>
       <aside part="options">
       </aside>
-      <aside part="actions">
+      ${this.type == "slides" ? html`<aside part="actions">
         <div class="slide-thumbs">
           ${this.slides.map(
             (slide, index) => html`
@@ -464,7 +487,7 @@ duplicateSlide(index: number) {
           <sl-icon-button @click=${(e: MouseEvent) => this.handleNextSlideClick(e)} src=${chevronRightIcon}  ?disabled=${!this.hasNextSlide} title=${msg("Go to next slide")}></sl-icon-button>
           <sl-icon-button id="fullscreen" src=${this.iconSrc} @click=${() => !this.isFullscreen? this.requestFullscreen(): this.ownerDocument.exitFullscreen()} title=${msg("Show in fullscreen")}></sl-icon-button>
         </div>
-      </aside>
+      </aside>` : html``}
     `
   }
 
