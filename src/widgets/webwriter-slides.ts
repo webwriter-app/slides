@@ -224,6 +224,47 @@ duplicateSlide(index: number) {
   // @dragover=${(e: DragEvent) => this.onDragOver(e, index)}
 
   render() {
+
+    const slideButtons = (index: number) => html`
+      <sl-tooltip content="Add slide after this">
+        <sl-icon-button class="add-btn"
+          @click=${(e: MouseEvent) => {
+            e.stopPropagation();
+            this.addSlide(index);
+          }}
+          src=${IconAdd}></sl-icon-button>
+      </sl-tooltip>
+
+      <sl-tooltip content="Duplicate slide">
+        <sl-icon-button class="duplicate-btn"
+          @click=${(e: MouseEvent) => {
+            e.stopPropagation();
+            this.duplicateSlide(index);
+          }}
+          src=${IconDuplicate}></sl-icon-button>
+      </sl-tooltip>
+
+      <sl-tooltip content="Remove slide">
+          <sl-icon-button class="remove-btn"
+            @click=${(e: MouseEvent) => {
+              e.stopPropagation();
+              this.removeSlide(index);
+            }}
+            src=${IconRemove}></sl-icon-button>
+      </sl-tooltip>`
+
+    const controls = html`
+      <div class="controls">
+        <sl-icon-button class="author-only" ?disabled=${this.slides.length <= 1} @click=${() => this.removeActiveSlide()} src=${minusSquareIcon} title=${msg("Remove slide")}></sl-icon-button>
+        <sl-icon-button class="author-only" @click=${() => this.addSlide()} src=${plusSquareIcon} title=${msg("Add slide")}></sl-icon-button>
+        <sl-icon-button @click=${(e: MouseEvent) => this.handleNextSlideClick(e, true)} src=${chevronLeftIcon} ?disabled=${!this.hasPreviousSlide} title=${msg("Go to previous slide")}></sl-icon-button>
+        <div class="slides-index">
+          <span>${this.activeSlideIndex + 1}</span> / <span>${this.slides?.length}</span>
+        </div>
+        <sl-icon-button @click=${(e: MouseEvent) => this.handleNextSlideClick(e)} src=${chevronRightIcon}  ?disabled=${!this.hasNextSlide} title=${msg("Go to next slide")}></sl-icon-button>
+        <sl-icon-button id="fullscreen" src=${this.iconSrc} @click=${() => !this.isFullscreen? this.requestFullscreen(): this.ownerDocument.exitFullscreen()} title=${msg("Show in fullscreen")}></sl-icon-button>
+      </div>`
+    
     return html`
       ${this.hasAttribute("contenteditable") ? html`<aside class="settings" part="options">
                 <sl-select
@@ -249,47 +290,12 @@ duplicateSlide(index: number) {
               >
                 <div class="slide-number">${index+1}</div>
 
-                <sl-tooltip content="Add slide after this">
-                  <sl-icon-button class="add-btn"
-                    @click=${(e: MouseEvent) => {
-                      e.stopPropagation();
-                      this.addSlide(index);
-                    }}
-                    src=${IconAdd}></sl-icon-button>
-                </sl-tooltip>
-
-                <sl-tooltip content="Duplicate slide">
-                  <sl-icon-button class="duplicate-btn"
-                    @click=${(e: MouseEvent) => {
-                      e.stopPropagation();
-                      this.duplicateSlide(index);
-                    }}
-                    src=${IconDuplicate}></sl-icon-button>
-                </sl-tooltip>
-
-                <sl-tooltip content="Remove slide">
-                    <sl-icon-button class="remove-btn"
-                      @click=${(e: MouseEvent) => {
-                        e.stopPropagation();
-                        this.removeSlide(index);
-                      }}
-                      src=${IconRemove}></sl-icon-button>
-                </sl-tooltip>
-
+                ${slideButtons(index)}
               </div>
             `
           )}
         </div>
-        <div class="controls">
-          <sl-icon-button class="author-only" ?disabled=${this.slides.length <= 1} @click=${() => this.removeActiveSlide()} src=${minusSquareIcon} title=${msg("Remove slide")}></sl-icon-button>
-          <sl-icon-button class="author-only" @click=${() => this.addSlide()} src=${plusSquareIcon} title=${msg("Add slide")}></sl-icon-button>
-          <sl-icon-button @click=${(e: MouseEvent) => this.handleNextSlideClick(e, true)} src=${chevronLeftIcon} ?disabled=${!this.hasPreviousSlide} title=${msg("Go to previous slide")}></sl-icon-button>
-          <div class="slides-index">
-            <span>${this.activeSlideIndex + 1}</span> / <span>${this.slides?.length}</span>
-          </div>
-          <sl-icon-button @click=${(e: MouseEvent) => this.handleNextSlideClick(e)} src=${chevronRightIcon}  ?disabled=${!this.hasNextSlide} title=${msg("Go to next slide")}></sl-icon-button>
-          <sl-icon-button id="fullscreen" src=${this.iconSrc} @click=${() => !this.isFullscreen? this.requestFullscreen(): this.ownerDocument.exitFullscreen()} title=${msg("Show in fullscreen")}></sl-icon-button>
-        </div>
+        ${controls}
       </aside>` : html``}
       <slot></slot>
       ${this.type == "slides" ? html`<aside part="actions">
@@ -305,49 +311,13 @@ duplicateSlide(index: number) {
                 <div class="slide-options">
                   <div class="slide-number-flying">${index+1}</div>
 
-                  <sl-tooltip content="Add slide after this">
-                    <sl-icon-button class="add-btn"
-                      @click=${(e: MouseEvent) => {
-                        e.stopPropagation();
-                        this.addSlide(index);
-                      }}
-                      src=${IconAdd}></sl-icon-button>
-                  </sl-tooltip>
-
-                  <sl-tooltip content="Duplicate slide">
-                    <sl-icon-button class="duplicate-btn"
-                      @click=${(e: MouseEvent) => {
-                        e.stopPropagation();
-                        this.duplicateSlide(index);
-                      }}
-                      src=${IconDuplicate}></sl-icon-button>
-                  </sl-tooltip>
-
-                  <sl-tooltip content="Remove slide">
-                      <sl-icon-button class="remove-btn"
-                        @click=${(e: MouseEvent) => {
-                          e.stopPropagation();
-                          this.removeSlide(index);
-                        }}
-                        src=${IconRemove}></sl-icon-button>
-                  </sl-tooltip>
+                  ${slideButtons(index)}
                 </div>
-
-
               </div>
             `
           )}
         </div>
-        <div class="controls">
-          <sl-icon-button class="author-only" ?disabled=${this.slides.length <= 1} @click=${() => this.removeActiveSlide()} src=${minusSquareIcon} title=${msg("Remove slide")}></sl-icon-button>
-          <sl-icon-button class="author-only" @click=${() => this.addSlide()} src=${plusSquareIcon} title=${msg("Add slide")}></sl-icon-button>
-          <sl-icon-button @click=${(e: MouseEvent) => this.handleNextSlideClick(e, true)} src=${chevronLeftIcon} ?disabled=${!this.hasPreviousSlide} title=${msg("Go to previous slide")}></sl-icon-button>
-          <div class="slides-index">
-            <span>${this.activeSlideIndex + 1}</span> / <span>${this.slides?.length}</span>
-          </div>
-          <sl-icon-button @click=${(e: MouseEvent) => this.handleNextSlideClick(e)} src=${chevronRightIcon}  ?disabled=${!this.hasNextSlide} title=${msg("Go to next slide")}></sl-icon-button>
-          <sl-icon-button id="fullscreen" src=${this.iconSrc} @click=${() => !this.isFullscreen? this.requestFullscreen(): this.ownerDocument.exitFullscreen()} title=${msg("Show in fullscreen")}></sl-icon-button>
-        </div>
+        ${controls}
       </aside>` : html``}
     `
   }
