@@ -291,8 +291,6 @@ duplicateSlide(index: number) {
         </div>
       </aside>` : html``}
       <slot></slot>
-      <aside part="options">
-      </aside>
       ${this.type == "slides" ? html`<aside part="actions">
         <div class="slide-thumbs">
           ${this.slides.map(
