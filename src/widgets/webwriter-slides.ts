@@ -45,6 +45,36 @@ export class WebwriterSlides extends LitElementWw {
     }, {passive: true})
   }
 
+  private _boundKeyHandler!: (e: KeyboardEvent) => void;
+
+  connectedCallback() {
+    super.connectedCallback?.();
+  
+    // Keydown-Listener hinzufügen
+    this._boundKeyHandler = this._handleKeyDown.bind(this);
+    window.addEventListener('keydown', this._boundKeyHandler);
+  }
+  
+  disconnectedCallback() {
+    super.disconnectedCallback?.();
+    window.removeEventListener('keydown', this._boundKeyHandler);
+  }
+
+  _handleKeyDown(e) {
+    if (this.hasAttribute('contenteditable')) return;
+  
+    switch (e.key) {
+      case 'ArrowRight':
+        this.handleNextSlideClick(e);
+        break;
+      case 'ArrowLeft':
+        this.handleNextSlideClick(e, true);
+        break;
+    }
+  }
+  
+  
+
   protected firstUpdated(): void {
     this.requestUpdate()
   }
