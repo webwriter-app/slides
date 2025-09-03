@@ -39,7 +39,7 @@ export class WebwriterSlides extends LitElementWw {
     document.addEventListener("selectionchange", e => {
       const selectedSlideIndex = this.slides?.findIndex(slide => document.getSelection().containsNode(slide, true))
       if(selectedSlideIndex !== -1) {
-        this.activeSlideIndex = selectedSlideIndex
+        this.changeSlide(selectedSlideIndex)
         this.requestUpdate()
       }
     }, {passive: true})
@@ -101,7 +101,7 @@ addSlide(index?: number) {
     this.appendChild(slide)
   }
 
-  this.activeSlideIndex = this.slides.indexOf(slide)
+  this.changeSlide(this.slides.indexOf(slide))
 
   // place cursor at the start of the new slide
   const selection = document.getSelection()
@@ -118,7 +118,7 @@ duplicateSlide(index: number) {
   const clone = original.cloneNode(true) as WebwriterSlide
   original.insertAdjacentElement("afterend", clone)
 
-  this.activeSlideIndex = this.slides.indexOf(clone)
+  this.changeSlide(this.slides.indexOf(clone))
 }
 
 
@@ -131,7 +131,7 @@ duplicateSlide(index: number) {
   removeSlide(slideIndex: number) {
     this.slides[slideIndex].remove()
     if(this.activeSlideIndex > this.slides.length-1) {
-      this.activeSlideIndex = this.slides.length-1
+      this.changeSlide(this.slides.length-1)
     }
     this.requestUpdate();
   }
@@ -140,22 +140,14 @@ duplicateSlide(index: number) {
   nextSlide(backwards=false, step=1) {
     const i = this.activeSlideIndex
     const n = this.slides?.length - 1
-    this.activeSlideIndex = backwards
+    this.changeSlide(backwards
       ? Math.max(0, i - step)
-      : Math.min(n, i + step)
+      : Math.min(n, i + step))
   }
 
   updated(changed: any) {
     super.updated(changed)
     this.slides?.forEach((slide, i) => slide.active = i === this.activeSlideIndex)
-
-    const updateThumb = async () => {
-      const result = await snapdom(this.slides[this.activeSlideIndex], { width: 120, height: 70 });
-      const img = await result.toPng();
-      this.slides[this.activeSlideIndex].thumbnail = img.src
-    }
-
-    updateThumb();
   }
 
   /** False if slideshow is on the last slide. */
@@ -178,7 +170,18 @@ duplicateSlide(index: number) {
     else {
       this.nextSlide(backwards)
     }
+  }
 
+  protected changeSlide = async (index: number) => {
+    this.activeSlideIndex = index
+    
+    await new Promise(resolve => setTimeout(resolve, 100));
+    console.log("Update")
+    const result = await snapdom(this.slides[this.activeSlideIndex], { width: 240, height: 140 });
+    const img = await result.toPng();
+    console.log(img)
+    this.slides[this.activeSlideIndex].thumbnail = img.src
+    this.requestUpdate()
   }
 
   private onDragStart(e: DragEvent, index: number) {
@@ -244,7 +247,7 @@ duplicateSlide(index: number) {
             (slide, index) => html`
               <div
                 class="slide-tab ${index === this.activeSlideIndex ? 'active' : ''}"
-                @click=${() => {this.activeSlideIndex = index}}
+                @click=${() => {this.changeSlide(index)}}
               >
                 <div class="slide-number">${index+1}</div>
 
@@ -297,7 +300,7 @@ duplicateSlide(index: number) {
             (slide, index) => html`
               <div
                 class="slide-thumb ${index === this.activeSlideIndex ? 'active' : ''}"
-                @click=${() => {this.activeSlideIndex = index}}
+                @click=${() => {this.changeSlide(index)}}
               >
                 ${slide.thumbnail ? html`<img class="slide-thumb-img" src=${slide.thumbnail} />` :  html`<div class="slide-thumb-img"></div>`}
 

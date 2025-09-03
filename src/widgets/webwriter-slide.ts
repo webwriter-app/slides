@@ -4,6 +4,7 @@ import {LitElementWw} from "@webwriter/lit"
 import {customElement, property} from "lit/decorators.js"
 
 import "@shoelace-style/shoelace/dist/themes/light.css"
+import { snapdom } from "@zumer/snapdom"
 
 /** Single slide for the `webwriter-slides` widget.
 * @slot - Content of the slide
@@ -25,7 +26,8 @@ export class WebwriterSlide extends LitElementWw {
       padding: 10px;
       box-sizing: border-box;
       display: block;
-      overflow: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
   `
 
