@@ -123,6 +123,7 @@ export const slides_styles = css`
         display: flex;
         gap: 5px;
         padding: 5px 5px 0px 5px;
+        overflow-x: auto;
     }
 
     .slide-tab {
@@ -139,7 +140,24 @@ export const slides_styles = css`
         background: #e7f1ff;
     }
 
+    .slide-number, .slide-number-flying {
+        font-size: 0.9rem;
+        color: var(--sl-color-gray-800);
+        background-color: white;
+        border-radius: 10px;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        border: 1px solid var(--sl-color-gray-800);
+    }
+
     .slide-number {
         margin-right: 20px;
+    }
+
+    .slide-number-flying {
+        position: absolute;
+        top: 10px;
+        right: 10px;
     }
 `;

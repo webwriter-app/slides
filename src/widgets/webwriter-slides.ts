@@ -176,10 +176,8 @@ duplicateSlide(index: number) {
     this.activeSlideIndex = index
     
     await new Promise(resolve => setTimeout(resolve, 100));
-    console.log("Update")
     const result = await snapdom(this.slides[this.activeSlideIndex], { width: 240, height: 140 });
     const img = await result.toPng();
-    console.log(img)
     this.slides[this.activeSlideIndex].thumbnail = img.src
     this.requestUpdate()
   }
@@ -305,6 +303,7 @@ duplicateSlide(index: number) {
                 ${slide.thumbnail ? html`<img class="slide-thumb-img" src=${slide.thumbnail} />` :  html`<div class="slide-thumb-img"></div>`}
 
                 <div class="slide-options">
+                  <div class="slide-number-flying">${index+1}</div>
 
                   <sl-tooltip content="Add slide after this">
                     <sl-icon-button class="add-btn"
