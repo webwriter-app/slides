@@ -133,6 +133,7 @@ duplicateSlide(index: number) {
     if(this.activeSlideIndex > this.slides.length-1) {
       this.activeSlideIndex = this.slides.length-1
     }
+    this.requestUpdate();
   }
 
   /** Activate the next slide element. */
@@ -155,7 +156,6 @@ duplicateSlide(index: number) {
     }
 
     updateThumb();
-    this.updateComplete
   }
 
   /** False if slideshow is on the last slide. */

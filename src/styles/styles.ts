@@ -21,7 +21,7 @@ export const slides_styles = css`
         display: none;
     }
 
-    [part="actions"] {
+    [part="actions"], [part="tabs"] {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -131,7 +131,7 @@ export const slides_styles = css`
         border-radius: 10px 10px 0px 0px;
         padding: 0px 10px;
         align-items: center;
-        border: 1px solid #ccc;
+        border: 2px solid #ccc;
     }
 
     .slide-tab.active {
