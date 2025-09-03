@@ -230,6 +230,7 @@ duplicateSlide(index: number) {
   render() {
 
     const slideButtons = (index: number) => html`
+    <div class="author-only">
       <sl-tooltip content="Add slide after this">
         <sl-icon-button class="add-btn"
           @click=${(e: MouseEvent) => {
@@ -255,7 +256,8 @@ duplicateSlide(index: number) {
               this.removeSlide(index);
             }}
             src=${IconRemove}></sl-icon-button>
-      </sl-tooltip>`
+      </sl-tooltip>
+    </div>`
 
     const controls = html`
       <div class="controls">
@@ -291,7 +293,7 @@ duplicateSlide(index: number) {
               <div
                 class="slide-tab ${index === this.activeSlideIndex ? 'active' : ''}"
                 @click=${() => {this.changeSlide(index)}}
-                draggable="true"
+                draggable="${this.hasAttribute("contenteditable") ? "true" : "false"}"
                 @dragstart=${(e: DragEvent) => this.onDragStart(e, index)}
                 @dragend=${this.onDragEnd}
                 @dragover=${(e: DragEvent) => this.onDragOver(e, index)}
@@ -313,7 +315,7 @@ duplicateSlide(index: number) {
               <div
                 class="slide-thumb ${index === this.activeSlideIndex ? 'active' : ''}"
                 @click=${() => {this.changeSlide(index)}}
-                draggable="true"
+                draggable="${this.hasAttribute("contenteditable") ? "true" : "false"}"
                 @dragstart=${(e: DragEvent) => this.onDragStart(e, index)}
                 @dragend=${this.onDragEnd}
                 @dragover=${(e: DragEvent) => this.onDragOver(e, index)}

@@ -104,7 +104,6 @@ export const slides_styles = css`
 
     .slide-thumb-img {
         width: 100%;
-        height: 100%;
         object-fit: cover;
         border-radius: 5px;
     }
