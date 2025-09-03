@@ -177,12 +177,17 @@ duplicateSlide(index: number) {
 
   protected changeSlide = async (index: number) => {
     this.activeSlideIndex = index
-    
+
+    const tmpSlideIndex = this.activeSlideIndex
+    // Wait until rendering of slide is finished (approximately latest)
     await new Promise(resolve => setTimeout(resolve, 100));
-    const result = await snapdom(this.slides[this.activeSlideIndex], { width: 240, height: 140 });
-    const img = await result.toPng();
-    this.slides[this.activeSlideIndex].thumbnail = img.src
-    this.requestUpdate()
+    // Check if user changed slide in the meantime
+    if(this.activeSlideIndex == tmpSlideIndex) {
+      const result = await snapdom(this.slides[tmpSlideIndex], { width: 240, height: 140 });
+      const img = await result.toPng();
+      this.slides[tmpSlideIndex].thumbnail = img.src
+      this.requestUpdate()
+    }
   }
 
   private onDragStart(e: DragEvent, index: number) {
@@ -190,7 +195,6 @@ duplicateSlide(index: number) {
     (e.currentTarget as HTMLElement).classList.add('dragging');
     e.dataTransfer?.setData('text/plain', index.toString());
     e.dataTransfer!.effectAllowed = 'move';
-    console.log("START")
   }
 
   private onDragEnd(e: DragEvent) {
