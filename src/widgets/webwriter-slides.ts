@@ -266,7 +266,7 @@ duplicateSlide(index: number) {
           <span>${this.activeSlideIndex + 1}</span> / <span>${this.slides?.length}</span>
         </div>
         <sl-icon-button @click=${(e: MouseEvent) => this.handleNextSlideClick(e)} src=${chevronRightIcon}  ?disabled=${!this.hasNextSlide} title=${msg("Go to next slide")}></sl-icon-button>
-        <sl-icon-button id="fullscreen" src=${this.iconSrc} @click=${() => !this.isFullscreen? this.requestFullscreen(): this.ownerDocument.exitFullscreen()} title=${msg("Show in fullscreen")}></sl-icon-button>
+        <sl-icon-button id="fullscreen" src=${this.iconSrc} @click=${() => {(!this.isFullscreen ? this.requestFullscreen(): this.ownerDocument.exitFullscreen()); this.requestUpdate();}} title=${msg("Show in fullscreen")}></sl-icon-button>
       </div>`
     
     return html`
