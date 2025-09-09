@@ -13,7 +13,7 @@
 's03b454fb08e876ad': `Tabs`,
 's5334c0927cf25b86': `Vollbildmodus beenden`,
 's657514e10d2199ee': `Folie nach der aktuellen hinzufügen`,
-'s7f59f507e02a2f38': `Siehe`,
+'s7f59f507e02a2f38': `Ansicht`,
 'sa2322449a142ad50': `Zur vorherigen Folie gehen`,
 'sc67c075acd3a06ea': `Aktuelle Folie duplizieren`,
 'se898a5a880c57718': `Folie entfernen`,

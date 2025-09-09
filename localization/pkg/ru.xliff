@@ -1,1 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?><xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.1" srcLang="en" trgLang="ru"><file id="." original="."><unit id="description"><segment><source>Present content as a sequence of slides or tabs.</source><target>Представьте содержимое в виде последовательности слайдов или вкладок.</target></segment></unit></file><file id="./snippets/example" original="./snippets/example"><unit id="label"><segment><source>Example</source><target>Пример</target></segment></unit></file></xliff>
+<?xml version="1.0" encoding="utf-8" ?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.1" srcLang="en" trgLang="ru">
+<file id="." original=".">
+<unit id="description"><segment><source>Present content as a sequence of slides or tabs.</source><target>Представьте содержимое в виде последовательности слайдов или вкладок.</target></segment></unit>
+</file>
+<file id="./snippets/example" original="./snippets/example">
+<unit id="label"><segment><source>Example</source><target>Пример</target></segment></unit>
+</file>
+</xliff>
