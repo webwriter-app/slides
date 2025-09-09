@@ -28,6 +28,8 @@ export class WebwriterSlide extends LitElementWw {
       display: block;
       overflow-y: auto;
       overflow-x: hidden;
+      border: 2px solid #007bff !important;
+      border-radius: 5px;
     }
   `
 

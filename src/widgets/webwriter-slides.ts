@@ -272,7 +272,7 @@ duplicateSlide(index: number) {
 
     const slideButtons = (index: number) => html`
     <div class="author-only">
-      <sl-tooltip content="Add slide after this">
+      <sl-tooltip content="Add slide after this" placement="right">
         <sl-icon-button class="add-btn"
           @click=${(e: MouseEvent) => {
             e.stopPropagation();
@@ -281,7 +281,7 @@ duplicateSlide(index: number) {
           src=${IconAdd}></sl-icon-button>
       </sl-tooltip>
 
-      <sl-tooltip content="Duplicate slide">
+      <sl-tooltip content="Duplicate slide" placement="right">
         <sl-icon-button class="duplicate-btn"
           @click=${(e: MouseEvent) => {
             e.stopPropagation();
@@ -290,7 +290,7 @@ duplicateSlide(index: number) {
           src=${IconDuplicate}></sl-icon-button>
       </sl-tooltip>
 
-      <sl-tooltip content="Remove slide">
+      <sl-tooltip content="Remove slide" placement="right">
           <sl-icon-button class="remove-btn"
             @click=${(e: MouseEvent) => {
               e.stopPropagation();
@@ -332,23 +332,25 @@ duplicateSlide(index: number) {
                 </sl-select>
             </aside>` : html``}
       ${this.type == "tabs" ? html`<aside part="tabs">
-        <div class="slide-tabs">
-          ${this.slides.map(
-            (slide, index) => html`
-              <div
-                class="slide-tab ${index === this.activeSlideIndex ? 'active' : ''}"
-                @click=${() => {this.changeSlide(index)}}
-                draggable="${this.hasAttribute("contenteditable") ? "true" : "false"}"
-                @dragstart=${(e: DragEvent) => this.onDragStart(e, index)}
-                @dragend=${this.onDragEnd}
-                @dragover=${(e: DragEvent) => this.onDragOver(e, index)}
-              >
-                <div class="slide-number">${index+1}</div>
+        <div class="slide-tabs-wrapper">
+          <div class="slide-tabs">
+            ${this.slides.map(
+              (slide, index) => html`
+                <div
+                  class="slide-tab ${index === this.activeSlideIndex ? 'active' : ''}"
+                  @click=${() => {this.changeSlide(index)}}
+                  draggable="${this.hasAttribute("contenteditable") ? "true" : "false"}"
+                  @dragstart=${(e: DragEvent) => this.onDragStart(e, index)}
+                  @dragend=${this.onDragEnd}
+                  @dragover=${(e: DragEvent) => this.onDragOver(e, index)}
+                >
+                  <div class="slide-number">${index+1}</div>
 
-                ${slideButtons(index)}
-              </div>
-            `
-          )}
+                  ${slideButtons(index)}
+                </div>
+              `
+            )}
+          </div>
         </div>
         <div class="controls-rows">
           ${controls}

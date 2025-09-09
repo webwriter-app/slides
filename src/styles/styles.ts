@@ -63,16 +63,19 @@ export const slides_styles = css`
         padding: 5px;
         border-radius: 5px;
         border: 2px solid #ccc;
-        margin: 5px 5px 5px 0px;
-
     }
 
     .controls-columns {
         flex-direction: column;
+        margin: 5px 5px 5px 0px;
     }
 
     .controls-rows {
         flex-direction: row;
+        margin: 5px 5px 0px 0px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-bottom: none;
     }
 
     .controls-section {
@@ -136,12 +139,24 @@ export const slides_styles = css`
         color: var(--sl-color-gray-800);
     }
 
+    .slide-tabs-wrapper {
+        overflow-y: hidden;
+        overflow-x: auto;
+    }
+
     .slide-tabs {
         display: flex;
         gap: 5px;
         padding: 5px 5px 0px 5px;
-        overflow-x: auto;
         cursor: pointer;
+    }
+
+    .slide-tabs-wrapper, .slide-tabs {
+        transform:rotateX(180deg);
+        -moz-transform:rotateX(180deg); /* Mozilla */
+        -webkit-transform:rotateX(180deg); /* Safari and Chrome */
+        -ms-transform:rotateX(180deg); /* IE 9+ */
+        -o-transform:rotateX(180deg); /* Opera */
     }
 
     .slide-tab {
@@ -151,6 +166,7 @@ export const slides_styles = css`
         padding: 0px 10px;
         align-items: center;
         border: 2px solid #ccc;
+        border-bottom: none;
         flex-shrink: 0;
     }
 
