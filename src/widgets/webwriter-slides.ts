@@ -271,7 +271,7 @@ duplicateSlide(index: number) {
   render() {
 
     const slideButtons = (index: number) => html`
-      <sl-tooltip content="Remove slide" placement="right" style=${this.slides.length > 1 && this.hasAttribute("contenteditable") ? "" : "visibility: hidden"}>
+      <sl-tooltip content=${msg("Remove slide")} placement="right" style=${this.slides.length > 1 && this.hasAttribute("contenteditable") ? "" : "visibility: hidden"}>
         <sl-icon-button class="remove-btn"
           @click=${(e: MouseEvent) => {
             e.stopPropagation();
@@ -283,7 +283,7 @@ duplicateSlide(index: number) {
 
     const controls = html`
         <div class="controls-section author-only">
-          <sl-tooltip content="Duplicate current slide" placement="bottom">
+          <sl-tooltip content=${msg("Duplicate current slide")} placement="bottom">
             <sl-icon-button class="duplicate-btn"
               @click=${(e: MouseEvent) => {
                 e.stopPropagation();
@@ -292,7 +292,7 @@ duplicateSlide(index: number) {
               src=${IconDuplicate}></sl-icon-button>
           </sl-tooltip>
 
-          <sl-tooltip content="Add slide after current" placement="bottom">
+          <sl-tooltip content=${msg("Add slide after current")} placement="bottom">
             <sl-icon-button class="add-btn"
               @click=${(e: MouseEvent) => {
                 e.stopPropagation();
@@ -302,12 +302,17 @@ duplicateSlide(index: number) {
           </sl-tooltip>
         </div>
         <div class="controls-section">
-          <sl-icon-button @click=${(e: MouseEvent) => this.handleNextSlideClick(e, true)} src=${chevronLeftIcon} ?disabled=${!this.hasPreviousSlide} title=${msg("Go to previous slide")}></sl-icon-button>
+
+          <sl-tooltip content=${msg("Go to previous slide")} placement="bottom">
+            <sl-icon-button @click=${(e: MouseEvent) => this.handleNextSlideClick(e, true)} src=${chevronLeftIcon} ?disabled=${!this.hasPreviousSlide}></sl-icon-button>
+          </sl-tooltip>
           <div class="slides-index">
             <span>${this.activeSlideIndex + 1}</span> / <span>${this.slides?.length}</span>
           </div>
-          <sl-icon-button @click=${(e: MouseEvent) => this.handleNextSlideClick(e)} src=${chevronRightIcon}  ?disabled=${!this.hasNextSlide} title=${msg("Go to next slide")}></sl-icon-button>
-        </div>
+          <sl-tooltip content=${msg("Go to next slide")} placement="bottom">
+            <sl-icon-button @click=${(e: MouseEvent) => this.handleNextSlideClick(e)} src=${chevronRightIcon}  ?disabled=${!this.hasNextSlide}></sl-icon-button>
+          </sl-tooltip>
+          </div>
         <div class="controls-section">
           <sl-tooltip content=${this.isFullscreen ? msg("Exit fullscreen") : msg("Show in fullscreen")} placement="bottom">
             <sl-icon-button id="fullscreen" class="fullscreen-btn" src=${this.iconSrc} @click=${() => {(!this.isFullscreen ? this.requestFullscreen(): this.ownerDocument.exitFullscreen()); this.requestUpdate();}}></sl-icon-button>
