@@ -41,9 +41,7 @@ npm install @webwriter/slides
 | :-------------------: | :--: | :---------: | :-----: | :------: |
 | `activeSlideIndex` | `number` | Index of the currently active slide. | `0` | ✗ |
 | `activeSlide` | `WebwriterSlide` | The active slide element based on the activeSlideIndex. | - | ✗ |
-| `type` (`type`) | `'tabs' \| 'slides'` | Defines the type of view for the slideshow.
-- "slides": Show content as sequential slides.
-- "tabs": Show content using tabs. | `'slides'` | ✓ |
+| `type` (`type`) | `'tabs' \| 'slides'` | Defines the type of view for the slideshow.<br>- "slides": Show content as sequential slides.<br>- "tabs": Show content using tabs. | `'slides'` | ✓ |
 | `hasNextSlide` | `boolean` | False if slideshow is on the last slide. | - | ✗ |
 | `hasPreviousSlide` | `boolean` | False if slideshow is on the first slide. | - | ✗ |
 
@@ -52,9 +50,7 @@ npm install @webwriter/slides
 ## Methods
 | Name | Description | Parameters |
 | :--: | :---------: | :-------: |
-| `_handleKeyDown` | Handles keyboard navigation for the slideshow.
-ArrowRight advances to the next slide, ArrowLeft goes back.
-Only possible in preview mode. | `e: KeyboardEvent`
+| `_handleKeyDown` | Handles keyboard navigation for the slideshow.<br>ArrowRight advances to the next slide, ArrowLeft goes back.<br>Only possible in preview mode. | `e: KeyboardEvent`
 | `addSlide` | Add a new empty slide element. Optionally insert after given index. | `index: number`
 | `duplicateSlide` | Duplicate an existing slide at given index. | `index: number`
 | `removeActiveSlide` | Remove the currently active slide element. | -
@@ -110,8 +106,7 @@ npm install @webwriter/slides
 | Name (Attribute Name) | Type | Description | Default | Reflects |
 | :-------------------: | :--: | :---------: | :-----: | :------: |
 | `active` (`active`) | `boolean` | Indicates whether the slide is currently active/visible. | `false` | ✓ |
-| `thumbnail` (`thumbnail`) | `string` | Data URI string for the slide thumbnail (e.g., "data:image/png;base64,..."). 
-Used to display a preview image for the slide. | `""` | ✓ |
+| `thumbnail` (`thumbnail`) | `string` | Data URI string for the slide thumbnail (e.g., "data:image/png;base64,...").<br>Used to display a preview image for the slide. | `""` | ✓ |
 
 *Fields including [properties](https://developer.mozilla.org/en-US/docs/Glossary/Property/JavaScript) and [attributes](https://developer.mozilla.org/en-US/docs/Glossary/Attribute) define the current state of the widget and offer customization options.*
 
