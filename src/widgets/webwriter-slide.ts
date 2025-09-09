@@ -1,4 +1,4 @@
-/** config */
+/** Module imports */
 import {html, css} from "lit"
 import {LitElementWw} from "@webwriter/lit"
 import {customElement, property} from "lit/decorators.js"
@@ -6,16 +6,22 @@ import {customElement, property} from "lit/decorators.js"
 import "@shoelace-style/shoelace/dist/themes/light.css"
 import { snapdom } from "@zumer/snapdom"
 
-/** Single slide for the `webwriter-slides` widget.
-* @slot - Content of the slide
-*/
+/** 
+ * Represents a single slide in the `webwriter-slides` widget.
+ * 
+ * @slot default - The content displayed within the slide.
+ */
 @customElement("webwriter-slide")
 export class WebwriterSlide extends LitElementWw {
 
-  /** Whether the slide is selected/shown. */
+  /** Indicates whether the slide is currently active/visible. */
   @property({type: Boolean, attribute: true, reflect: true})
   accessor active = false
 
+  /** 
+   * Data URI string for the slide thumbnail (e.g., "data:image/png;base64,..."). 
+   * Used to display a preview image for the slide.
+   */
   @property({type: String, attribute: true, reflect: true})
   accessor thumbnail = ""
 
@@ -33,7 +39,7 @@ export class WebwriterSlide extends LitElementWw {
     }
   `
 
-  render() {
+  render(): unknown {
     return html`<slot></slot>`
   }
 

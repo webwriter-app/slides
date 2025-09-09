@@ -1,4 +1,4 @@
-/** config */
+/** Module imports */
 import {html, css, PropertyValueMap, PropertyValues} from "lit"
 import {LitElementWw} from "@webwriter/lit"
 import {customElement, property, queryAll, queryAssignedElements, state} from "lit/decorators.js"
@@ -25,17 +25,21 @@ import { SlChangeEvent, SlOption, SlSelect, SlTooltip } from "@shoelace-style/sh
 import { snapdom } from '@zumer/snapdom';
 import { slides_styles } from "../styles/styles"
 
-/** Slideshow container for sequential display of content.
-* @slot - Content of the slideshow (should be slides only)
-*/
+/**
+ * Container for displaying a slideshow of content sequentially.
+ *
+ * @slot default - Slide elements to be displayed (should be `webwriter-slide` components only).
+ */
 @customElement("webwriter-slides")
 export class WebwriterSlides extends LitElementWw {
 
-  protected localize = LOCALIZE
-  
+  protected localize = LOCALIZE;
+
   constructor() {
-    super()
-    this.addEventListener("fullscreenchange", () => this.requestUpdate())
+    super();
+
+    this.addEventListener("fullscreenchange", () => this.requestUpdate());
+
     document.addEventListener("selectionchange", e => {
       const selectedSlideIndex = this.slides?.findIndex(slide => document.getSelection().containsNode(slide, true))
       if(selectedSlideIndex !== -1) {
@@ -49,20 +53,27 @@ export class WebwriterSlides extends LitElementWw {
 
   connectedCallback() {
     super.connectedCallback?.();
-  
-    // Keydown-Listener hinzufügen
+
+    // Register keydown listener for slide navigation
     this._boundKeyHandler = this._handleKeyDown.bind(this);
     window.addEventListener('keydown', this._boundKeyHandler);
   }
-  
+
   disconnectedCallback() {
     super.disconnectedCallback?.();
+
+    // Cleanup keydown listener on disconnect
     window.removeEventListener('keydown', this._boundKeyHandler);
   }
 
-  _handleKeyDown(e) {
+  /**
+   * Handles keyboard navigation for the slideshow.
+   * ArrowRight advances to the next slide, ArrowLeft goes back.
+   * Only possible in preview mode.
+   */
+  _handleKeyDown(e: KeyboardEvent) {
     if (this.hasAttribute('contenteditable')) return;
-  
+
     switch (e.key) {
       case 'ArrowRight':
         this.handleNextSlideClick(e);
@@ -72,11 +83,9 @@ export class WebwriterSlides extends LitElementWw {
         break;
     }
   }
-  
-  
 
   protected firstUpdated(): void {
-    this.requestUpdate()
+    this.requestUpdate();
   }
 
   protected static scopedElements = {
@@ -85,39 +94,46 @@ export class WebwriterSlides extends LitElementWw {
     "sl-tooltip": SlTooltip,
     'sl-select': SlSelect,
     'sl-option': SlOption
-  }
+  };
 
-  /** Index of the active slide. */
-  @property({attribute: false, state: true})
-  accessor activeSlideIndex = 0
+  /** Index of the currently active slide. */
+  @property({ attribute: false, state: true })
+  accessor activeSlideIndex = 0;
 
-  /** Active slide element. */
+  /** The active slide element based on the activeSlideIndex. */
   get activeSlide(): WebwriterSlide {
-    return this.slides[this.activeSlideIndex]
+    return this.slides[this.activeSlideIndex];
   }
-  
+
   private draggingIndex: number | null = null;
 
-  // Index of slide the currently dragged slide was dragged over
-  private lastDraggedOver = -1
+  /** Index of the slide currently being dragged over (for drag-and-drop functionality). */
+  private lastDraggedOver = -1;
 
-  static styles = slides_styles
+  static styles = slides_styles;
 
+  /** Whether the slideshow is currently displayed in fullscreen mode. */
   protected get isFullscreen() {
-    return this.ownerDocument.fullscreenElement === this
+    return this.ownerDocument.fullscreenElement === this;
   }
 
+  /** Icon source URL depending on fullscreen state (enter/exit). */
   protected get iconSrc() {
-    return this.isFullscreen? fullscreenExitIcon: fullscreenIcon
+    return this.isFullscreen ? fullscreenExitIcon : fullscreenIcon;
   }
 
+  /** 
+   * All `webwriter-slide` elements. 
+   * Represents the individual slides in the slideshow.
+   */
   @queryAssignedElements()
-  protected accessor slides: WebwriterSlide[]
-
+  protected accessor slides: WebwriterSlide[];
 
   /**
-  * View of the slides
-  */
+   * Defines the type of view for the slideshow.
+   * - "slides": Show content as sequential slides.
+   * - "tabs": Show content using tabs.
+   */
   @property({ type: String, attribute: true, reflect: true })
   public accessor type: 'tabs' | 'slides' = 'slides';
 
@@ -178,6 +194,10 @@ duplicateSlide(index: number) {
       : Math.min(n, i + step))
   }
 
+  /**
+   * Lifecycle method called whenever the component is updated.
+   * Updates each slide's `active` property based on the current activeSlideIndex.
+   */
   updated(changed: any) {
     super.updated(changed)
     this.slides?.forEach((slide, i) => slide.active = i === this.activeSlideIndex)
@@ -193,26 +213,41 @@ duplicateSlide(index: number) {
     return this.activeSlideIndex > 0
   }
 
-  protected handleNextSlideClick(e: MouseEvent, backwards=false) {
-    if(e.shiftKey) {
-      this.nextSlide(backwards, this.slides.length)
-    }
-    else if(e.ctrlKey) {
-      this.nextSlide(backwards, 10)
-    }
-    else {
-      this.nextSlide(backwards)
+  /**
+ * Handles navigation to the next or previous slide based on user input.
+ * - Shift key: jump by the total number of slides.
+ * - Ctrl key: jump by 10 slides.
+ * - Otherwise: move by one slide.
+ * 
+ * @param e - The triggering mouse or keyboard event.
+ * @param backwards - Whether to navigate backward (default is false).
+ */
+  protected handleNextSlideClick(e: MouseEvent | KeyboardEvent, backwards = false) {
+    if (e.shiftKey) {
+      this.nextSlide(backwards, this.slides.length);
+    } else if (e.ctrlKey) {
+      this.nextSlide(backwards, 10);
+    } else {
+      this.nextSlide(backwards);
     }
   }
 
+  /**
+   * Changes the active slide to the specified index.
+   * Waits for rendering to finish, scrolls the active slide into view,
+   * and generates a thumbnail preview using snapdom.
+   * 
+   * @param index - The index of the slide to activate.
+   */
   protected changeSlide = async (index: number) => {
-    this.activeSlideIndex = index
+    this.activeSlideIndex = index;
 
-    const tmpSlideIndex = this.activeSlideIndex
-    // Wait until rendering of slide is finished (approximately latest)
+    const tmpSlideIndex = this.activeSlideIndex;
+
+    // Wait briefly to ensure slide rendering completes
     await new Promise(resolve => setTimeout(resolve, 100));
 
-    // Scroll slide tab or thumbnail into view
+    // Scroll the active slide/tab into view smoothly
     const active = this.renderRoot.querySelector('.active');
     if (active) {
       active.scrollIntoView({
@@ -222,15 +257,22 @@ duplicateSlide(index: number) {
       });
     }
 
-    // Check if user changed slide in the meantime
-    if(this.activeSlideIndex == tmpSlideIndex) {
+    // Only proceed if slide hasn’t changed in the meantime
+    if (this.activeSlideIndex === tmpSlideIndex) {
       const result = await snapdom(this.slides[tmpSlideIndex], { width: 240, height: 140 });
       const img = await result.toPng();
-      this.slides[tmpSlideIndex].thumbnail = img.src
-      this.requestUpdate()
+      this.slides[tmpSlideIndex].thumbnail = img.src;
+      this.requestUpdate();
     }
   }
 
+  /**
+   * Starts dragging a slide element.
+   * Adds the 'dragging' CSS class and sets drag data.
+   * 
+   * @param e - The dragstart event.
+   * @param index - Index of the slide being dragged.
+   */
   private onDragStart(e: DragEvent, index: number) {
     this.draggingIndex = index;
     (e.currentTarget as HTMLElement).classList.add('dragging');
@@ -238,22 +280,29 @@ duplicateSlide(index: number) {
     e.dataTransfer!.effectAllowed = 'move';
   }
 
+  /**
+   * Ends dragging a slide.
+   * Moves the dragged slide to its new position if it was moved,
+   * updates the active slide index, and cleans up drag state.
+   * 
+   * @param e - The dragend event.
+   */
   private onDragEnd(e: DragEvent) {
     const draggingIdx = this.draggingIndex;
     if (draggingIdx === null || draggingIdx === this.lastDraggedOver) return;
-  
+
     const draggedSlide = this.slides[draggingIdx];
     const targetSlide = this.slides[this.lastDraggedOver];
-  
+
     if (draggedSlide && targetSlide && draggedSlide !== targetSlide) {
       if (draggingIdx < this.lastDraggedOver) {
-        // Move draggedSlide after targetSlide
+        // Insert dragged slide after the target slide
         targetSlide.insertAdjacentElement('afterend', draggedSlide);
       } else {
-        // Move draggedSlide before targetSlide
+        // Insert dragged slide before the target slide
         targetSlide.insertAdjacentElement('beforebegin', draggedSlide);
       }
-  
+
       this.activeSlideIndex = this.lastDraggedOver;
       this.requestUpdate();
     }
@@ -263,11 +312,28 @@ duplicateSlide(index: number) {
     this.lastDraggedOver = -1;
   }
 
+  /**
+   * Handles dragging over a slide element.
+   * Prevents default to allow dropping and records the slide index being hovered.
+   * 
+   * @param e - The dragover event.
+   * @param index - Index of the slide being dragged over.
+   */
   private onDragOver(e: DragEvent, index: number) {
     e.preventDefault();
-    this.lastDraggedOver = index
+    this.lastDraggedOver = index;
   }
 
+  /**
+   * Renders the slideshow component UI including:
+   * - Slide navigation controls (next, previous, duplicate, add, remove).
+   * - View type selector when contenteditable (tabs or slides).
+   * - Tabs view with draggable slide tabs and controls.
+   * - Slides view with thumbnails, draggable slides, and controls.
+   * - The default slot where slide content is displayed.
+   * 
+   * The controls adapt depending on whether the component is editable.
+   */
   render() {
 
     const slideButtons = (index: number) => html`

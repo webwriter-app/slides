@@ -8,12 +8,12 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Slideshow container for sequential display of content.",
+          "description": "Container for displaying a slideshow of content sequentially.",
           "name": "WebwriterSlides",
           "slots": [
             {
-              "description": "Content of the slideshow (should be slides only)",
-              "name": ""
+              "description": "Slide elements to be displayed (should be `webwriter-slide` components only).",
+              "name": "default"
             }
           ],
           "members": [
@@ -25,13 +25,34 @@
             },
             {
               "kind": "field",
+              "name": "_boundKeyHandler",
+              "type": {
+                "text": "(e: KeyboardEvent) => void"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "_handleKeyDown",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "KeyboardEvent"
+                  }
+                }
+              ],
+              "description": "Handles keyboard navigation for the slideshow.\nArrowRight advances to the next slide, ArrowLeft goes back.\nOnly possible in preview mode."
+            },
+            {
+              "kind": "field",
               "name": "scopedElements",
               "type": {
                 "text": "object"
               },
               "privacy": "protected",
               "static": true,
-              "default": "{ \"sl-button\": SlButton, \"sl-icon-button\": SlIconButton }"
+              "default": "{ \"sl-button\": SlButton, \"sl-icon-button\": SlIconButton, \"sl-tooltip\": SlTooltip, 'sl-select': SlSelect, 'sl-option': SlOption }"
             },
             {
               "kind": "field",
@@ -40,7 +61,7 @@
                 "text": "number"
               },
               "default": "0",
-              "description": "Index of the active slide."
+              "description": "Index of the currently active slide."
             },
             {
               "kind": "field",
@@ -48,19 +69,40 @@
               "type": {
                 "text": "WebwriterSlide"
               },
-              "description": "Active slide element.",
+              "description": "The active slide element based on the activeSlideIndex.",
               "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "draggingIndex",
+              "type": {
+                "text": "number | null"
+              },
+              "privacy": "private",
+              "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "lastDraggedOver",
+              "type": {
+                "text": "number"
+              },
+              "privacy": "private",
+              "default": "-1",
+              "description": "Index of the slide currently being dragged over (for drag-and-drop functionality)."
             },
             {
               "kind": "field",
               "name": "isFullscreen",
               "privacy": "protected",
+              "description": "Whether the slideshow is currently displayed in fullscreen mode.",
               "readonly": true
             },
             {
               "kind": "field",
               "name": "iconSrc",
               "privacy": "protected",
+              "description": "Icon source URL depending on fullscreen state (enter/exit).",
               "readonly": true
             },
             {
@@ -69,16 +111,64 @@
               "type": {
                 "text": "WebwriterSlide[]"
               },
-              "privacy": "protected"
+              "privacy": "protected",
+              "description": "All `webwriter-slide` elements. \nRepresents the individual slides in the slideshow."
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "'tabs' | 'slides'"
+              },
+              "privacy": "public",
+              "default": "'slides'",
+              "description": "Defines the type of view for the slideshow.\n- \"slides\": Show content as sequential slides.\n- \"tabs\": Show content using tabs.",
+              "attribute": "type",
+              "reflects": true
             },
             {
               "kind": "method",
               "name": "addSlide",
-              "description": "Add a new empty slide element."
+              "parameters": [
+                {
+                  "name": "index",
+                  "optional": true,
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ],
+              "description": "Add a new empty slide element. Optionally insert after given index."
+            },
+            {
+              "kind": "method",
+              "name": "duplicateSlide",
+              "parameters": [
+                {
+                  "name": "index",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ],
+              "description": "Duplicate an existing slide at given index."
+            },
+            {
+              "kind": "method",
+              "name": "removeActiveSlide",
+              "description": "Remove the currently active slide element."
             },
             {
               "kind": "method",
               "name": "removeSlide",
+              "parameters": [
+                {
+                  "name": "slideIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ],
               "description": "Remove the currently active slide element."
             },
             {
@@ -122,14 +212,99 @@
                 {
                   "name": "e",
                   "type": {
-                    "text": "MouseEvent"
-                  }
+                    "text": "MouseEvent | KeyboardEvent"
+                  },
+                  "description": "The triggering mouse or keyboard event."
                 },
                 {
                   "name": "backwards",
-                  "default": "false"
+                  "default": "false",
+                  "description": "Whether to navigate backward (default is false)."
+                }
+              ],
+              "description": "Handles navigation to the next or previous slide based on user input.\n- Shift key: jump by the total number of slides.\n- Ctrl key: jump by 10 slides.\n- Otherwise: move by one slide."
+            },
+            {
+              "kind": "field",
+              "name": "changeSlide",
+              "privacy": "protected",
+              "description": "Changes the active slide to the specified index.\nWaits for rendering to finish, scrolls the active slide into view,\nand generates a thumbnail preview using snapdom.",
+              "parameters": [
+                {
+                  "description": "The index of the slide to activate.",
+                  "name": "index"
                 }
               ]
+            },
+            {
+              "kind": "method",
+              "name": "onDragStart",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "DragEvent"
+                  },
+                  "description": "The dragstart event."
+                },
+                {
+                  "name": "index",
+                  "type": {
+                    "text": "number"
+                  },
+                  "description": "Index of the slide being dragged."
+                }
+              ],
+              "description": "Starts dragging a slide element.\nAdds the 'dragging' CSS class and sets drag data."
+            },
+            {
+              "kind": "method",
+              "name": "onDragEnd",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "DragEvent"
+                  },
+                  "description": "The dragend event."
+                }
+              ],
+              "description": "Ends dragging a slide.\nMoves the dragged slide to its new position if it was moved,\nupdates the active slide index, and cleans up drag state."
+            },
+            {
+              "kind": "method",
+              "name": "onDragOver",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "DragEvent"
+                  },
+                  "description": "The dragover event."
+                },
+                {
+                  "name": "index",
+                  "type": {
+                    "text": "number"
+                  },
+                  "description": "Index of the slide being dragged over."
+                }
+              ],
+              "description": "Handles dragging over a slide element.\nPrevents default to allow dropping and records the slide index being hovered."
+            }
+          ],
+          "attributes": [
+            {
+              "name": "type",
+              "type": {
+                "text": "'tabs' | 'slides'"
+              },
+              "default": "'slides'",
+              "description": "Defines the type of view for the slideshow.\n- \"slides\": Show content as sequential slides.\n- \"tabs\": Show content using tabs.",
+              "fieldName": "type"
             }
           ],
           "superclass": {
@@ -165,12 +340,12 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Single slide for the `webwriter-slides` widget.",
+          "description": "Represents a single slide in the `webwriter-slides` widget.",
           "name": "WebwriterSlide",
           "slots": [
             {
-              "description": "Content of the slide",
-              "name": ""
+              "description": "The content displayed within the slide.",
+              "name": "default"
             }
           ],
           "members": [
@@ -181,8 +356,19 @@
                 "text": "boolean"
               },
               "default": "false",
-              "description": "Whether the slide is selected/shown.",
+              "description": "Indicates whether the slide is currently active/visible.",
               "attribute": "active",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "thumbnail",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "Data URI string for the slide thumbnail (e.g., \"data:image/png;base64,...\"). \nUsed to display a preview image for the slide.",
+              "attribute": "thumbnail",
               "reflects": true
             }
           ],
@@ -193,8 +379,17 @@
                 "text": "boolean"
               },
               "default": "false",
-              "description": "Whether the slide is selected/shown.",
+              "description": "Indicates whether the slide is currently active/visible.",
               "fieldName": "active"
+            },
+            {
+              "name": "thumbnail",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "Data URI string for the slide thumbnail (e.g., \"data:image/png;base64,...\"). \nUsed to display a preview image for the slide.",
+              "fieldName": "thumbnail"
             }
           ],
           "superclass": {

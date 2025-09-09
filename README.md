@@ -1,7 +1,7 @@
-# Slides (`@webwriter/slides@2.2.0`)
-[License: MIT](LICENSE) | Version: 2.2.0
+# Slides (`@webwriter/slides@2.3.0`)
+[License: MIT](LICENSE) | Version: 2.3.0
 
-WIP - Present content as a sequence of screens (slides, tabs, etc.).
+Present content as a sequence of slides or tabs.
 
 ## Snippets
 [Snippets](https://webwriter.app/docs/snippets/snippets/) are examples and templates using the package's widgets.
@@ -13,7 +13,7 @@ WIP - Present content as a sequence of screens (slides, tabs, etc.).
 
 
 ## `WebwriterSlides` (`<webwriter-slides>`)
-Slideshow container for sequential display of content.
+Container for displaying a slideshow of content sequentially.
 
 ### Usage
 
@@ -39,8 +39,11 @@ npm install @webwriter/slides
 ## Fields
 | Name (Attribute Name) | Type | Description | Default | Reflects |
 | :-------------------: | :--: | :---------: | :-----: | :------: |
-| `activeSlideIndex` | `number` | Index of the active slide. | `0` | ✗ |
-| `activeSlide` | `WebwriterSlide` | Active slide element. | - | ✗ |
+| `activeSlideIndex` | `number` | Index of the currently active slide. | `0` | ✗ |
+| `activeSlide` | `WebwriterSlide` | The active slide element based on the activeSlideIndex. | - | ✗ |
+| `type` (`type`) | `'tabs' \| 'slides'` | Defines the type of view for the slideshow.
+- "slides": Show content as sequential slides.
+- "tabs": Show content using tabs. | `'slides'` | ✓ |
 | `hasNextSlide` | `boolean` | False if slideshow is on the last slide. | - | ✗ |
 | `hasPreviousSlide` | `boolean` | False if slideshow is on the first slide. | - | ✗ |
 
@@ -49,8 +52,13 @@ npm install @webwriter/slides
 ## Methods
 | Name | Description | Parameters |
 | :--: | :---------: | :-------: |
-| `addSlide` | Add a new empty slide element. | -
-| `removeSlide` | Remove the currently active slide element. | -
+| `_handleKeyDown` | Handles keyboard navigation for the slideshow.
+ArrowRight advances to the next slide, ArrowLeft goes back.
+Only possible in preview mode. | `e: KeyboardEvent`
+| `addSlide` | Add a new empty slide element. Optionally insert after given index. | `index: number`
+| `duplicateSlide` | Duplicate an existing slide at given index. | `index: number`
+| `removeActiveSlide` | Remove the currently active slide element. | -
+| `removeSlide` | Remove the currently active slide element. | `slideIndex: number`
 | `nextSlide` | Activate the next slide element. | `backwards=false`, `step=1`
 
 *[Methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions) allow programmatic access to the widget.*
@@ -58,7 +66,7 @@ npm install @webwriter/slides
 ## Slots
 | Name | Description | Content Type |
 | :--: | :---------: | :----------: |
-| *(default)* | Content of the slideshow (should be slides only) | webwriter-slide+ |
+| `default` | Slide elements to be displayed (should be `webwriter-slide` components only). | webwriter-slide+ |
 
 *[Slots](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_templates_and_slots) define how the content of the widget is rendered.*
 
@@ -75,7 +83,7 @@ npm install @webwriter/slides
 
 
 ## `WebwriterSlide` (`<webwriter-slide>`)
-Single slide for the `webwriter-slides` widget.
+Represents a single slide in the `webwriter-slides` widget.
 
 ### Usage
 
@@ -101,14 +109,16 @@ npm install @webwriter/slides
 ## Fields
 | Name (Attribute Name) | Type | Description | Default | Reflects |
 | :-------------------: | :--: | :---------: | :-----: | :------: |
-| `active` (`active`) | `boolean` | Whether the slide is selected/shown. | `false` | ✓ |
+| `active` (`active`) | `boolean` | Indicates whether the slide is currently active/visible. | `false` | ✓ |
+| `thumbnail` (`thumbnail`) | `string` | Data URI string for the slide thumbnail (e.g., "data:image/png;base64,..."). 
+Used to display a preview image for the slide. | `""` | ✓ |
 
 *Fields including [properties](https://developer.mozilla.org/en-US/docs/Glossary/Property/JavaScript) and [attributes](https://developer.mozilla.org/en-US/docs/Glossary/Attribute) define the current state of the widget and offer customization options.*
 
 ## Slots
 | Name | Description | Content Type |
 | :--: | :---------: | :----------: |
-| *(default)* | Content of the slide | p \| flow* |
+| `default` | The content displayed within the slide. | p \| flow* |
 
 *[Slots](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_templates_and_slots) define how the content of the widget is rendered.*
 

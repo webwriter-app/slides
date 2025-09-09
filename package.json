@@ -1,6 +1,6 @@
 {
   "name": "@webwriter/slides",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Present content as a sequence of slides or tabs.",
   "keywords": [
     "webwriter-widget",
@@ -110,5 +110,6 @@
       "content": "p | flow*",
       "uninsertable": true
     }
-  }
+  },
+  "customElements": "custom-elements.json"
 }
