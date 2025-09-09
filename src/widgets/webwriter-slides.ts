@@ -301,16 +301,20 @@ duplicateSlide(index: number) {
     </div>`
 
     const controls = html`
-      <div class="controls">
-        <sl-icon-button class="author-only" ?disabled=${this.slides.length <= 1} @click=${() => this.removeActiveSlide()} src=${minusSquareIcon} title=${msg("Remove slide")}></sl-icon-button>
-        <sl-icon-button class="author-only" @click=${() => this.addSlide()} src=${plusSquareIcon} title=${msg("Add slide")}></sl-icon-button>
-        <sl-icon-button @click=${(e: MouseEvent) => this.handleNextSlideClick(e, true)} src=${chevronLeftIcon} ?disabled=${!this.hasPreviousSlide} title=${msg("Go to previous slide")}></sl-icon-button>
-        <div class="slides-index">
-          <span>${this.activeSlideIndex + 1}</span> / <span>${this.slides?.length}</span>
+        <div class="controls-section">
+          <sl-icon-button class="author-only" ?disabled=${this.slides.length <= 1} @click=${() => this.removeActiveSlide()} src=${minusSquareIcon} title=${msg("Remove slide")}></sl-icon-button>
+          <sl-icon-button class="author-only" @click=${() => this.addSlide()} src=${plusSquareIcon} title=${msg("Add slide")}></sl-icon-button>
         </div>
-        <sl-icon-button @click=${(e: MouseEvent) => this.handleNextSlideClick(e)} src=${chevronRightIcon}  ?disabled=${!this.hasNextSlide} title=${msg("Go to next slide")}></sl-icon-button>
-        <sl-icon-button id="fullscreen" src=${this.iconSrc} @click=${() => {(!this.isFullscreen ? this.requestFullscreen(): this.ownerDocument.exitFullscreen()); this.requestUpdate();}} title=${msg("Show in fullscreen")}></sl-icon-button>
-      </div>`
+        <div class="controls-section">
+          <sl-icon-button @click=${(e: MouseEvent) => this.handleNextSlideClick(e, true)} src=${chevronLeftIcon} ?disabled=${!this.hasPreviousSlide} title=${msg("Go to previous slide")}></sl-icon-button>
+          <div class="slides-index">
+            <span>${this.activeSlideIndex + 1}</span> / <span>${this.slides?.length}</span>
+          </div>
+          <sl-icon-button @click=${(e: MouseEvent) => this.handleNextSlideClick(e)} src=${chevronRightIcon}  ?disabled=${!this.hasNextSlide} title=${msg("Go to next slide")}></sl-icon-button>
+        </div>
+        <div class="controls-section">
+          <sl-icon-button id="fullscreen" src=${this.iconSrc} @click=${() => {(!this.isFullscreen ? this.requestFullscreen(): this.ownerDocument.exitFullscreen()); this.requestUpdate();}} title=${msg("Show in fullscreen")}></sl-icon-button>
+        </div>`
     
     return html`
       ${this.hasAttribute("contenteditable") ? html`<aside class="settings" part="options">
@@ -346,7 +350,9 @@ duplicateSlide(index: number) {
             `
           )}
         </div>
-        ${controls}
+        <div class="controls-rows">
+          ${controls}
+        </div>
       </aside>` : html``}
       <slot></slot>
       ${this.type == "slides" ? html`<aside part="actions">
@@ -372,7 +378,9 @@ duplicateSlide(index: number) {
             `
           )}
         </div>
-        ${controls}
+        <div class="controls-columns">
+          ${controls}
+        </div>
       </aside>` : html``}
     `
   }

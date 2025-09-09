@@ -25,8 +25,6 @@ export const slides_styles = css`
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        align-items: center;
-        gap: 4px;
     }
 
     .slides-index {
@@ -58,14 +56,30 @@ export const slides_styles = css`
         }
     }
 
-    .controls {
+    .controls-columns, .controls-rows {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px;
+        border-radius: 5px;
+        border: 2px solid #ccc;
+        margin: 5px 5px 5px 0px;
+
+    }
+
+    .controls-columns {
+        flex-direction: column;
+    }
+
+    .controls-rows {
+        flex-direction: row;
+    }
+
+    .controls-section {
         display: flex;
         flex-direction: row;
         align-items: center;
         gap: 4px;
-        border-radius: 5px;
-        border: 2px solid #ccc;
-        margin: 5px 0px;
     }
 
     .slide-thumbs {
