@@ -5,10 +5,6 @@
         <source>Remove slide</source>
         <target>Fjern lysbildet</target>
       </trans-unit>
-      <trans-unit id="sac2eb5c63a7b6c71">
-        <source>Add slide</source>
-        <target>Legg til lysbilde</target>
-      </trans-unit>
       <trans-unit id="sa2322449a142ad50">
         <source>Go to previous slide</source>
         <target>Gå til forrige lysbilde</target>
@@ -20,6 +16,30 @@
       <trans-unit id="see7c7a973a9b2d6c">
         <source>Show in fullscreen</source>
         <target>Vis i fullskjerm</target>
+      </trans-unit>
+      <trans-unit id="sc67c075acd3a06ea">
+        <source>Duplicate current slide</source>
+        <target>Dupliser gjeldende lysbilde</target>
+      </trans-unit>
+      <trans-unit id="s657514e10d2199ee">
+        <source>Add slide after current</source>
+        <target>Legg til lysbilde etter gjeldende</target>
+      </trans-unit>
+      <trans-unit id="s5334c0927cf25b86">
+        <source>Exit fullscreen</source>
+        <target>Avslutt fullskjerm</target>
+      </trans-unit>
+      <trans-unit id="s7f59f507e02a2f38">
+        <source>View</source>
+        <target>Utsikt</target>
+      </trans-unit>
+      <trans-unit id="s03b454fb08e876ad">
+        <source>Tabs</source>
+        <target>Faner</target>
+      </trans-unit>
+      <trans-unit id="s0043ccab8a7a7eaf">
+        <source>Slides</source>
+        <target>Lysbilder</target>
       </trans-unit>
     </body>
   </file>

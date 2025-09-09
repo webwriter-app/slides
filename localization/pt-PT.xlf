@@ -5,10 +5,6 @@
         <source>Remove slide</source>
         <target>Retirar a corrediça</target>
       </trans-unit>
-      <trans-unit id="sac2eb5c63a7b6c71">
-        <source>Add slide</source>
-        <target>Adicionar slide</target>
-      </trans-unit>
       <trans-unit id="sa2322449a142ad50">
         <source>Go to previous slide</source>
         <target>Ir para o diapositivo anterior</target>
@@ -20,6 +16,30 @@
       <trans-unit id="see7c7a973a9b2d6c">
         <source>Show in fullscreen</source>
         <target>Mostrar em ecrã completo</target>
+      </trans-unit>
+      <trans-unit id="sc67c075acd3a06ea">
+        <source>Duplicate current slide</source>
+        <target>Duplicar o diapositivo atual</target>
+      </trans-unit>
+      <trans-unit id="s657514e10d2199ee">
+        <source>Add slide after current</source>
+        <target>Adicionar slide após o atual</target>
+      </trans-unit>
+      <trans-unit id="s5334c0927cf25b86">
+        <source>Exit fullscreen</source>
+        <target>Sair do ecrã inteiro</target>
+      </trans-unit>
+      <trans-unit id="s7f59f507e02a2f38">
+        <source>View</source>
+        <target>Ver</target>
+      </trans-unit>
+      <trans-unit id="s03b454fb08e876ad">
+        <source>Tabs</source>
+        <target>Separadores</target>
+      </trans-unit>
+      <trans-unit id="s0043ccab8a7a7eaf">
+        <source>Slides</source>
+        <target>Deslizamentos</target>
       </trans-unit>
     </body>
   </file>

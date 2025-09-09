@@ -3,11 +3,7 @@
     <body>
       <trans-unit id="se898a5a880c57718">
         <source>Remove slide</source>
-        <target>Dia entfernen</target>
-      </trans-unit>
-      <trans-unit id="sac2eb5c63a7b6c71">
-        <source>Add slide</source>
-        <target>Folie hinzufügen</target>
+        <target>Folie entfernen</target>
       </trans-unit>
       <trans-unit id="sa2322449a142ad50">
         <source>Go to previous slide</source>
@@ -20,6 +16,30 @@
       <trans-unit id="see7c7a973a9b2d6c">
         <source>Show in fullscreen</source>
         <target>Im Vollbildmodus anzeigen</target>
+      </trans-unit>
+      <trans-unit id="sc67c075acd3a06ea">
+        <source>Duplicate current slide</source>
+        <target>Aktuelle Folie duplizieren</target>
+      </trans-unit>
+      <trans-unit id="s657514e10d2199ee">
+        <source>Add slide after current</source>
+        <target>Folie nach der aktuellen hinzufügen</target>
+      </trans-unit>
+      <trans-unit id="s5334c0927cf25b86">
+        <source>Exit fullscreen</source>
+        <target>Vollbildmodus beenden</target>
+      </trans-unit>
+      <trans-unit id="s7f59f507e02a2f38">
+        <source>View</source>
+        <target>Siehe</target>
+      </trans-unit>
+      <trans-unit id="s03b454fb08e876ad">
+        <source>Tabs</source>
+        <target>Tabs</target>
+      </trans-unit>
+      <trans-unit id="s0043ccab8a7a7eaf">
+        <source>Slides</source>
+        <target>Folien</target>
       </trans-unit>
     </body>
   </file>

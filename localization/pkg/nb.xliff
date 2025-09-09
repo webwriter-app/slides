@@ -1,1 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?><xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.1" srcLang="en" trgLang="nb"><file id="." original="."><unit id="description"><segment><source>WIP - Present content as a sequence of screens (slides, tabs, etc.).</source><target>WIP - Presentere innhold som en sekvens av skjermbilder (lysbilder, faner osv.).</target></segment></unit></file><file id="./snippets/example" original="./snippets/example"><unit id="label"><segment><source>Example</source><target>Eksempel</target></segment></unit></file></xliff>
+<?xml version="1.0" encoding="utf-8" ?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.1" srcLang="en" trgLang="nb">
+<file id="." original=".">
+<unit id="description"><segment><source>WIP - Present content as a sequence of screens (slides, tabs, etc.).</source><target>WIP - Presentere innhold som en sekvens av skjermbilder (lysbilder, faner osv.).</target></segment></unit>
+</file>
+<file id="./snippets/example" original="./snippets/example">
+<unit id="label"><segment><source>Example</source><target>Eksempel</target></segment></unit>
+</file>
+</xliff>

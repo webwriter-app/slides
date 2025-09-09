@@ -5,10 +5,6 @@
         <source>Remove slide</source>
         <target>Nuimkite skaidrę</target>
       </trans-unit>
-      <trans-unit id="sac2eb5c63a7b6c71">
-        <source>Add slide</source>
-        <target>Pridėti skaidrę</target>
-      </trans-unit>
       <trans-unit id="sa2322449a142ad50">
         <source>Go to previous slide</source>
         <target>Pereiti prie ankstesnės skaidrės</target>
@@ -20,6 +16,30 @@
       <trans-unit id="see7c7a973a9b2d6c">
         <source>Show in fullscreen</source>
         <target>Rodyti per visą ekraną</target>
+      </trans-unit>
+      <trans-unit id="sc67c075acd3a06ea">
+        <source>Duplicate current slide</source>
+        <target>Dabartinės skaidrės dubliavimas</target>
+      </trans-unit>
+      <trans-unit id="s657514e10d2199ee">
+        <source>Add slide after current</source>
+        <target>Pridėti skaidrę po dabartinės</target>
+      </trans-unit>
+      <trans-unit id="s5334c0927cf25b86">
+        <source>Exit fullscreen</source>
+        <target>Išeiti iš viso ekrano</target>
+      </trans-unit>
+      <trans-unit id="s7f59f507e02a2f38">
+        <source>View</source>
+        <target>Peržiūrėti</target>
+      </trans-unit>
+      <trans-unit id="s03b454fb08e876ad">
+        <source>Tabs</source>
+        <target>Skirtukai</target>
+      </trans-unit>
+      <trans-unit id="s0043ccab8a7a7eaf">
+        <source>Slides</source>
+        <target>Skaidrės</target>
       </trans-unit>
     </body>
   </file>

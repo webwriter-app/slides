@@ -5,10 +5,6 @@
         <source>Remove slide</source>
         <target>移除滑軌</target>
       </trans-unit>
-      <trans-unit id="sac2eb5c63a7b6c71">
-        <source>Add slide</source>
-        <target>新增幻燈片</target>
-      </trans-unit>
       <trans-unit id="sa2322449a142ad50">
         <source>Go to previous slide</source>
         <target>前往上一張幻燈片</target>
@@ -20,6 +16,30 @@
       <trans-unit id="see7c7a973a9b2d6c">
         <source>Show in fullscreen</source>
         <target>以全螢幕顯示</target>
+      </trans-unit>
+      <trans-unit id="sc67c075acd3a06ea">
+        <source>Duplicate current slide</source>
+        <target>複製目前的幻燈片</target>
+      </trans-unit>
+      <trans-unit id="s657514e10d2199ee">
+        <source>Add slide after current</source>
+        <target>在目前頁面後新增幻燈片</target>
+      </trans-unit>
+      <trans-unit id="s5334c0927cf25b86">
+        <source>Exit fullscreen</source>
+        <target>退出全螢幕</target>
+      </trans-unit>
+      <trans-unit id="s7f59f507e02a2f38">
+        <source>View</source>
+        <target>檢視</target>
+      </trans-unit>
+      <trans-unit id="s03b454fb08e876ad">
+        <source>Tabs</source>
+        <target>標籤</target>
+      </trans-unit>
+      <trans-unit id="s0043ccab8a7a7eaf">
+        <source>Slides</source>
+        <target>幻燈片</target>
       </trans-unit>
     </body>
   </file>

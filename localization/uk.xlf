@@ -5,10 +5,6 @@
         <source>Remove slide</source>
         <target>Вийміть слайд</target>
       </trans-unit>
-      <trans-unit id="sac2eb5c63a7b6c71">
-        <source>Add slide</source>
-        <target>Додати слайд</target>
-      </trans-unit>
       <trans-unit id="sa2322449a142ad50">
         <source>Go to previous slide</source>
         <target>Перейти до попереднього слайду</target>
@@ -20,6 +16,30 @@
       <trans-unit id="see7c7a973a9b2d6c">
         <source>Show in fullscreen</source>
         <target>Показати в повноекранному режимі</target>
+      </trans-unit>
+      <trans-unit id="sc67c075acd3a06ea">
+        <source>Duplicate current slide</source>
+        <target>Продублювати поточний слайд</target>
+      </trans-unit>
+      <trans-unit id="s657514e10d2199ee">
+        <source>Add slide after current</source>
+        <target>Додати слайд після поточного</target>
+      </trans-unit>
+      <trans-unit id="s5334c0927cf25b86">
+        <source>Exit fullscreen</source>
+        <target>Вийти на весь екран</target>
+      </trans-unit>
+      <trans-unit id="s7f59f507e02a2f38">
+        <source>View</source>
+        <target>Вигляд</target>
+      </trans-unit>
+      <trans-unit id="s03b454fb08e876ad">
+        <source>Tabs</source>
+        <target>Вкладки</target>
+      </trans-unit>
+      <trans-unit id="s0043ccab8a7a7eaf">
+        <source>Slides</source>
+        <target>Слайди</target>
       </trans-unit>
     </body>
   </file>
