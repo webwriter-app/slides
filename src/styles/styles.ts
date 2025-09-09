@@ -8,6 +8,7 @@ export const slides_styles = css`
         position: relative;
         background: white;
         display: block;
+        padding: 5px;
     }
 
     :host(:not(:fullscreen)) {
@@ -132,11 +133,11 @@ export const slides_styles = css`
     .remove-btn,
     .add-btn,
     .duplicate-btn,
-    .slide-number {
+    .slide-number,
+    .fullscreen-btn {
         cursor: pointer;
-        color: white;
-        font-size: 0.9rem;
         color: var(--sl-color-gray-800);
+        font-size: 0.9rem;
     }
 
     .slide-tabs-wrapper {
@@ -187,7 +188,7 @@ export const slides_styles = css`
     }
 
     .slide-number {
-        margin-right: 20px;
+        margin-right: 50px;
     }
 
     .slide-number-flying {
