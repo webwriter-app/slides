@@ -1,9 +1,1 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.1" srcLang="en" trgLang="zh-hant">
-<file id="." original=".">
-<unit id="description"><segment><source>WIP - Present content as a sequence of screens (slides, tabs, etc.).</source><target>WIP - 以一連串的畫面（幻燈片、標籤等）呈現內容。</target></segment></unit>
-</file>
-<file id="./snippets/example" original="./snippets/example">
-<unit id="label"><segment><source>Example</source><target>範例</target></segment></unit>
-</file>
-</xliff>
+﻿<?xml version="1.0" encoding="utf-8"?><xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.1" srcLang="en" trgLang="zh-Hant"><file id="." original="."><unit id="description"><segment><source>Present content as a sequence of slides or tabs.</source><target>以一系列幻燈片或標籤的方式呈現內容。</target></segment></unit></file><file id="./snippets/example" original="./snippets/example"><unit id="label"><segment><source>Example</source><target>範例</target></segment></unit></file></xliff>
