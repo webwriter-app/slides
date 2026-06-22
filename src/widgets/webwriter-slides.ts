@@ -13,6 +13,7 @@ import SlButton from "@shoelace-style/shoelace/dist/components/button/button.com
 import SlIconButton from "@shoelace-style/shoelace/dist/components/icon-button/icon-button.component.js";
 import LOCALIZE from "../../localization/generated";
 
+// @ts-ignore
 import "@shoelace-style/shoelace/dist/themes/light.css";
 
 import fullscreenIcon from "bootstrap-icons/icons/fullscreen.svg";
@@ -550,7 +551,7 @@ export class WebwriterSlides extends LitElementWw {
                                             ></div>`}
 
                                       <div class="slide-options">
-                                          <div class="slide-number-flying">
+                                          <div class="slide-number">
                                               ${index + 1}
                                           </div>
 

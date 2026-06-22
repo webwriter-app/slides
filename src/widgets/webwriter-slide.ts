@@ -3,6 +3,7 @@ import { html, css } from "lit";
 import { LitElementWw } from "@webwriter/lit";
 import { customElement, property } from "lit/decorators.js";
 
+// @ts-ignore
 import "@shoelace-style/shoelace/dist/themes/light.css";
 import { snapdom } from "@zumer/snapdom";
 
@@ -33,7 +34,7 @@ export class WebwriterSlide extends LitElementWw {
             display: block;
             overflow-y: auto;
             overflow-x: hidden;
-            border: 2px solid #007bff !important;
+            border: 2px solid var(--sl-color-neutral-300) !important;
             border-radius: 5px;
         }
     `;
