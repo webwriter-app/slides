@@ -9,6 +9,7 @@ export const slides_styles = css`
         background: white;
         display: block;
         padding: 5px;
+        box-sizing: border-box;
     }
 
     :host(:not(:fullscreen)) {
