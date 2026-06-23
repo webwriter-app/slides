@@ -17,10 +17,6 @@
         <source>Show in fullscreen</source>
         <target>Afișare pe ecran complet</target>
       </trans-unit>
-      <trans-unit id="sc67c075acd3a06ea">
-        <source>Duplicate current slide</source>
-        <target>Duplicați diapozitivul curent</target>
-      </trans-unit>
       <trans-unit id="s657514e10d2199ee">
         <source>Add slide after current</source>
         <target>Adăugați diapozitiv după curent</target>
@@ -40,6 +36,10 @@
       <trans-unit id="s0043ccab8a7a7eaf">
         <source>Slides</source>
         <target>Diapozitive</target>
+      </trans-unit>
+      <trans-unit id="s7309c4598fa52557">
+        <source>Duplicate slide</source>
+        <target>Diapozitiv duplicat</target>
       </trans-unit>
     </body>
   </file>

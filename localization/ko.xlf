@@ -17,10 +17,6 @@
         <source>Show in fullscreen</source>
         <target>전체 화면으로 보기</target>
       </trans-unit>
-      <trans-unit id="sc67c075acd3a06ea">
-        <source>Duplicate current slide</source>
-        <target>현재 슬라이드 복제</target>
-      </trans-unit>
       <trans-unit id="s657514e10d2199ee">
         <source>Add slide after current</source>
         <target>현재 슬라이드 뒤에 슬라이드 추가</target>
@@ -40,6 +36,10 @@
       <trans-unit id="s0043ccab8a7a7eaf">
         <source>Slides</source>
         <target>슬라이드</target>
+      </trans-unit>
+      <trans-unit id="s7309c4598fa52557">
+        <source>Duplicate slide</source>
+        <target>중복 슬라이드</target>
       </trans-unit>
     </body>
   </file>

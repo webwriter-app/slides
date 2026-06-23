@@ -17,10 +17,6 @@
         <source>Show in fullscreen</source>
         <target>以全螢幕顯示</target>
       </trans-unit>
-      <trans-unit id="sc67c075acd3a06ea">
-        <source>Duplicate current slide</source>
-        <target>複製目前的幻燈片</target>
-      </trans-unit>
       <trans-unit id="s657514e10d2199ee">
         <source>Add slide after current</source>
         <target>在目前頁面後新增幻燈片</target>
@@ -40,6 +36,10 @@
       <trans-unit id="s0043ccab8a7a7eaf">
         <source>Slides</source>
         <target>幻燈片</target>
+      </trans-unit>
+      <trans-unit id="s7309c4598fa52557">
+        <source>Duplicate slide</source>
+        <target>重複的投影片</target>
       </trans-unit>
     </body>
   </file>

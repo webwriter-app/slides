@@ -362,41 +362,42 @@ export class WebwriterSlides extends LitElementWw {
      * The controls adapt depending on whether the component is editable.
      */
     render() {
-        const slideButtons = (index: number) => html`
-            <sl-tooltip
-                content=${msg("Remove slide")}
-                placement="right"
-                style=${this.slides.length > 1 &&
-                this.hasAttribute("contenteditable")
-                    ? ""
-                    : "visibility: hidden"}
-            >
-                <sl-icon-button
-                    class="remove-btn"
-                    @click=${(e: MouseEvent) => {
-                        e.stopPropagation();
-                        this.removeSlide(index);
-                    }}
-                    src=${IconRemove}
-                ></sl-icon-button>
-            </sl-tooltip>
-        `;
-
-        const controls = html` <div class="controls-section author-only">
+        const slideButtons = (index: number, tooltipPlacement: "top" | "right" | "bottom" | "left" = "top") => html`
+            ${this.hasAttribute("contenteditable") ? html`
                 <sl-tooltip
-                    content=${msg("Duplicate current slide")}
-                    placement="bottom"
+                    content=${msg("Duplicate slide")}
+                    placement=${tooltipPlacement}
+                    hoist
                 >
                     <sl-icon-button
                         class="duplicate-btn"
                         @click=${(e: MouseEvent) => {
                             e.stopPropagation();
-                            this.duplicateSlide(this.activeSlideIndex);
+                            this.duplicateSlide(index);
                         }}
                         src=${IconDuplicate}
                     ></sl-icon-button>
                 </sl-tooltip>
+            ` : html``}
+            ${this.hasAttribute("contenteditable") && this.slides.length > 1 ? html`
+                <sl-tooltip
+                    content=${msg("Remove slide")}
+                    placement=${tooltipPlacement}
+                    hoist
+                >
+                    <sl-icon-button
+                        class="remove-btn"
+                        @click=${(e: MouseEvent) => {
+                            e.stopPropagation();
+                            this.removeSlide(index);
+                        }}
+                        src=${IconRemove}
+                    ></sl-icon-button>
+                </sl-tooltip>
+            ` : html``}
+        `;
 
+        const controls = html` <div class="controls-section author-only">
                 <sl-tooltip
                     content=${msg("Add slide after current")}
                     placement="bottom"
@@ -505,8 +506,9 @@ export class WebwriterSlides extends LitElementWw {
                                           <div class="slide-number">
                                               ${index + 1}
                                           </div>
+                                          <div class="spacer"></div>
 
-                                          ${slideButtons(index)}
+                                          ${slideButtons(index, "right")}
                                       </div>
                                   `
                               )}
@@ -554,6 +556,7 @@ export class WebwriterSlides extends LitElementWw {
                                           <div class="slide-number">
                                               ${index + 1}
                                           </div>
+                                          <div class="spacer"></div>
 
                                           ${slideButtons(index)}
                                       </div>

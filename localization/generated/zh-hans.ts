@@ -9,8 +9,8 @@
     /* eslint-disable @typescript-eslint/no-explicit-any */
 
     export const templates = {
-      'se898a5a880c57718': `Remove slide`,
-'sc67c075acd3a06ea': `Duplicate current slide`,
+      's7309c4598fa52557': `Duplicate slide`,
+'se898a5a880c57718': `Remove slide`,
 's657514e10d2199ee': `Add slide after current`,
 'sa2322449a142ad50': `Go to previous slide`,
 'se8d0deb65adf4544': `Go to next slide`,

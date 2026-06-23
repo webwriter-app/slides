@@ -17,10 +17,6 @@
         <source>Show in fullscreen</source>
         <target>Tam ekranda göster</target>
       </trans-unit>
-      <trans-unit id="sc67c075acd3a06ea">
-        <source>Duplicate current slide</source>
-        <target>Geçerli slaytı çoğalt</target>
-      </trans-unit>
       <trans-unit id="s657514e10d2199ee">
         <source>Add slide after current</source>
         <target>Geçerli slayttan sonra slayt ekle</target>
@@ -40,6 +36,10 @@
       <trans-unit id="s0043ccab8a7a7eaf">
         <source>Slides</source>
         <target>Kaydıraklar</target>
+      </trans-unit>
+      <trans-unit id="s7309c4598fa52557">
+        <source>Duplicate slide</source>
+        <target>Yinelenen slayt</target>
       </trans-unit>
     </body>
   </file>

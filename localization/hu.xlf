@@ -17,10 +17,6 @@
         <source>Show in fullscreen</source>
         <target>Teljes képernyőn megjelenítés</target>
       </trans-unit>
-      <trans-unit id="sc67c075acd3a06ea">
-        <source>Duplicate current slide</source>
-        <target>Aktuális dia duplikálása</target>
-      </trans-unit>
       <trans-unit id="s657514e10d2199ee">
         <source>Add slide after current</source>
         <target>Dia hozzáadása az aktuális után</target>
@@ -40,6 +36,10 @@
       <trans-unit id="s0043ccab8a7a7eaf">
         <source>Slides</source>
         <target>Diákok</target>
+      </trans-unit>
+      <trans-unit id="s7309c4598fa52557">
+        <source>Duplicate slide</source>
+        <target>Ismétlődő dia</target>
       </trans-unit>
     </body>
   </file>

@@ -167,8 +167,10 @@ export const slides_styles = css`
     .slide-tab {
         background-color: #fff;
         display: flex;
+        width: 100px;
+        height: 32px;
         border-radius: 10px 10px 0px 0px;
-        padding: 0px 10px;
+        padding: 2px 5px 2px 10px;
         align-items: center;
         border: 2px solid #ccc;
         border-bottom: none;
@@ -182,8 +184,10 @@ export const slides_styles = css`
 
     .slide-options {
         display: flex;
-        justify-content: space-between;
+        width: 100%;
         align-items: center;
+        box-sizing: border-box;
+        padding-left: 5px;
     }
 
     .slide-number {
@@ -197,7 +201,7 @@ export const slides_styles = css`
         border: 1px solid var(--sl-color-gray-800);
     }
 
-    .slide-number {
-        margin-right: 50px;
+    .spacer {
+        flex: 1;
     }
 `;
