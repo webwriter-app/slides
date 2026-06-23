@@ -519,53 +519,55 @@ export class WebwriterSlides extends LitElementWw {
                 : html``}
             <slot></slot>
             ${this.type == "slides"
-                ? html`<aside part="actions">
-                      <div class="slide-thumbs">
-                          ${this.slides.map(
-                              (slide, index) => html`
-                                  <div
-                                      class="slide-thumb ${index ===
-                                      this.activeSlideIndex
-                                          ? "active"
-                                          : ""}"
-                                      @click=${() => {
-                                          this.changeSlide(index);
-                                      }}
-                                      draggable="${this.hasAttribute(
-                                          "contenteditable"
-                                      )
-                                          ? "true"
-                                          : "false"}"
-                                      @dragstart=${(e: DragEvent) =>
-                                          this.onDragStart(e, index)}
-                                      @dragend=${this.onDragEnd}
-                                      @dragover=${(e: DragEvent) =>
-                                          this.onDragOver(e, index)}
-                                  >
-                                      ${slide.thumbnail
-                                          ? html`<img
-                                                class="slide-thumb-img"
-                                                draggable="false"
-                                                src=${slide.thumbnail}
-                                            />`
-                                          : html`<div
-                                                class="slide-thumb-img"
-                                            ></div>`}
+                ? this.isFullscreen
+                    ? html`<div class="controls-overlay">${controls}</div>`
+                    : html`<aside part="actions">
+                          <div class="slide-thumbs">
+                              ${this.slides.map(
+                                  (slide, index) => html`
+                                      <div
+                                          class="slide-thumb ${index ===
+                                          this.activeSlideIndex
+                                              ? "active"
+                                              : ""}"
+                                          @click=${() => {
+                                              this.changeSlide(index);
+                                          }}
+                                          draggable="${this.hasAttribute(
+                                              "contenteditable"
+                                          )
+                                              ? "true"
+                                              : "false"}"
+                                          @dragstart=${(e: DragEvent) =>
+                                              this.onDragStart(e, index)}
+                                          @dragend=${this.onDragEnd}
+                                          @dragover=${(e: DragEvent) =>
+                                              this.onDragOver(e, index)}
+                                      >
+                                          ${slide.thumbnail
+                                              ? html`<img
+                                                    class="slide-thumb-img"
+                                                    draggable="false"
+                                                    src=${slide.thumbnail}
+                                                />`
+                                              : html`<div
+                                                    class="slide-thumb-img"
+                                                ></div>`}
 
-                                      <div class="slide-options">
-                                          <div class="slide-number">
-                                              ${index + 1}
+                                          <div class="slide-options">
+                                              <div class="slide-number">
+                                                  ${index + 1}
+                                              </div>
+                                              <div class="spacer"></div>
+
+                                              ${slideButtons(index)}
                                           </div>
-                                          <div class="spacer"></div>
-
-                                          ${slideButtons(index)}
                                       </div>
-                                  </div>
-                              `
-                          )}
-                      </div>
-                      <div class="controls-columns">${controls}</div>
-                  </aside>`
+                                  `
+                              )}
+                          </div>
+                          <div class="controls-columns">${controls}</div>
+                      </aside>`
                 : html``}
         `;
     }

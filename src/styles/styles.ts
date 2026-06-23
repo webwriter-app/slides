@@ -204,4 +204,19 @@ export const slides_styles = css`
     .spacer {
         flex: 1;
     }
+
+    .controls-overlay {
+        position: absolute;
+        bottom: 12px;
+        right: 12px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 8px;
+        background: rgba(255, 255, 255, 0.75);
+        border-radius: 8px;
+        border: 2px solid #ccc;
+        z-index: 10;
+    }
 `;
