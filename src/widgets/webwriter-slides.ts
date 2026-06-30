@@ -67,6 +67,10 @@ export class WebwriterSlides extends LitElementWw {
     }
 
     private _boundKeyHandler!: (e: KeyboardEvent) => void;
+    private _boundTouchStartHandler!: (e: TouchEvent) => void;
+    private _boundTouchEndHandler!: (e: TouchEvent) => void;
+    private _touchStartX: number | null = null;
+    private _touchTarget: Element | null = null;
 
     connectedCallback() {
         super.connectedCallback?.();
@@ -74,13 +78,21 @@ export class WebwriterSlides extends LitElementWw {
         // Register keydown listener for slide navigation
         this._boundKeyHandler = this._handleKeyDown.bind(this);
         window.addEventListener("keydown", this._boundKeyHandler);
+
+        // Register touch event listeners for swipe navigation
+        this._boundTouchStartHandler = this._handleTouchStart.bind(this);
+        this._boundTouchEndHandler = this._handleTouchEnd.bind(this);
+        this.addEventListener("touchstart", this._boundTouchStartHandler, { passive: true });
+        this.addEventListener("touchend", this._boundTouchEndHandler, { passive: true });
     }
 
     disconnectedCallback() {
         super.disconnectedCallback?.();
 
-        // Cleanup keydown listener on disconnect
+        // Cleanup keydown and touch listeners on disconnect
         window.removeEventListener("keydown", this._boundKeyHandler);
+        this.removeEventListener("touchstart", this._boundTouchStartHandler);
+        this.removeEventListener("touchend", this._boundTouchEndHandler);
     }
 
     /**
@@ -99,6 +111,48 @@ export class WebwriterSlides extends LitElementWw {
                 this.handleNextSlideClick(e, true);
                 break;
         }
+    }
+
+    /**
+     * Handles the start of a touch event for swipe navigation.
+     * Records the initial touch position and target element.
+     * Only active in fullscreen mode.
+     */
+    private _handleTouchStart(e: TouchEvent) {
+        if (!this.isFullscreen) return;
+        this._touchStartX = e.touches[0].clientX;
+        this._touchTarget = e.target as Element;
+    }
+
+    /**
+     * Determines if the given element or any of its ancestors (up to the slideshow container) is an interactive element.
+     * Used to prevent swipe navigation when interacting with widgets or interactive elements.
+     */
+    private _isInteractiveTarget(el: Element | null): boolean {
+        const interactiveTags = new Set(["BUTTON", "INPUT", "SELECT", "TEXTAREA", "A", "VIDEO", "AUDIO", "CANVAS", "DETAILS", "SUMMARY"]);
+        let node = el;
+        while (node && node.tagName !== "WEBWRITER-SLIDE") {
+            if (interactiveTags.has(node.tagName)) return true;
+            if (node.hasAttribute("contenteditable") && node.getAttribute("contenteditable") !== "false") return true;
+            if (node.tagName.includes("-")) return true;
+            node = node.parentElement;
+        }
+        return false;
+    }
+
+    /**
+     * Handles the end of a touch event for swipe navigation.
+     * Determines the swipe direction and navigates to the next or previous slide accordingly.
+     * Ignores swipes on interactive elements or if the swipe distance is too small.
+     */
+    private _handleTouchEnd(e: TouchEvent) {
+        if (!this.isFullscreen || this._touchStartX === null) return;
+        const deltaX = e.changedTouches[0].clientX - this._touchStartX;
+        const target = this._touchTarget;
+        this._touchStartX = null;
+        this._touchTarget = null;
+        if (this._isInteractiveTarget(target) || Math.abs(deltaX) < 50) return;
+        deltaX < 0 ? this.nextSlide(false) : this.nextSlide(true);
     }
 
     protected firstUpdated(): void {

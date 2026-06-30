@@ -217,6 +217,6 @@ export const slides_styles = css`
         background: rgba(255, 255, 255, 0.75);
         border-radius: 8px;
         border: 2px solid #ccc;
-        z-index: 10;
+        z-index: 1000000000;
     }
 `;
