@@ -1,6 +1,6 @@
 {
   "name": "@webwriter/slides",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Present content as a sequence of slides or tabs.",
   "keywords": [
     "webwriter-widget",
@@ -67,7 +67,7 @@
     "@lit/localize": "^0.12.2",
     "@shoelace-style/shoelace": "^2.12.0",
     "@webwriter/lit": "^2.1.8",
-    "@zumer/snapdom": "^1.9.9",
+    "@zumer/snapdom": "^2.12.9",
     "bootstrap-icons": "^1.11.3",
     "lit": "^3.2.0"
   },
@@ -76,7 +76,7 @@
     "@types/mocha": "^10.0.10",
     "@webwriter/build": "^1.5.0",
     "axe-core": "^4.10.3",
-    "chai": "^5.2.0",
+    "chai": "^6.2.2",
     "mocha": "^11.2.2",
     "web-vitals": "^5.0.1"
   },

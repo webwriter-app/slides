@@ -1,5 +1,5 @@
-# Slides (`@webwriter/slides@2.3.0`)
-[License: MIT](LICENSE) | Version: 2.3.0
+# Slides (`@webwriter/slides@2.3.1`)
+[License: MIT](LICENSE) | Version: 2.3.1
 
 Present content as a sequence of slides or tabs.
 
@@ -8,7 +8,7 @@ Present content as a sequence of slides or tabs.
 
 | Name | Import Path |
 | :--: | :---------: |
-| Example | @webwriter/slides/snippets/example.html |
+| Example | `@webwriter/slides/snippets/example.html` |
 
 
 
@@ -41,7 +41,7 @@ npm install @webwriter/slides
 | :-------------------: | :--: | :---------: | :-----: | :------: |
 | `activeSlideIndex` | `number` | Index of the currently active slide. | `0` | ✗ |
 | `activeSlide` | `WebwriterSlide` | The active slide element based on the activeSlideIndex. | - | ✗ |
-| `type` (`type`) | `'tabs' \| 'slides'` | Defines the type of view for the slideshow.<br>- "slides": Show content as sequential slides.<br>- "tabs": Show content using tabs. | `'slides'` | ✓ |
+| `type` (`type`) | `"tabs" \| "slides"` | Defines the type of view for the slideshow.<br>- "slides": Show content as sequential slides.<br>- "tabs": Show content using tabs. | `"slides"` | ✓ |
 | `hasNextSlide` | `boolean` | False if slideshow is on the last slide. | - | ✗ |
 | `hasPreviousSlide` | `boolean` | False if slideshow is on the first slide. | - | ✗ |
 
@@ -131,4 +131,4 @@ npm install @webwriter/slides
 
 
 ---
-*Generated with @webwriter/build@1.5.0*
+*Generated with @webwriter/build@1.9.1*

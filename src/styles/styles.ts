@@ -122,6 +122,7 @@ export const slides_styles = css`
         cursor: pointer;
         border-radius: var(--sl-border-radius-medium);
         flex: 0 0 auto;
+        overflow: hidden;
     }
 
     .slide-thumb.dragging, .slide-tab.dragging {

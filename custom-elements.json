@@ -4,6 +4,93 @@
   "modules": [
     {
       "kind": "javascript-module",
+      "path": "src/widgets/webwriter-slide.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Represents a single slide in the `webwriter-slides` widget.",
+          "name": "WebwriterSlide",
+          "slots": [
+            {
+              "description": "The content displayed within the slide.",
+              "name": "default"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "active",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Indicates whether the slide is currently active/visible.",
+              "attribute": "active",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "thumbnail",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "Data URI string for the slide thumbnail (e.g., \"data:image/png;base64,...\").\r\nUsed to display a preview image for the slide.",
+              "attribute": "thumbnail",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "active",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Indicates whether the slide is currently active/visible.",
+              "fieldName": "active"
+            },
+            {
+              "name": "thumbnail",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "Data URI string for the slide thumbnail (e.g., \"data:image/png;base64,...\").\r\nUsed to display a preview image for the slide.",
+              "fieldName": "thumbnail"
+            }
+          ],
+          "superclass": {
+            "name": "LitElementWw",
+            "package": "@webwriter/lit"
+          },
+          "tagName": "webwriter-slide",
+          "customElement": true,
+          "modulePath": "src/widgets/webwriter-slide.ts",
+          "definitionPath": "src/widgets/webwriter-slide.ts"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "WebwriterSlide",
+          "declaration": {
+            "name": "WebwriterSlide",
+            "module": "src/widgets/webwriter-slide.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "webwriter-slide",
+          "declaration": {
+            "name": "WebwriterSlide",
+            "module": "src/widgets/webwriter-slide.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/widgets/webwriter-slides.ts",
       "declarations": [
         {
@@ -32,6 +119,40 @@
               "privacy": "private"
             },
             {
+              "kind": "field",
+              "name": "_boundTouchStartHandler",
+              "type": {
+                "text": "(e: TouchEvent) => void"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_boundTouchEndHandler",
+              "type": {
+                "text": "(e: TouchEvent) => void"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "_touchStartX",
+              "type": {
+                "text": "number | null"
+              },
+              "privacy": "private",
+              "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "_touchTarget",
+              "type": {
+                "text": "Element | null"
+              },
+              "privacy": "private",
+              "default": "null"
+            },
+            {
               "kind": "method",
               "name": "_handleKeyDown",
               "parameters": [
@@ -42,7 +163,54 @@
                   }
                 }
               ],
-              "description": "Handles keyboard navigation for the slideshow.\nArrowRight advances to the next slide, ArrowLeft goes back.\nOnly possible in preview mode."
+              "description": "Handles keyboard navigation for the slideshow.\r\nArrowRight advances to the next slide, ArrowLeft goes back.\r\nOnly possible in preview mode."
+            },
+            {
+              "kind": "method",
+              "name": "_handleTouchStart",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "TouchEvent"
+                  }
+                }
+              ],
+              "description": "Handles the start of a touch event for swipe navigation.\r\nRecords the initial touch position and target element.\r\nOnly active in fullscreen mode."
+            },
+            {
+              "kind": "method",
+              "name": "_isInteractiveTarget",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "el",
+                  "type": {
+                    "text": "Element | null"
+                  }
+                }
+              ],
+              "description": "Determines if the given element or any of its ancestors (up to the slideshow container) is an interactive element.\r\nUsed to prevent swipe navigation when interacting with widgets or interactive elements."
+            },
+            {
+              "kind": "method",
+              "name": "_handleTouchEnd",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "TouchEvent"
+                  }
+                }
+              ],
+              "description": "Handles the end of a touch event for swipe navigation.\r\nDetermines the swipe direction and navigates to the next or previous slide accordingly.\r\nIgnores swipes on interactive elements or if the swipe distance is too small."
             },
             {
               "kind": "field",
@@ -52,7 +220,7 @@
               },
               "privacy": "protected",
               "static": true,
-              "default": "{ \"sl-button\": SlButton, \"sl-icon-button\": SlIconButton, \"sl-tooltip\": SlTooltip, 'sl-select': SlSelect, 'sl-option': SlOption }"
+              "default": "{ \"sl-button\": SlButton, \"sl-icon-button\": SlIconButton, \"sl-tooltip\": SlTooltip, \"sl-select\": SlSelect, \"sl-option\": SlOption, }"
             },
             {
               "kind": "field",
@@ -112,17 +280,17 @@
                 "text": "WebwriterSlide[]"
               },
               "privacy": "protected",
-              "description": "All `webwriter-slide` elements. \nRepresents the individual slides in the slideshow."
+              "description": "All `webwriter-slide` elements.\r\nRepresents the individual slides in the slideshow."
             },
             {
               "kind": "field",
               "name": "type",
               "type": {
-                "text": "'tabs' | 'slides'"
+                "text": "\"tabs\" | \"slides\""
               },
               "privacy": "public",
-              "default": "'slides'",
-              "description": "Defines the type of view for the slideshow.\n- \"slides\": Show content as sequential slides.\n- \"tabs\": Show content using tabs.",
+              "default": "\"slides\"",
+              "description": "Defines the type of view for the slideshow.\r\n- \"slides\": Show content as sequential slides.\r\n- \"tabs\": Show content using tabs.",
               "attribute": "type",
               "reflects": true
             },
@@ -222,13 +390,13 @@
                   "description": "Whether to navigate backward (default is false)."
                 }
               ],
-              "description": "Handles navigation to the next or previous slide based on user input.\n- Shift key: jump by the total number of slides.\n- Ctrl key: jump by 10 slides.\n- Otherwise: move by one slide."
+              "description": "Handles navigation to the next or previous slide based on user input.\r\n- Shift key: jump by the total number of slides.\r\n- Ctrl key: jump by 10 slides.\r\n- Otherwise: move by one slide."
             },
             {
               "kind": "field",
               "name": "changeSlide",
               "privacy": "protected",
-              "description": "Changes the active slide to the specified index.\nWaits for rendering to finish, scrolls the active slide into view,\nand generates a thumbnail preview using snapdom.",
+              "description": "Changes the active slide to the specified index.\r\nWaits for rendering to finish, scrolls the active slide into view,\r\nand generates a thumbnail preview using snapdom.",
               "parameters": [
                 {
                   "description": "The index of the slide to activate.",
@@ -256,7 +424,7 @@
                   "description": "Index of the slide being dragged."
                 }
               ],
-              "description": "Starts dragging a slide element.\nAdds the 'dragging' CSS class and sets drag data."
+              "description": "Starts dragging a slide element.\r\nAdds the 'dragging' CSS class and sets drag data."
             },
             {
               "kind": "method",
@@ -271,7 +439,7 @@
                   "description": "The dragend event."
                 }
               ],
-              "description": "Ends dragging a slide.\nMoves the dragged slide to its new position if it was moved,\nupdates the active slide index, and cleans up drag state."
+              "description": "Ends dragging a slide.\r\nMoves the dragged slide to its new position if it was moved,\r\nupdates the active slide index, and cleans up drag state."
             },
             {
               "kind": "method",
@@ -293,17 +461,17 @@
                   "description": "Index of the slide being dragged over."
                 }
               ],
-              "description": "Handles dragging over a slide element.\nPrevents default to allow dropping and records the slide index being hovered."
+              "description": "Handles dragging over a slide element.\r\nPrevents default to allow dropping and records the slide index being hovered."
             }
           ],
           "attributes": [
             {
               "name": "type",
               "type": {
-                "text": "'tabs' | 'slides'"
+                "text": "\"tabs\" | \"slides\""
               },
-              "default": "'slides'",
-              "description": "Defines the type of view for the slideshow.\n- \"slides\": Show content as sequential slides.\n- \"tabs\": Show content using tabs.",
+              "default": "\"slides\"",
+              "description": "Defines the type of view for the slideshow.\r\n- \"slides\": Show content as sequential slides.\r\n- \"tabs\": Show content using tabs.",
               "fieldName": "type"
             }
           ],
@@ -312,7 +480,9 @@
             "package": "@webwriter/lit"
           },
           "tagName": "webwriter-slides",
-          "customElement": true
+          "customElement": true,
+          "modulePath": "src/widgets/webwriter-slides.ts",
+          "definitionPath": "src/widgets/webwriter-slides.ts"
         }
       ],
       "exports": [
@@ -330,91 +500,6 @@
           "declaration": {
             "name": "WebwriterSlides",
             "module": "src/widgets/webwriter-slides.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/widgets/webwriter-slide.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Represents a single slide in the `webwriter-slides` widget.",
-          "name": "WebwriterSlide",
-          "slots": [
-            {
-              "description": "The content displayed within the slide.",
-              "name": "default"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "active",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Indicates whether the slide is currently active/visible.",
-              "attribute": "active",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "thumbnail",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "description": "Data URI string for the slide thumbnail (e.g., \"data:image/png;base64,...\"). \nUsed to display a preview image for the slide.",
-              "attribute": "thumbnail",
-              "reflects": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "active",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Indicates whether the slide is currently active/visible.",
-              "fieldName": "active"
-            },
-            {
-              "name": "thumbnail",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "description": "Data URI string for the slide thumbnail (e.g., \"data:image/png;base64,...\"). \nUsed to display a preview image for the slide.",
-              "fieldName": "thumbnail"
-            }
-          ],
-          "superclass": {
-            "name": "LitElementWw",
-            "package": "@webwriter/lit"
-          },
-          "tagName": "webwriter-slide",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "WebwriterSlide",
-          "declaration": {
-            "name": "WebwriterSlide",
-            "module": "src/widgets/webwriter-slide.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "webwriter-slide",
-          "declaration": {
-            "name": "WebwriterSlide",
-            "module": "src/widgets/webwriter-slide.ts"
           }
         }
       ]
