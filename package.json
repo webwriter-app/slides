@@ -2,6 +2,7 @@
   "name": "@webwriter/slides",
   "version": "2.3.1",
   "description": "Present content as a sequence of slides or tabs.",
+  "repository": "github:webwriter-app/slides",
   "keywords": [
     "webwriter-widget",
     "widget-lang-en",
