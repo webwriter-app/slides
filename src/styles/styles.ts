@@ -12,11 +12,24 @@ export const slides_styles = css`
         padding: var(--sl-spacing-x-small);
     }
 
-    :host(:not(:fullscreen)) {
+    :host(:not(:fullscreen):not(.ww-fullscreen)) {
         border: var(--sl-panel-border-width) solid var(--sl-color-neutral-300);
         border-radius: var(--sl-border-radius-large);
         aspect-ratio: 16/9;
         width: 100%;
+    }
+
+    :host(:fullscreen),
+    :host(.ww-fullscreen) {
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    :host(:fullscreen) slot:not([name]),
+    :host(.ww-fullscreen) slot:not([name]) {
+        flex: 1 1 auto;
+        min-height: 0;
+        height: auto;
     }
 
     :host(:not([contenteditable="true"]):not([contenteditable=""]))
