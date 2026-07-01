@@ -6,15 +6,15 @@ import { css } from "lit";
 export const slides_styles = css`
     :host {
         position: relative;
-        background: white;
+        background: var(--sl-panel-background-color);
         display: block;
-        padding: 5px;
         box-sizing: border-box;
+        padding: var(--sl-spacing-x-small);
     }
 
     :host(:not(:fullscreen)) {
-        border: 1px solid var(--sl-color-neutral-300);
-        border-radius: var(--sl-border-radius-medium);
+        border: var(--sl-panel-border-width) solid var(--sl-color-neutral-300);
+        border-radius: var(--sl-border-radius-large);
         aspect-ratio: 16/9;
         width: 100%;
     }
@@ -32,16 +32,12 @@ export const slides_styles = css`
 
     .slides-index {
         user-select: none;
-        font-size: 1rem;
-        color: var(--sl-color-gray-800);
+        font-size: var(--sl-font-size-medium);
+        color: var(--sl-color-neutral-800);
         display: flex;
         flex-direction: row;
         align-items: center;
         gap: 0.5ch;
-    }
-
-    :host(:fullscreen) [part="actions"] sl-icon-button {
-        color: black;
     }
 
     ::slotted(webwriter-slide:not([active])) {
@@ -62,22 +58,25 @@ export const slides_styles = css`
     .controls-columns, .controls-rows {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        padding: 5px;
-        border-radius: 5px;
-        border: 2px solid #ccc;
+        justify-content: center;
+        padding: var(--sl-spacing-x-small);
+        border-radius: var(--sl-border-radius-medium);
+        border: var(--sl-panel-border-width) solid var(--sl-panel-border-color);
+        background-color: var(--sl-color-neutral-50);
     }
 
     .controls-columns {
         flex-direction: column;
-        margin: 5px 5px 5px 0px;
+        height: 108px;
+        box-sizing: border-box;
+        margin-top: var(--sl-spacing-x-small);
     }
 
     .controls-rows {
         flex-direction: row;
-        margin: 5px 5px 0px 0px;
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 0px;
+        margin: var(--sl-spacing-2x-small) var(--sl-spacing-x-small) 0 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
         border-bottom: none;
     }
 
@@ -85,30 +84,30 @@ export const slides_styles = css`
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 4px;
+        gap: var(--sl-spacing-2x-small);
     }
 
     .slide-thumbs {
         display: flex;
         flex-direction: row;
-        gap: 4px;
-        padding: 10px;
+        gap: var(--sl-spacing-x-small);
+        padding: var(--sl-spacing-x-small);
         overflow-x: scroll;
+        margin-left: calc(var(--sl-spacing-x-small) * -1);
     }
 
     .slide-thumb {
         width: 120px;
-        height: 100px;
-        border: 2px solid #ccc;
+        height: 108px;
+        box-sizing: border-box;
+        border: var(--sl-panel-border-width) solid var(--sl-panel-border-color);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         position: relative;
-        padding: 2px;
         cursor: pointer;
-        background: #f9f9f9;
-        border-radius: 4px;
+        border-radius: var(--sl-border-radius-medium);
         flex: 0 0 auto;
     }
 
@@ -121,17 +120,11 @@ export const slides_styles = css`
         background: var(--sl-color-primary-50);
     }
 
-    .slide-thumb span {
-        font-size: 14px;
-        font-weight: bold;
-    }
-
     .slide-thumb-img {
         width: 100%;
-        height: 70px;
+        flex: 1;
         object-fit: cover;
-        border-radius: 5px;
-        border: 1px solid var(--sl-color-neutral-300);
+        border-bottom: var(--sl-panel-border-width) solid var(--sl-panel-border-color);
     }
 
     .remove-btn,
@@ -140,8 +133,8 @@ export const slides_styles = css`
     .slide-number,
     .fullscreen-btn {
         cursor: pointer;
-        color: var(--sl-color-gray-800);
-        font-size: 0.9rem;
+        color: var(--sl-color-neutral-800);
+        font-size: var(--sl-font-size-small);
     }
 
     .slide-tabs-wrapper {
@@ -151,8 +144,9 @@ export const slides_styles = css`
 
     .slide-tabs {
         display: flex;
-        gap: 5px;
-        padding: 5px 5px 0px 5px;
+        gap: var(--sl-spacing-2x-small);
+        padding: var(--sl-spacing-2x-small);
+        padding-bottom: 0;
         cursor: pointer;
     }
 
@@ -165,14 +159,14 @@ export const slides_styles = css`
     }
 
     .slide-tab {
-        background-color: #fff;
+        background-color: var(--sl-color-neutral-0);
         display: flex;
         width: 100px;
         height: 32px;
-        border-radius: 10px 10px 0px 0px;
-        padding: 2px 5px 2px 10px;
+        border-radius: var(--sl-border-radius-large) var(--sl-border-radius-large) 0 0;
+        padding: var(--sl-spacing-3x-small) var(--sl-spacing-2x-small) var(--sl-spacing-3x-small) var(--sl-spacing-small);
         align-items: center;
-        border: 2px solid #ccc;
+        border: var(--sl-panel-border-width) solid var(--sl-panel-border-color);
         border-bottom: none;
         flex-shrink: 0;
     }
@@ -187,18 +181,12 @@ export const slides_styles = css`
         width: 100%;
         align-items: center;
         box-sizing: border-box;
-        padding-left: 5px;
+        padding: var(--sl-spacing-2x-small) var(--sl-spacing-2x-small);
+        padding-left: var(--sl-spacing-small);
     }
 
     .slide-number {
-        font-size: 0.9rem;
-        color: var(--sl-color-gray-800);
-        background-color: white;
-        border-radius: 10px;
-        width: 20px;
-        height: 20px;
-        text-align: center;
-        border: 1px solid var(--sl-color-gray-800);
+        font-weight: var(--sl-font-weight-semibold);
     }
 
     .spacer {
@@ -207,16 +195,16 @@ export const slides_styles = css`
 
     .controls-overlay {
         position: absolute;
-        bottom: 12px;
-        right: 12px;
+        bottom: var(--sl-spacing-small);
+        right: var(--sl-spacing-small);
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 4px;
-        padding: 4px 8px;
+        gap: var(--sl-spacing-2x-small);
+        padding: var(--sl-spacing-2x-small) var(--sl-spacing-x-small);
         background: rgba(255, 255, 255, 0.75);
-        border-radius: 8px;
-        border: 2px solid #ccc;
+        border-radius: var(--sl-border-radius-large);
+        border: var(--sl-panel-border-width) solid var(--sl-panel-border-color);
         z-index: 1000000000;
     }
 `;

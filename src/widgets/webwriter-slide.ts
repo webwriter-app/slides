@@ -29,13 +29,13 @@ export class WebwriterSlide extends LitElementWw {
         :host {
             height: 100%;
             width: 100%;
-            padding: 10px;
+            padding: var(--sl-spacing-small);
             box-sizing: border-box;
             display: block;
             overflow-y: auto;
             overflow-x: hidden;
-            border: 2px solid var(--sl-color-neutral-300) !important;
-            border-radius: 5px;
+            border: var(--sl-panel-border-width) solid var(--sl-panel-border-color) !important;
+            border-radius: var(--sl-border-radius-medium);
         }
     `;
 
