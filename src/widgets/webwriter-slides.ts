@@ -338,9 +338,12 @@ export class WebwriterSlides extends LitElementWw {
         if (this.activeSlideIndex === tmpSlideIndex) {
             const result = await snapdom(this.slides[tmpSlideIndex], {
                 width: 240,
-                height: 140,
+                height: 135,
+                dpr: 1,
             });
-            const img = await result.toPng();
+            const img = await result.toWebp({
+                quality: 0.8,
+            });
             this.slides[tmpSlideIndex].thumbnail = img.src;
             this.requestUpdate();
         }
