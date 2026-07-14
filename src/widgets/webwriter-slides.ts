@@ -1,40 +1,37 @@
 /** Module imports */
-import { html, css, PropertyValueMap, PropertyValues } from "lit";
-import { LitElementWw } from "@webwriter/lit";
-import {
-    customElement,
-    property,
-    queryAll,
-    queryAssignedElements,
-    state,
-} from "lit/decorators.js";
 import { msg } from "@lit/localize";
 import SlButton from "@shoelace-style/shoelace/dist/components/button/button.component.js";
 import SlIconButton from "@shoelace-style/shoelace/dist/components/icon-button/icon-button.component.js";
+import { LitElementWw } from "@webwriter/lit";
+import { html } from "lit";
+import {
+    customElement,
+    property,
+    queryAssignedElements
+} from "lit/decorators.js";
 import LOCALIZE from "../../localization/generated";
 
 // @ts-ignore
 import "@shoelace-style/shoelace/dist/themes/light.css";
 
-import fullscreenIcon from "bootstrap-icons/icons/fullscreen.svg";
-import fullscreenExitIcon from "bootstrap-icons/icons/fullscreen-exit.svg";
-import plusSquareIcon from "bootstrap-icons/icons/plus-square.svg";
-import minusSquareIcon from "bootstrap-icons/icons/dash-square.svg";
 import chevronLeftIcon from "bootstrap-icons/icons/chevron-left.svg";
 import chevronRightIcon from "bootstrap-icons/icons/chevron-right.svg";
+import fullscreenExitIcon from "bootstrap-icons/icons/fullscreen-exit.svg";
+import fullscreenIcon from "bootstrap-icons/icons/fullscreen.svg";
 import { WebwriterSlide } from "./webwriter-slide";
 
-import IconRemove from "bootstrap-icons/icons/x-circle.svg";
-import IconAdd from "bootstrap-icons/icons/plus-circle.svg";
-import IconDuplicate from "bootstrap-icons/icons/copy.svg";
 import {
     SlChangeEvent,
     SlOption,
     SlSelect,
     SlTooltip,
 } from "@shoelace-style/shoelace";
+import IconDuplicate from "bootstrap-icons/icons/copy.svg";
+import IconAdd from "bootstrap-icons/icons/plus-circle.svg";
+import IconRemove from "bootstrap-icons/icons/x-circle.svg";
 
 import { snapdom } from "@zumer/snapdom";
+import { DraggableGrid, type DraggableGridReorderDetail } from "../lib/draggable-grid";
 import { slides_styles } from "../styles/styles";
 
 /**
@@ -165,6 +162,7 @@ export class WebwriterSlides extends LitElementWw {
         "sl-tooltip": SlTooltip,
         "sl-select": SlSelect,
         "sl-option": SlOption,
+        "draggable-grid": DraggableGrid
     };
 
     /** Index of the currently active slide. */
@@ -408,6 +406,32 @@ export class WebwriterSlides extends LitElementWw {
         this.lastDraggedOver = index;
     }
 
+    private slideIdFromThumbId(id: string) {
+        return id.startsWith("slide-thumb-") ? id.slice("slide-thumb-".length) : id;
+    }
+
+    private onSlidesReorder(event: CustomEvent<DraggableGridReorderDetail>) {
+        if (!this.hasAttribute("contenteditable")) return;
+
+        const { id, placement, anchorId } = event.detail;
+        const draggedSlide = this.slides.find(
+            (slide) => slide.id === this.slideIdFromThumbId(id)
+        );
+        const anchorSlide = this.slides.find(
+            (slide) => slide.id === this.slideIdFromThumbId(anchorId)
+        );
+        if (!draggedSlide || !anchorSlide || draggedSlide === anchorSlide) return;
+
+        const activeSlide = this.activeSlide;
+        anchorSlide.insertAdjacentElement(
+            placement === "before" ? "beforebegin" : "afterend",
+            draggedSlide
+        );
+
+        this.activeSlideIndex = Math.max(0, this.slides.indexOf(activeSlide));
+        this.requestUpdate();
+    }
+
     /**
      * Renders the slideshow component UI including:
      * - Slide navigation controls (next, previous, duplicate, add, remove).
@@ -579,9 +603,16 @@ export class WebwriterSlides extends LitElementWw {
                 ? this.isFullscreen
                     ? html`<div class="controls-overlay">${controls}</div>`
                     : html`<aside part="actions">
-                          <div class="slide-thumbs">
+                        <div class="slide-thumbs-container">
+                          <draggable-grid
+                              class="slide-thumbs"
+                              axis="x"
+                              @reorder=${this.onSlidesReorder}
+                          >
                               ${this.slides.map(
                                   (slide, index) => html`
+                                      <div class="slide-thumb-container" 
+                                          id=${`slide-thumb-${slide.id}`}>
                                       <div
                                           class="slide-thumb ${index ===
                                           this.activeSlideIndex
@@ -590,25 +621,17 @@ export class WebwriterSlides extends LitElementWw {
                                           @click=${() => {
                                               this.changeSlide(index);
                                           }}
-                                          draggable="${this.hasAttribute(
-                                              "contenteditable"
-                                          )
-                                              ? "true"
-                                              : "false"}"
-                                          @dragstart=${(e: DragEvent) =>
-                                              this.onDragStart(e, index)}
-                                          @dragend=${this.onDragEnd}
-                                          @dragover=${(e: DragEvent) =>
-                                              this.onDragOver(e, index)}
                                       >
                                           ${slide.thumbnail
                                               ? html`<img
                                                     class="slide-thumb-img"
                                                     draggable="false"
+                                                    ?data-drag-handle=${this.hasAttribute("contenteditable")}
                                                     src=${slide.thumbnail}
                                                 />`
                                               : html`<div
                                                     class="slide-thumb-img"
+                                                    ?data-drag-handle=${this.hasAttribute("contenteditable")}
                                                 ></div>`}
 
                                           <div class="slide-options">
@@ -620,8 +643,10 @@ export class WebwriterSlides extends LitElementWw {
                                               ${slideButtons(index)}
                                           </div>
                                       </div>
+                                      </div>
                                   `
                               )}
+                          </draggable-grid>
                           </div>
                           <div class="controls-columns">${controls}</div>
                       </aside>`

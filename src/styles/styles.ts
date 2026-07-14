@@ -100,16 +100,23 @@ export const slides_styles = css`
         gap: var(--sl-spacing-2x-small);
     }
 
-    .slide-thumbs {
-        display: flex;
-        flex-direction: row;
-        gap: var(--sl-spacing-x-small);
-        padding: var(--sl-spacing-x-small);
+
+    .slide-thumbs-container {
         overflow-x: scroll;
-        margin-left: calc(var(--sl-spacing-x-small) * -1);
+        margin-right: var(--sl-spacing-x-small);
+    }
+
+    .slide-thumbs {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
+        grid-template-rows: 1fr;
+        gap: var(--sl-spacing-x-small); 
     }
 
     .slide-thumb {
+        background-color: var(--sl-color-neutral-0);
+        margin-top: var(--sl-spacing-x-small);
         width: 120px;
         height: 108px;
         box-sizing: border-box;
