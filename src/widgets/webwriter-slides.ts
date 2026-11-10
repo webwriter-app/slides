@@ -28,7 +28,6 @@ import IconRemove from "bootstrap-icons/icons/x-circle.svg";
 import IconAdd from "bootstrap-icons/icons/plus-circle.svg";
 import IconDuplicate from "bootstrap-icons/icons/copy.svg";
 import {
-    SlChangeEvent,
     SlOption,
     SlSelect,
     SlTooltip,
@@ -45,6 +44,32 @@ import { slides_styles } from "../styles/styles";
 @customElement("webwriter-slides")
 export class WebwriterSlides extends LitElementWw {
     protected localize = LOCALIZE;
+    readonly options = WebwriterSlides.options;
+    readonly actions = WebwriterSlides.actions;
+
+    static options: Record<string, any> = {
+        type: {
+            type: "select",
+            group: "presentation",
+            label: { _: "View" },
+            options: [
+                { value: "tabs", label: { _: "Tabs" } },
+                { value: "slides", label: { _: "Slides" } },
+            ],
+        },
+    };
+
+    static optionGroups: Record<string, any> = {
+        presentation: { label: { _: "Presentation" }, collapsible: true, advanced: false },
+    };
+
+    static actions: Record<string, any> = {
+        addSlide: { label: { _: "Add slide" }, group: "presentation", icon: "Add", intent: "default" },
+        duplicateActiveSlide: { label: { _: "Duplicate current slide" }, group: "presentation", icon: "Copy", intent: "default" },
+        removeActiveSlide: { label: { _: "Remove current slide" }, group: "presentation", icon: "Delete", intent: "danger" },
+    };
+
+    duplicateActiveSlide() { this.duplicateSlide(this.activeSlideIndex); }
 
     constructor() {
         super();
@@ -519,22 +544,6 @@ export class WebwriterSlides extends LitElementWw {
             </div>`;
 
         return html`
-            ${this.hasAttribute("contenteditable")
-                ? html`<aside class="settings" part="options">
-                      <sl-select
-                          label=${msg("View")}
-                          .value=${this.type}
-                          @sl-change=${(e: SlChangeEvent) => {
-                              this.type = (e.target as SlSelect).value as any;
-                              this.requestUpdate();
-                          }}
-                          name="view"
-                      >
-                          <sl-option value="tabs">${msg("Tabs")}</sl-option>
-                          <sl-option value="slides">${msg("Slides")}</sl-option>
-                      </sl-select>
-                  </aside>`
-                : html``}
             ${this.type == "tabs"
                 ? html`<aside part="tabs">
                       <div class="slide-tabs-wrapper">
