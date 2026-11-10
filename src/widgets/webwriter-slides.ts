@@ -45,7 +45,11 @@ import { slides_styles } from "../styles/styles";
 export class WebwriterSlides extends LitElementWw {
     protected localize = LOCALIZE;
     readonly options = WebwriterSlides.options;
-    readonly actions = WebwriterSlides.actions;
+    readonly actions = {
+        ...WebwriterSlides.actions,
+        duplicateActiveSlide: { ...WebwriterSlides.actions.duplicateActiveSlide, disabled: true },
+        removeActiveSlide: { ...WebwriterSlides.actions.removeActiveSlide, disabled: true },
+    };
 
     static options: Record<string, any> = {
         type: {
@@ -270,7 +274,9 @@ export class WebwriterSlides extends LitElementWw {
 
     /** Remove the currently active slide element. */
     removeActiveSlide() {
-        this.removeSlide(this.activeSlideIndex);
+        if (this.slides.length > 1 && this.activeSlide) {
+            this.removeSlide(this.activeSlideIndex);
+        }
     }
 
     /** Remove the currently active slide element. */
@@ -300,6 +306,14 @@ export class WebwriterSlides extends LitElementWw {
         this.slides?.forEach(
             (slide, i) => (slide.active = i === this.activeSlideIndex)
         );
+        const duplicateDisabled = !this.activeSlide;
+        const removeDisabled = duplicateDisabled || this.slides.length <= 1;
+        if (this.actions.duplicateActiveSlide.disabled !== duplicateDisabled ||
+            this.actions.removeActiveSlide.disabled !== removeDisabled) {
+            this.actions.duplicateActiveSlide.disabled = duplicateDisabled;
+            this.actions.removeActiveSlide.disabled = removeDisabled;
+            this.dispatchEvent(new Event("optionschange", { bubbles: true }));
+        }
     }
 
     /** False if slideshow is on the last slide. */

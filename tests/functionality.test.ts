@@ -8,10 +8,12 @@ mocha.setup(getMochaConfig())
 
 describe("<webwriter-slides>", function () {
 
-  before(function () {
+  before(async function () {
     document.body.insertAdjacentHTML("beforeend",
-      `<webwriter-slides></webwriter-slides>`
+      `<webwriter-slides><webwriter-slide><p>Initial slide</p></webwriter-slide></webwriter-slides>`
     )
+    const el = document.querySelector("webwriter-slides") as any
+    await el.updateComplete
   }) 
 
   describe("initialize", function () {
@@ -29,13 +31,14 @@ describe("<webwriter-slides>", function () {
     it("can add a slide", async function () {
       const el = document.querySelector("webwriter-slides") as any
       el.addSlide()
-      console.log(el.activeSlideIndex)
+      await el.updateComplete
       const slides = el.querySelectorAll("webwriter-slide")
       assert.equal(slides.length, 2)
     })
-    it("can remove a slide", async function () {
+    it("removes the active slide and preserves the required last slide", async function () {
       const el = document.querySelector("webwriter-slides") as any
-      el.removeSlide()
+      el.removeActiveSlide()
+      el.removeActiveSlide()
       const slides = el.querySelectorAll("webwriter-slide")
       assert.equal(slides.length, 1)
     })
