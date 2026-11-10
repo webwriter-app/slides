@@ -2,8 +2,8 @@
     // Do not modify this file by hand!
     // Re-generate this file by running lit-localize
 
-    
-    
+
+
 
     /* eslint-disable no-irregular-whitespace */
     /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -12,15 +12,15 @@
       's0043ccab8a7a7eaf': `スライド`,
 's03b454fb08e876ad': `タブ`,
 's5334c0927cf25b86': `フルスクリーンを終了する`,
+'s5c1ecf88259b79f9': `プレゼンテーション`,
 's657514e10d2199ee': `現在のスライドの後にスライドを追加する`,
 's7309c4598fa52557': `重複するスライド`,
 's7f59f507e02a2f38': `表示`,
 'sa2322449a142ad50': `前のスライドへ`,
+'sac2eb5c63a7b6c71': `スライドを追加`,
+'sc67c075acd3a06ea': `現在のスライドを複製`,
+'sde173dce922c7a4d': `現在のスライドを削除`,
 'se898a5a880c57718': `スライドを取り外す`,
 'se8d0deb65adf4544': `次のスライドへ`,
 'see7c7a973a9b2d6c': `フルスクリーンで表示`,
-'s5c1ecf88259b79f9': `Presentation`,
-'sac2eb5c63a7b6c71': `Add slide`,
-'sc67c075acd3a06ea': `Duplicate current slide`,
-'sde173dce922c7a4d': `Remove current slide`,
     };

@@ -1,4 +1,5 @@
-<xliff xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd" xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd" version="1.2">
   <file original="lit-localize-inputs" datatype="plaintext" source-language="en" target-language="bg">
     <body>
       <trans-unit id="se898a5a880c57718">
@@ -41,6 +42,18 @@
         <source>Duplicate slide</source>
         <target>Дубликат на слайд</target>
       </trans-unit>
-    </body>
+    <trans-unit id="s5c1ecf88259b79f9">
+  <source>Presentation</source>
+<target>Презентация</target></trans-unit>
+<trans-unit id="sac2eb5c63a7b6c71">
+  <source>Add slide</source>
+<target>Добавяне на слайд</target></trans-unit>
+<trans-unit id="sc67c075acd3a06ea">
+  <source>Duplicate current slide</source>
+<target>Дублиране на текущия слайд</target></trans-unit>
+<trans-unit id="sde173dce922c7a4d">
+  <source>Remove current slide</source>
+<target>Премахване на текущия слайд</target></trans-unit>
+</body>
   </file>
 </xliff>

@@ -2,8 +2,8 @@
     // Do not modify this file by hand!
     // Re-generate this file by running lit-localize
 
-    
-    
+
+
 
     /* eslint-disable no-irregular-whitespace */
     /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -12,15 +12,15 @@
       's0043ccab8a7a7eaf': `Слайды`,
 's03b454fb08e876ad': `Табы`,
 's5334c0927cf25b86': `Выход из полноэкранного режима`,
+'s5c1ecf88259b79f9': `Презентация`,
 's657514e10d2199ee': `Добавьте слайд после текущего`,
 's7309c4598fa52557': `Дубликат слайда`,
 's7f59f507e02a2f38': `Посмотреть`,
 'sa2322449a142ad50': `Перейти к предыдущему слайду`,
+'sac2eb5c63a7b6c71': `Добавить слайд`,
+'sc67c075acd3a06ea': `Дублировать текущий слайд`,
+'sde173dce922c7a4d': `Удалить текущий слайд`,
 'se898a5a880c57718': `Снимите заслонку`,
 'se8d0deb65adf4544': `Перейти к следующему слайду`,
 'see7c7a973a9b2d6c': `Показать в полноэкранном режиме`,
-'s5c1ecf88259b79f9': `Presentation`,
-'sac2eb5c63a7b6c71': `Add slide`,
-'sc67c075acd3a06ea': `Duplicate current slide`,
-'sde173dce922c7a4d': `Remove current slide`,
     };

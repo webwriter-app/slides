@@ -2,8 +2,8 @@
     // Do not modify this file by hand!
     // Re-generate this file by running lit-localize
 
-    
-    
+
+
 
     /* eslint-disable no-irregular-whitespace */
     /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -12,15 +12,15 @@
       's0043ccab8a7a7eaf': `Kaydıraklar`,
 's03b454fb08e876ad': `Sekmeler`,
 's5334c0927cf25b86': `Tam ekrandan çık`,
+'s5c1ecf88259b79f9': `Sunum`,
 's657514e10d2199ee': `Geçerli slayttan sonra slayt ekle`,
 's7309c4598fa52557': `Yinelenen slayt`,
 's7f59f507e02a2f38': `Görünüm`,
 'sa2322449a142ad50': `Önceki slayta git`,
+'sac2eb5c63a7b6c71': `Slayt ekle`,
+'sc67c075acd3a06ea': `Geçerli slaytı çoğalt`,
+'sde173dce922c7a4d': `Geçerli slaytı kaldır`,
 'se898a5a880c57718': `Sürgüyü çıkarın`,
 'se8d0deb65adf4544': `Sonraki slayta geç`,
 'see7c7a973a9b2d6c': `Tam ekranda göster`,
-'s5c1ecf88259b79f9': `Presentation`,
-'sac2eb5c63a7b6c71': `Add slide`,
-'sc67c075acd3a06ea': `Duplicate current slide`,
-'sde173dce922c7a4d': `Remove current slide`,
     };

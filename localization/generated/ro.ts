@@ -2,8 +2,8 @@
     // Do not modify this file by hand!
     // Re-generate this file by running lit-localize
 
-    
-    
+
+
 
     /* eslint-disable no-irregular-whitespace */
     /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -12,15 +12,15 @@
       's0043ccab8a7a7eaf': `Diapozitive`,
 's03b454fb08e876ad': `File`,
 's5334c0927cf25b86': `Ieșiți din ecranul complet`,
+'s5c1ecf88259b79f9': `Prezentare`,
 's657514e10d2199ee': `Adăugați diapozitiv după curent`,
 's7309c4598fa52557': `Diapozitiv duplicat`,
 's7f59f507e02a2f38': `Vizualizare`,
 'sa2322449a142ad50': `Mergeți la diapozitivul anterior`,
+'sac2eb5c63a7b6c71': `Adaugă diapozitiv`,
+'sc67c075acd3a06ea': `Duplică diapozitivul curent`,
+'sde173dce922c7a4d': `Elimină diapozitivul curent`,
 'se898a5a880c57718': `Scoateți glisiera`,
 'se8d0deb65adf4544': `Treceți la diapozitivul următor`,
 'see7c7a973a9b2d6c': `Afișare pe ecran complet`,
-'s5c1ecf88259b79f9': `Presentation`,
-'sac2eb5c63a7b6c71': `Add slide`,
-'sc67c075acd3a06ea': `Duplicate current slide`,
-'sde173dce922c7a4d': `Remove current slide`,
     };

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+<file target-language="ne" source-language="en" original="lit-localize-inputs" datatype="plaintext">
+<body>
+<trans-unit id="s7f59f507e02a2f38">
+  <source>View</source>
+<target>दृश्य</target></trans-unit>
+<trans-unit id="s03b454fb08e876ad">
+  <source>Tabs</source>
+<target>ट्याबहरू</target></trans-unit>
+<trans-unit id="s0043ccab8a7a7eaf">
+  <source>Slides</source>
+<target>स्लाइडहरू</target></trans-unit>
+<trans-unit id="s5c1ecf88259b79f9">
+  <source>Presentation</source>
+<target>प्रस्तुति</target></trans-unit>
+<trans-unit id="sac2eb5c63a7b6c71">
+  <source>Add slide</source>
+<target>स्लाइड थप्नुहोस्</target></trans-unit>
+<trans-unit id="sc67c075acd3a06ea">
+  <source>Duplicate current slide</source>
+<target>हालको स्लाइड प्रतिलिपि गर्नुहोस्</target></trans-unit>
+<trans-unit id="sde173dce922c7a4d">
+  <source>Remove current slide</source>
+<target>हालको स्लाइड हटाउनुहोस्</target></trans-unit>
+<trans-unit id="s7309c4598fa52557">
+  <source>Duplicate slide</source>
+<target>स्लाइड प्रतिलिपि गर्नुहोस्</target></trans-unit>
+<trans-unit id="se898a5a880c57718">
+  <source>Remove slide</source>
+<target>स्लाइड हटाउनुहोस्</target></trans-unit>
+<trans-unit id="s657514e10d2199ee">
+  <source>Add slide after current</source>
+<target>हालको स्लाइडपछि स्लाइड थप्नुहोस्</target></trans-unit>
+<trans-unit id="sa2322449a142ad50">
+  <source>Go to previous slide</source>
+<target>अघिल्लो स्लाइडमा जानुहोस्</target></trans-unit>
+<trans-unit id="se8d0deb65adf4544">
+  <source>Go to next slide</source>
+<target>अर्को स्लाइडमा जानुहोस्</target></trans-unit>
+<trans-unit id="s5334c0927cf25b86">
+  <source>Exit fullscreen</source>
+<target>पूर्ण स्क्रिनबाट बाहिर निस्कनुहोस्</target></trans-unit>
+<trans-unit id="see7c7a973a9b2d6c">
+  <source>Show in fullscreen</source>
+<target>पूर्ण स्क्रिनमा देखाउनुहोस्</target></trans-unit>
+</body>
+</file>
+</xliff>

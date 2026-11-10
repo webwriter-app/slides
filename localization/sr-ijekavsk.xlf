@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+<file target-language="sr-ijekavsk" source-language="en" original="lit-localize-inputs" datatype="plaintext">
+<body>
+<trans-unit id="s7f59f507e02a2f38">
+  <source>View</source>
+<target>Prikaz</target></trans-unit>
+<trans-unit id="s03b454fb08e876ad">
+  <source>Tabs</source>
+<target>Kartice</target></trans-unit>
+<trans-unit id="s0043ccab8a7a7eaf">
+  <source>Slides</source>
+<target>Slajdovi</target></trans-unit>
+<trans-unit id="s5c1ecf88259b79f9">
+  <source>Presentation</source>
+<target>Prezentacija</target></trans-unit>
+<trans-unit id="sac2eb5c63a7b6c71">
+  <source>Add slide</source>
+<target>Dodaj slajd</target></trans-unit>
+<trans-unit id="sc67c075acd3a06ea">
+  <source>Duplicate current slide</source>
+<target>Udvostruči trenutni slajd</target></trans-unit>
+<trans-unit id="sde173dce922c7a4d">
+  <source>Remove current slide</source>
+<target>Ukloni trenutni slajd</target></trans-unit>
+<trans-unit id="s7309c4598fa52557">
+  <source>Duplicate slide</source>
+<target>Udvostruči slajd</target></trans-unit>
+<trans-unit id="se898a5a880c57718">
+  <source>Remove slide</source>
+<target>Ukloni slajd</target></trans-unit>
+<trans-unit id="s657514e10d2199ee">
+  <source>Add slide after current</source>
+<target>Dodaj slajd posle trenutnog</target></trans-unit>
+<trans-unit id="sa2322449a142ad50">
+  <source>Go to previous slide</source>
+<target>Idi na prethodni slajd</target></trans-unit>
+<trans-unit id="se8d0deb65adf4544">
+  <source>Go to next slide</source>
+<target>Idi na sledeći slajd</target></trans-unit>
+<trans-unit id="s5334c0927cf25b86">
+  <source>Exit fullscreen</source>
+<target>Izađi iz prikaza preko celog ekrana</target></trans-unit>
+<trans-unit id="see7c7a973a9b2d6c">
+  <source>Show in fullscreen</source>
+<target>Prikaži preko celog ekrana</target></trans-unit>
+</body>
+</file>
+</xliff>
