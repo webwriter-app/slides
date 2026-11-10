@@ -62,7 +62,7 @@
   "license": "MIT",
   "author": "",
   "scripts": {
-    "prepublishOnly": "npx @webwriter/build"
+    "prepublishOnly": "npx @webwriter/build && esbuild tests/functionality.test.ts --bundle --format=esm --target=es2022 --outfile=dist/tests/functionality"
   },
   "dependencies": {
     "@lit/localize": "^0.12.2",
