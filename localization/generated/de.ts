@@ -24,4 +24,3 @@
 'se8d0deb65adf4544': `Weiter zur nächsten Folie`,
 'see7c7a973a9b2d6c': `Im Vollbildmodus anzeigen`,
     };
-  

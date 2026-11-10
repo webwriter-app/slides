@@ -24,4 +24,3 @@
 'se8d0deb65adf4544': `Aller à la diapositive suivante`,
 'see7c7a973a9b2d6c': `Afficher en plein écran`,
     };
-  

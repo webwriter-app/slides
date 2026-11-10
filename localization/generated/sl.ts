@@ -24,4 +24,3 @@
 'sc67c075acd3a06ea': `Duplicate current slide`,
 'sde173dce922c7a4d': `Remove current slide`,
     };
-  

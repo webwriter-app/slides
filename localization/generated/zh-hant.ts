@@ -24,4 +24,3 @@
 's5334c0927cf25b86': `Exit fullscreen`,
 'see7c7a973a9b2d6c': `Show in fullscreen`,
     };
-  
