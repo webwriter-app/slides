@@ -8,10 +8,10 @@ import {
     queryAssignedElements,
     state,
 } from "lit/decorators.js";
-import { msg } from "@lit/localize";
+import type { MsgFn } from "@lit/localize";
 import SlButton from "@shoelace-style/shoelace/dist/components/button/button.component.js";
 import SlIconButton from "@shoelace-style/shoelace/dist/components/icon-button/icon-button.component.js";
-import LOCALIZE from "../../localization/generated";
+import { effectiveLanguage, localizeElement, nativeLanguageAttributes, sourceMsg} from "../../localization/localizer";
 
 // @ts-ignore
 import "@shoelace-style/shoelace/dist/themes/light.css";
@@ -43,35 +43,49 @@ import { slides_styles } from "../styles/styles";
  */
 @customElement("webwriter-slides")
 export class WebwriterSlides extends LitElementWw {
-    protected localize = LOCALIZE;
-    readonly options = WebwriterSlides.options;
-    readonly actions = {
-        ...WebwriterSlides.actions,
-        duplicateActiveSlide: { ...WebwriterSlides.actions.duplicateActiveSlide, disabled: true },
-        removeActiveSlide: { ...WebwriterSlides.actions.removeActiveSlide, disabled: true },
-    };
+    static override get observedAttributes() { return nativeLanguageAttributes(this, super.observedAttributes); }
 
-    static options: Record<string, any> = {
-        type: {
-            type: "select",
-            group: "presentation",
-            label: { _: "View" },
-            options: [
-                { value: "tabs", label: { _: "Tabs" } },
-                { value: "slides", label: { _: "Slides" } },
-            ],
-        },
-    };
+    override get lang(): string { return effectiveLanguage(this); }
+    override set lang(value: string) { this.setAttribute("lang", value); }
+    private readonly msg = localizeElement(this, true);
+    readonly options = WebwriterSlides.buildOptions(this.msg);
+    readonly actions = WebwriterSlides.buildActions(this.msg);
 
-    static optionGroups: Record<string, any> = {
-        presentation: { label: { _: "Presentation" }, collapsible: true, advanced: false },
-    };
+    static get options(): Record<string, any> { return this.buildOptions(sourceMsg); }
 
-    static actions: Record<string, any> = {
-        addSlide: { label: { _: "Add slide" }, group: "presentation", icon: "Add", intent: "default" },
-        duplicateActiveSlide: { label: { _: "Duplicate current slide" }, group: "presentation", icon: "Copy", intent: "default" },
-        removeActiveSlide: { label: { _: "Remove current slide" }, group: "presentation", icon: "Delete", intent: "danger" },
-    };
+    private static buildOptions(msg: MsgFn): Record<string, any> {
+        return {
+            type: {
+                type: "select",
+                group: "presentation",
+                label: { get _() { return msg("View"); } },
+                options: [
+                    { value: "tabs", label: { get _() { return msg("Tabs"); } } },
+                    { value: "slides", label: { get _() { return msg("Slides"); } } },
+                ],
+            },
+        };
+    }
+
+    readonly optionGroups = WebwriterSlides.buildOptionGroups(this.msg);
+
+    static get optionGroups(): Record<string, any> { return this.buildOptionGroups(sourceMsg); }
+
+    private static buildOptionGroups(msg: MsgFn): Record<string, any> {
+        return {
+            presentation: { label: { get _() { return msg("Presentation"); } }, collapsible: true, advanced: false },
+        };
+    }
+
+    static get actions(): Record<string, any> { return this.buildActions(sourceMsg); }
+
+    private static buildActions(msg: MsgFn): Record<string, any> {
+        return {
+            addSlide: { label: { get _() { return msg("Add slide"); } }, group: "presentation", icon: "Add", intent: "default" },
+            duplicateActiveSlide: { label: { get _() { return msg("Duplicate current slide"); } }, group: "presentation", icon: "Copy", intent: "default", disabled: true },
+            removeActiveSlide: { label: { get _() { return msg("Remove current slide"); } }, group: "presentation", icon: "Delete", intent: "danger", disabled: true },
+        };
+    }
 
     duplicateActiveSlide() { this.duplicateSlide(this.activeSlideIndex); }
 
@@ -461,7 +475,7 @@ export class WebwriterSlides extends LitElementWw {
         const slideButtons = (index: number, tooltipPlacement: "top" | "right" | "bottom" | "left" = "top") => html`
             ${this.hasAttribute("contenteditable") ? html`
                 <sl-tooltip
-                    content=${msg("Duplicate slide")}
+                    content=${this.msg("Duplicate slide")}
                     placement=${tooltipPlacement}
                     hoist
                 >
@@ -477,7 +491,7 @@ export class WebwriterSlides extends LitElementWw {
             ` : html``}
             ${this.hasAttribute("contenteditable") && this.slides.length > 1 ? html`
                 <sl-tooltip
-                    content=${msg("Remove slide")}
+                    content=${this.msg("Remove slide")}
                     placement=${tooltipPlacement}
                     hoist
                 >
@@ -495,7 +509,7 @@ export class WebwriterSlides extends LitElementWw {
 
         const controls = html` <div class="controls-section author-only">
                 <sl-tooltip
-                    content=${msg("Add slide after current")}
+                    content=${this.msg("Add slide after current")}
                     placement="bottom"
                 >
                     <sl-icon-button
@@ -510,7 +524,7 @@ export class WebwriterSlides extends LitElementWw {
             </div>
             <div class="controls-section">
                 <sl-tooltip
-                    content=${msg("Go to previous slide")}
+                    content=${this.msg("Go to previous slide")}
                     placement="bottom"
                 >
                     <sl-icon-button
@@ -525,7 +539,7 @@ export class WebwriterSlides extends LitElementWw {
                     <span>${this.slides?.length}</span>
                 </div>
                 <sl-tooltip
-                    content=${msg("Go to next slide")}
+                    content=${this.msg("Go to next slide")}
                     placement="bottom"
                 >
                     <sl-icon-button
@@ -539,8 +553,8 @@ export class WebwriterSlides extends LitElementWw {
             <div class="controls-section">
                 <sl-tooltip
                     content=${this.isFullscreen
-                        ? msg("Exit fullscreen")
-                        : msg("Show in fullscreen")}
+                        ? this.msg("Exit fullscreen")
+                        : this.msg("Show in fullscreen")}
                     placement="bottom"
                 >
                     <sl-icon-button

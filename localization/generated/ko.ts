@@ -19,5 +19,9 @@
 'se898a5a880c57718': `슬라이드 제거`,
 'se8d0deb65adf4544': `다음 슬라이드로 이동`,
 'see7c7a973a9b2d6c': `전체 화면으로 보기`,
+'s5c1ecf88259b79f9': `Presentation`,
+'sac2eb5c63a7b6c71': `Add slide`,
+'sc67c075acd3a06ea': `Duplicate current slide`,
+'sde173dce922c7a4d': `Remove current slide`,
     };
   
