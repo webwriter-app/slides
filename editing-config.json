@@ -105,7 +105,16 @@
       "sr-ijekavsk": "Prikažite sadržaj kao niz slajdova ili kartica.",
       "cnr": "Prikažite sadržaj kao niz slajdova ili kartica.",
       "ca-ES-valencia": "Presenta el contingut com una seqüència de diapositives o pestanyes.",
-      "dv": "މައުލޫމާތު ސްލައިޑް ނުވަތަ ޓެބްތަކެއްގެ ތަރުތީބަކުން ދައްކާ."
+      "dv": "މައުލޫމާތު ސްލައިޑް ނުވަތަ ޓެބްތަކެއްގެ ތަރުތީބަކުން ދައްކާ.",
+      "yue-Hans": "将内容以投影片或分页嘅形式展示。",
+      "yue-Hant": "將內容以投影片或分頁嘅形式展示。",
+      "kmr": "Naverokê wek rêze slayd an tabloyan pêşkêş bike.",
+      "kmr-Latn": "Naverokê wek rêze slayd an tabloyan pêşkêş bike.",
+      "kmr-Arab": "ناڤەرۆکێ وەک رێزە سلاید ئان تابلۆیان پێشکێش بکە.",
+      "ckb": "ناوەڕۆک وەک زنجیرەیەک سلاید یان تاب پێشکەش بکە.",
+      "ckb-Arab": "ناوەڕۆک وەک زنجیرەیەک سلاید یان تاب پێشکەش بکە.",
+      "af-ZA": "Bied inhoud as ’n reeks skyfies of oortjies aan.",
+      "af-NA": "Bied inhoud as ’n reeks skyfies of oortjies aan."
     },
     "label": {
       "_": "Slides",
@@ -210,7 +219,16 @@
       "lo": "ສະໄລ້",
       "km": "ស្លាយ",
       "om": "Slaayidiiwwan",
-      "dv": "ސްލައިޑްތައް"
+      "dv": "ސްލައިޑްތައް",
+      "yue-Hans": "投影片",
+      "yue-Hant": "投影片",
+      "kmr": "Slayd",
+      "kmr-Latn": "Slayd",
+      "kmr-Arab": "سلاید",
+      "ckb": "سلایدەکان",
+      "ckb-Arab": "سلایدەکان",
+      "af-ZA": "Skyfies",
+      "af-NA": "Skyfies"
     }
   },
   "./snippets/example": {
@@ -319,7 +337,16 @@
       "lo": "ຕົວຢ່າງ",
       "km": "ឧទាហរណ៍",
       "om": "Fakkeenya",
-      "dv": "މިސާލު"
+      "dv": "މިސާލު",
+      "yue-Hans": "例子",
+      "yue-Hant": "例子",
+      "kmr": "Mînak",
+      "kmr-Latn": "Mînak",
+      "kmr-Arab": "میناک",
+      "ckb": "نموونە",
+      "ckb-Arab": "نموونە",
+      "af-ZA": "Voorbeeld",
+      "af-NA": "Voorbeeld"
     }
   },
   "./widgets/webwriter-slides": {
@@ -426,7 +453,16 @@
       "lo": "ສະໄລ້",
       "km": "ស្លាយ",
       "om": "Slaayidiiwwan",
-      "dv": "ސްލައިޑްތައް"
+      "dv": "ސްލައިޑްތައް",
+      "yue-Hans": "投影片",
+      "yue-Hant": "投影片",
+      "kmr": "Slayd",
+      "kmr-Latn": "Slayd",
+      "kmr-Arab": "سلاید",
+      "ckb": "سلایدەکان",
+      "ckb-Arab": "سلایدەکان",
+      "af-ZA": "Skyfies",
+      "af-NA": "Skyfies"
     }
   },
   "./widgets/webwriter-slide": {
@@ -533,7 +569,16 @@
       "lo": "ສະໄລ້",
       "km": "ស្លាយ",
       "om": "Slaayidii",
-      "dv": "ސްލައިޑް"
+      "dv": "ސްލައިޑް",
+      "yue-Hans": "投影片",
+      "yue-Hant": "投影片",
+      "kmr": "Slayd",
+      "kmr-Latn": "Slayd",
+      "kmr-Arab": "سلاید",
+      "ckb": "سلاید",
+      "ckb-Arab": "سلاید",
+      "af-ZA": "Skyfie",
+      "af-NA": "Skyfie"
     }
   }
 }
