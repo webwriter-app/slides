@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+<file target-language="pt" source-language="en" original="lit-localize-inputs" datatype="plaintext">
+<body>
+<trans-unit id="s7f59f507e02a2f38">
+  <source>View</source>
+<target>Ver</target></trans-unit>
+<trans-unit id="s03b454fb08e876ad">
+  <source>Tabs</source>
+<target>Separadores</target></trans-unit>
+<trans-unit id="s0043ccab8a7a7eaf">
+  <source>Slides</source>
+<target>Deslizamentos</target></trans-unit>
+<trans-unit id="s5c1ecf88259b79f9">
+  <source>Presentation</source>
+<target>Apresentação</target></trans-unit>
+<trans-unit id="sac2eb5c63a7b6c71">
+  <source>Add slide</source>
+<target>Adicionar diapositivo</target></trans-unit>
+<trans-unit id="sc67c075acd3a06ea">
+  <source>Duplicate current slide</source>
+<target>Duplicar diapositivo atual</target></trans-unit>
+<trans-unit id="sde173dce922c7a4d">
+  <source>Remove current slide</source>
+<target>Remover diapositivo atual</target></trans-unit>
+<trans-unit id="s7309c4598fa52557">
+  <source>Duplicate slide</source>
+<target>Diapositivo duplicado</target></trans-unit>
+<trans-unit id="se898a5a880c57718">
+  <source>Remove slide</source>
+<target>Retirar a corrediça</target></trans-unit>
+<trans-unit id="s657514e10d2199ee">
+  <source>Add slide after current</source>
+<target>Adicionar slide após o atual</target></trans-unit>
+<trans-unit id="sa2322449a142ad50">
+  <source>Go to previous slide</source>
+<target>Ir para o diapositivo anterior</target></trans-unit>
+<trans-unit id="se8d0deb65adf4544">
+  <source>Go to next slide</source>
+<target>Ir para o diapositivo seguinte</target></trans-unit>
+<trans-unit id="s5334c0927cf25b86">
+  <source>Exit fullscreen</source>
+<target>Sair do ecrã inteiro</target></trans-unit>
+<trans-unit id="see7c7a973a9b2d6c">
+  <source>Show in fullscreen</source>
+<target>Mostrar em ecrã completo</target></trans-unit>
+</body>
+</file>
+</xliff>
