@@ -4,15 +4,15 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "src/widgets/webwriter-slide.ts",
+      "path": "src/widgets/webwriter-page.ts",
       "declarations": [
         {
           "kind": "class",
-          "description": "Represents a single slide in the `webwriter-slides` widget.",
-          "name": "WebwriterSlide",
+          "description": "Represents a single page in the `webwriter-pages` widget.\nSingle-media pages remove padding and fit media without stretching or cropping.",
+          "name": "WebwriterPage",
           "slots": [
             {
-              "description": "The content displayed within the slide.",
+              "description": "The content displayed within the page.",
               "name": "default"
             }
           ],
@@ -24,8 +24,19 @@
                 "text": "boolean"
               },
               "default": "false",
-              "description": "Indicates whether the slide is currently active/visible.",
+              "description": "Indicates whether the page is currently active/visible.",
               "attribute": "active",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "Plaintext tab label. An empty label shows the page-number placeholder.",
+              "attribute": "label",
               "reflects": true
             },
             {
@@ -35,7 +46,7 @@
                 "text": "string"
               },
               "default": "\"\"",
-              "description": "Data URI string for the slide thumbnail (e.g., \"data:image/png;base64,...\").\r\nUsed to display a preview image for the slide.",
+              "description": "Data URI string for the page thumbnail (e.g., \"data:image/png;base64,...\").\nUsed to display a preview image for the page.",
               "attribute": "thumbnail",
               "reflects": true
             }
@@ -47,8 +58,17 @@
                 "text": "boolean"
               },
               "default": "false",
-              "description": "Indicates whether the slide is currently active/visible.",
+              "description": "Indicates whether the page is currently active/visible.",
               "fieldName": "active"
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "Plaintext tab label. An empty label shows the page-number placeholder.",
+              "fieldName": "label"
             },
             {
               "name": "thumbnail",
@@ -56,7 +76,7 @@
                 "text": "string"
               },
               "default": "\"\"",
-              "description": "Data URI string for the slide thumbnail (e.g., \"data:image/png;base64,...\").\r\nUsed to display a preview image for the slide.",
+              "description": "Data URI string for the page thumbnail (e.g., \"data:image/png;base64,...\").\nUsed to display a preview image for the page.",
               "fieldName": "thumbnail"
             }
           ],
@@ -64,97 +84,401 @@
             "name": "LitElementWw",
             "package": "@webwriter/lit"
           },
-          "tagName": "webwriter-slide",
+          "tagName": "webwriter-page",
           "customElement": true,
-          "modulePath": "src/widgets/webwriter-slide.ts",
-          "definitionPath": "src/widgets/webwriter-slide.ts"
+          "modulePath": "src/widgets/webwriter-page.ts",
+          "definitionPath": "src/widgets/webwriter-page.ts"
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "WebwriterSlide",
+          "name": "WebwriterPage",
           "declaration": {
-            "name": "WebwriterSlide",
-            "module": "src/widgets/webwriter-slide.ts"
+            "name": "WebwriterPage",
+            "module": "src/widgets/webwriter-page.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "webwriter-slide",
+          "name": "webwriter-page",
           "declaration": {
-            "name": "WebwriterSlide",
-            "module": "src/widgets/webwriter-slide.ts"
+            "name": "WebwriterPage",
+            "module": "src/widgets/webwriter-page.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/widgets/webwriter-slides.ts",
+      "path": "src/widgets/webwriter-pages.ts",
       "declarations": [
         {
           "kind": "class",
-          "description": "Container for displaying a slideshow of content sequentially.",
-          "name": "WebwriterSlides",
+          "description": "Display authored content as pages, with tabs by default or a preview-card layout.\n\nAuthors add `webwriter-page` children; the `type` attribute switches between the Slides view with preview cards (\"pages\")\nand the default tab strip (\"tabs\"). Thumbnails are drawn in the editor with a capture library that loads on first use.\nIn use mode the arrow keys, the controls and swipes in fullscreen move between pages. The arrow keys leave\ntext entry, Alt and Meta combinations alone. Every thumbnail and tab has a button that selects its page;\nin edit mode Space or Enter on the thumbnail itself picks it up for reordering.\n\nSet `orientation=\"portrait\"` for a 9:16 page, or use the default `landscape` for 16:9. The orientation applies to both views, fullscreen, and preview cards. The attribute is optional; an absent attribute keeps landscape without adding it to existing markup.\n\nThe widget follows the page theme: `--ww-text-color`, `--ww-font-family`, and `--ww-theme-accent-1` (the\nselected thumbnail). On paper it prints all pages one after another and leaves out the controls.\n\nConversions: a `section` becomes pages (its nested `section` children become one page each, otherwise the\nsection is one page). Each page converts to a `details` element with its label as the summary.\nThe thumbnails are not carried over.\n\nSignals: `page` is the number of the current page, starting at 1; `count` is the number of pages.\nBoth change when readers or authors move to another page.\n\nKnown limitation: in edit mode the drag module sets `touch-action: none` on the thumbnails, so on a touch\nscreen the thumbnail strip cannot be scrolled by dragging on a thumbnail; the select buttons still work.",
+          "name": "WebwriterPages",
+          "cssParts": [
+            {
+              "description": "The pane of thumbnails and controls below or beside the page.",
+              "name": "actions"
+            },
+            {
+              "description": "The strip of tabs and controls above the page.",
+              "name": "tabs"
+            },
+            {
+              "description": "One page thumbnail in the strip.",
+              "name": "thumbnail"
+            },
+            {
+              "description": "One tab in the tab strip.",
+              "name": "tab"
+            }
+          ],
           "slots": [
             {
-              "description": "Slide elements to be displayed (should be `webwriter-slide` components only).",
+              "description": "Page elements to be displayed (should be `webwriter-page` components only).",
               "name": "default"
             }
           ],
           "members": [
             {
               "kind": "field",
-              "name": "localize",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ \"sl-icon-button\": SlIconButton, }"
+            },
+            {
+              "kind": "field",
+              "name": "convertFrom",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ section: \"loadSections\" }"
+            },
+            {
+              "kind": "field",
+              "name": "convertTo",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ details: \"toDetails\" }"
+            },
+            {
+              "kind": "field",
+              "name": "options",
+              "static": true,
+              "default": "{ type: { type: \"select\", label: (widget: Labelled) => widget.msg(\"View\"), options: [ { value: \"tabs\", label: (widget: Labelled) => widget.msg(\"Tabs\") }, { value: \"pages\", label: (widget: Labelled) => widget.msg(\"Slides\") }, ], }, } satisfies Record<string, Declared<OptionDeclaration>>"
+            },
+            {
+              "kind": "field",
+              "name": "actions",
+              "static": true,
+              "default": "{ addPage: { label: (widget: Labelled) => widget.msg(\"Add\"), buttonGroup: \"pages\", icon: \"Plus\", intent: \"default\" }, removeActivePage: { label: (widget: Labelled) => widget.msg(\"Remove\"), buttonGroup: \"pages\", icon: \"Delete\", intent: \"danger\", disabled: true }, duplicateActivePage: { label: (widget: Labelled) => widget.msg(\"Duplicate\"), buttonGroup: \"pages\", icon: \"Copy\", intent: \"default\", disabled: true }, } satisfies Record<string, Declared<ActionDeclaration>>"
+            },
+            {
+              "kind": "field",
+              "name": "localize"
+            },
+            {
+              "kind": "field",
+              "name": "msg",
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "#permissions",
+              "privacy": "private",
+              "default": "new Permissions(this)"
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "\"tabs\" | \"pages\""
+              },
+              "privacy": "public",
+              "default": "\"tabs\"",
+              "description": "Defines the type of view for the sequence of pages.\n- \"pages\": Show the Slides view with preview cards.\n- \"tabs\": Show content using tabs.",
+              "attribute": "type",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "orientation",
+              "type": {
+                "text": "\"landscape\" | \"portrait\""
+              },
+              "default": "\"landscape\"",
+              "description": "Page orientation: 16:9 landscape or 9:16 portrait. The optional orientation attribute defaults to landscape when absent; the default is not added to existing markup.",
+              "attribute": "orientation",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "pages",
+              "type": {
+                "text": "WebwriterPage[]"
+              },
               "privacy": "protected",
-              "default": "LOCALIZE"
+              "description": "All `webwriter-page` elements.\nRepresents the individual pages in the sequence of pages."
             },
             {
               "kind": "field",
-              "name": "_boundKeyHandler",
+              "name": "activePageIndex",
               "type": {
-                "text": "(e: KeyboardEvent) => void"
+                "text": "number"
               },
+              "default": "0",
+              "description": "Index of the currently active page."
+            },
+            {
+              "kind": "field",
+              "name": "#page",
               "privacy": "private"
             },
             {
               "kind": "field",
-              "name": "_boundTouchStartHandler",
-              "type": {
-                "text": "(e: TouchEvent) => void"
-              },
+              "name": "#count",
               "privacy": "private"
             },
             {
               "kind": "field",
-              "name": "_boundTouchEndHandler",
+              "name": "signals",
               "type": {
-                "text": "(e: TouchEvent) => void"
+                "text": "object"
               },
-              "privacy": "private"
+              "readonly": true,
+              "default": "{ page: this.#page, count: this.#count }",
+              "description": "Public signals: the current page number (from 1) and the number of pages."
             },
             {
               "kind": "field",
-              "name": "_touchStartX",
+              "name": "#actionsDisabled",
+              "privacy": "private",
+              "type": {
+                "text": "object"
+              },
+              "default": "{ duplicateActivePage: true, removeActivePage: true }"
+            },
+            {
+              "kind": "field",
+              "name": "#lifecycle",
+              "privacy": "private",
+              "type": {
+                "text": "AbortController | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#changeTimer",
+              "privacy": "private",
+              "type": {
+                "text": "ReturnType<typeof setTimeout> | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#touchStartX",
+              "privacy": "private",
               "type": {
                 "text": "number | null"
               },
-              "privacy": "private",
               "default": "null"
             },
             {
               "kind": "field",
-              "name": "_touchTarget",
+              "name": "#touchStartY",
+              "privacy": "private",
+              "type": {
+                "text": "number"
+              },
+              "default": "0"
+            },
+            {
+              "kind": "field",
+              "name": "#touchTarget",
+              "privacy": "private",
               "type": {
                 "text": "Element | null"
               },
-              "privacy": "private",
               "default": "null"
             },
             {
+              "kind": "field",
+              "name": "actions",
+              "description": "The drawer declarations with the availability of the page actions, which follows the pages.",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "activePage",
+              "type": {
+                "text": "WebwriterPage"
+              },
+              "description": "The active page element based on the activePageIndex.",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "hasNextPage",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "False if sequence of pages is on the last page.",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "hasPreviousPage",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "False if sequence of pages is on the first page.",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "isFullscreen",
+              "privacy": "protected",
+              "description": "Whether the sequence of pages is currently displayed in fullscreen mode.",
+              "readonly": true
+            },
+            {
               "kind": "method",
-              "name": "_handleKeyDown",
+              "name": "loadSections",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "fragment",
+                  "type": {
+                    "text": "DocumentFragment"
+                  }
+                }
+              ],
+              "description": "Replaces the pages with the pages a `section` stands for; declines anything else."
+            },
+            {
+              "kind": "method",
+              "name": "toDetails",
+              "return": {
+                "type": {
+                  "text": "DocumentFragment | null"
+                }
+              },
+              "description": "One `details` per page with its label as summary; `null` without pages."
+            },
+            {
+              "kind": "method",
+              "name": "duplicateActivePage"
+            },
+            {
+              "kind": "method",
+              "name": "addPage",
+              "parameters": [
+                {
+                  "name": "index",
+                  "optional": true,
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ],
+              "description": "Add a new empty page element. Optionally insert after given index."
+            },
+            {
+              "kind": "method",
+              "name": "#addPage",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "index",
+                  "optional": true,
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "duplicatePage",
+              "parameters": [
+                {
+                  "name": "index",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ],
+              "description": "Duplicate an existing page at given index."
+            },
+            {
+              "kind": "method",
+              "name": "#duplicatePage",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "index",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "removeActivePage",
+              "description": "Remove the currently active page element."
+            },
+            {
+              "kind": "method",
+              "name": "removePage",
+              "parameters": [
+                {
+                  "name": "pageIndex",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ],
+              "description": "Remove a page and return editor selection to the surviving active page's start."
+            },
+            {
+              "kind": "method",
+              "name": "nextPage",
+              "parameters": [
+                {
+                  "name": "backwards",
+                  "default": "false"
+                },
+                {
+                  "name": "step",
+                  "default": "1"
+                }
+              ],
+              "description": "Activate the next page element."
+            },
+            {
+              "kind": "method",
+              "name": "#handleSelectionChange",
+              "privacy": "private",
+              "description": "Follows the selection to the page that contains it."
+            },
+            {
+              "kind": "method",
+              "name": "#handleKeyDown",
+              "privacy": "private",
               "parameters": [
                 {
                   "name": "e",
@@ -163,11 +487,25 @@
                   }
                 }
               ],
-              "description": "Handles keyboard navigation for the slideshow.\r\nArrowRight advances to the next slide, ArrowLeft goes back.\r\nOnly possible in preview mode."
+              "description": "Handles keyboard navigation for the sequence of pages.\nArrowRight advances to the next page, ArrowLeft goes back.\nOnly possible in preview mode."
             },
             {
               "kind": "method",
-              "name": "_handleTouchStart",
+              "name": "#takesText",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "el",
+                  "type": {
+                    "text": "HTMLElement"
+                  }
+                }
+              ],
+              "description": "Whether the element is a place where arrow keys move a caret or a value."
+            },
+            {
+              "kind": "method",
+              "name": "#handleTouchStart",
               "privacy": "private",
               "parameters": [
                 {
@@ -177,11 +515,11 @@
                   }
                 }
               ],
-              "description": "Handles the start of a touch event for swipe navigation.\r\nRecords the initial touch position and target element.\r\nOnly active in fullscreen mode."
+              "description": "Handles the start of a touch event for swipe navigation.\nRecords the initial touch position and target element.\nOnly active in fullscreen mode."
             },
             {
               "kind": "method",
-              "name": "_isInteractiveTarget",
+              "name": "#isInteractiveTarget",
               "privacy": "private",
               "return": {
                 "type": {
@@ -196,11 +534,11 @@
                   }
                 }
               ],
-              "description": "Determines if the given element or any of its ancestors (up to the slideshow container) is an interactive element.\r\nUsed to prevent swipe navigation when interacting with widgets or interactive elements."
+              "description": "Determines if the given element or any of its ancestors (up to the sequence of pages container) is an interactive element.\nUsed to prevent swipe navigation when interacting with widgets or interactive elements."
             },
             {
               "kind": "method",
-              "name": "_handleTouchEnd",
+              "name": "#handleTouchEnd",
               "privacy": "private",
               "parameters": [
                 {
@@ -210,171 +548,11 @@
                   }
                 }
               ],
-              "description": "Handles the end of a touch event for swipe navigation.\r\nDetermines the swipe direction and navigates to the next or previous slide accordingly.\r\nIgnores swipes on interactive elements or if the swipe distance is too small."
-            },
-            {
-              "kind": "field",
-              "name": "scopedElements",
-              "type": {
-                "text": "object"
-              },
-              "privacy": "protected",
-              "static": true,
-              "default": "{ \"sl-button\": SlButton, \"sl-icon-button\": SlIconButton, \"sl-tooltip\": SlTooltip, \"sl-select\": SlSelect, \"sl-option\": SlOption, }"
-            },
-            {
-              "kind": "field",
-              "name": "activeSlideIndex",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "description": "Index of the currently active slide."
-            },
-            {
-              "kind": "field",
-              "name": "activeSlide",
-              "type": {
-                "text": "WebwriterSlide"
-              },
-              "description": "The active slide element based on the activeSlideIndex.",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "draggingIndex",
-              "type": {
-                "text": "number | null"
-              },
-              "privacy": "private",
-              "default": "null"
-            },
-            {
-              "kind": "field",
-              "name": "lastDraggedOver",
-              "type": {
-                "text": "number"
-              },
-              "privacy": "private",
-              "default": "-1",
-              "description": "Index of the slide currently being dragged over (for drag-and-drop functionality)."
-            },
-            {
-              "kind": "field",
-              "name": "isFullscreen",
-              "privacy": "protected",
-              "description": "Whether the slideshow is currently displayed in fullscreen mode.",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "iconSrc",
-              "privacy": "protected",
-              "description": "Icon source URL depending on fullscreen state (enter/exit).",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "slides",
-              "type": {
-                "text": "WebwriterSlide[]"
-              },
-              "privacy": "protected",
-              "description": "All `webwriter-slide` elements.\r\nRepresents the individual slides in the slideshow."
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "\"tabs\" | \"slides\""
-              },
-              "privacy": "public",
-              "default": "\"slides\"",
-              "description": "Defines the type of view for the slideshow.\r\n- \"slides\": Show content as sequential slides.\r\n- \"tabs\": Show content using tabs.",
-              "attribute": "type",
-              "reflects": true
+              "description": "Handles the end of a touch event for swipe navigation.\nDetermines the swipe direction and navigates to the next or previous page accordingly.\nIgnores swipes on interactive elements or if the swipe distance is too small."
             },
             {
               "kind": "method",
-              "name": "addSlide",
-              "parameters": [
-                {
-                  "name": "index",
-                  "optional": true,
-                  "type": {
-                    "text": "number"
-                  }
-                }
-              ],
-              "description": "Add a new empty slide element. Optionally insert after given index."
-            },
-            {
-              "kind": "method",
-              "name": "duplicateSlide",
-              "parameters": [
-                {
-                  "name": "index",
-                  "type": {
-                    "text": "number"
-                  }
-                }
-              ],
-              "description": "Duplicate an existing slide at given index."
-            },
-            {
-              "kind": "method",
-              "name": "removeActiveSlide",
-              "description": "Remove the currently active slide element."
-            },
-            {
-              "kind": "method",
-              "name": "removeSlide",
-              "parameters": [
-                {
-                  "name": "slideIndex",
-                  "type": {
-                    "text": "number"
-                  }
-                }
-              ],
-              "description": "Remove the currently active slide element."
-            },
-            {
-              "kind": "method",
-              "name": "nextSlide",
-              "parameters": [
-                {
-                  "name": "backwards",
-                  "default": "false"
-                },
-                {
-                  "name": "step",
-                  "default": "1"
-                }
-              ],
-              "description": "Activate the next slide element."
-            },
-            {
-              "kind": "field",
-              "name": "hasNextSlide",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "False if slideshow is on the last slide.",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "hasPreviousSlide",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "False if slideshow is on the first slide.",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "handleNextSlideClick",
+              "name": "handleNextPageClick",
               "privacy": "protected",
               "parameters": [
                 {
@@ -390,116 +568,99 @@
                   "description": "Whether to navigate backward (default is false)."
                 }
               ],
-              "description": "Handles navigation to the next or previous slide based on user input.\r\n- Shift key: jump by the total number of slides.\r\n- Ctrl key: jump by 10 slides.\r\n- Otherwise: move by one slide."
+              "description": "Handles navigation to the next or previous page based on user input.\n- Shift key: jump by the total number of pages.\n- Ctrl key: jump by 10 pages.\n- Otherwise: move by one page."
             },
             {
               "kind": "field",
-              "name": "changeSlide",
+              "name": "changePage",
               "privacy": "protected",
-              "description": "Changes the active slide to the specified index.\r\nWaits for rendering to finish, scrolls the active slide into view,\r\nand generates a thumbnail preview using snapdom.",
+              "description": "Changes the active page to the specified index.\nWaits for rendering to finish, scrolls the active page into view,\nand generates a thumbnail preview.",
               "parameters": [
                 {
-                  "description": "The index of the slide to activate.",
+                  "description": "The index of the page to activate.",
                   "name": "index"
                 }
               ]
             },
             {
               "kind": "method",
-              "name": "onDragStart",
+              "name": "onDragCommit",
               "privacy": "private",
               "parameters": [
                 {
                   "name": "e",
                   "type": {
-                    "text": "DragEvent"
-                  },
-                  "description": "The dragstart event."
-                },
-                {
-                  "name": "index",
-                  "type": {
-                    "text": "number"
-                  },
-                  "description": "Index of the slide being dragged."
+                    "text": "CustomEvent<DragCommitDetail>"
+                  }
                 }
               ],
-              "description": "Starts dragging a slide element.\r\nAdds the 'dragging' CSS class and sets drag data."
+              "description": "Moves the dragged page to the place the drop resolved to.\nThe thumbnails and tabs stand for the authored `webwriter-page` children,\nso the commit moves the page itself and the lifted item settles at the new layout."
             },
             {
               "kind": "method",
-              "name": "onDragEnd",
+              "name": "#view",
               "privacy": "private",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "DragEvent"
-                  },
-                  "description": "The dragend event."
+              "return": {
+                "type": {
+                  "text": "PagesView"
                 }
-              ],
-              "description": "Ends dragging a slide.\r\nMoves the dragged slide to its new position if it was moved,\r\nupdates the active slide index, and cleans up drag state."
-            },
+              },
+              "description": "The sequence of pages as seen by the strip and control components."
+            }
+          ],
+          "events": [
             {
-              "kind": "method",
-              "name": "onDragOver",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "DragEvent"
-                  },
-                  "description": "The dragover event."
-                },
-                {
-                  "name": "index",
-                  "type": {
-                    "text": "number"
-                  },
-                  "description": "Index of the slide being dragged over."
-                }
-              ],
-              "description": "Handles dragging over a slide element.\r\nPrevents default to allow dropping and records the slide index being hovered."
+              "name": "optionschange",
+              "type": {
+                "text": "Event"
+              }
             }
           ],
           "attributes": [
             {
               "name": "type",
               "type": {
-                "text": "\"tabs\" | \"slides\""
+                "text": "\"tabs\" | \"pages\""
               },
-              "default": "\"slides\"",
-              "description": "Defines the type of view for the slideshow.\r\n- \"slides\": Show content as sequential slides.\r\n- \"tabs\": Show content using tabs.",
+              "default": "\"tabs\"",
+              "description": "Defines the type of view for the sequence of pages.\n- \"pages\": Show content as sequential pages.\n- \"tabs\": Show content using tabs.",
               "fieldName": "type"
+            },
+            {
+              "name": "orientation",
+              "type": {
+                "text": "\"landscape\" | \"portrait\""
+              },
+              "default": "\"landscape\"",
+              "description": "Page orientation: 16:9 landscape or 9:16 portrait. The optional orientation attribute defaults to landscape when absent; the default is not added to existing markup.",
+              "fieldName": "orientation"
             }
           ],
           "superclass": {
             "name": "LitElementWw",
             "package": "@webwriter/lit"
           },
-          "tagName": "webwriter-slides",
+          "tagName": "webwriter-pages",
           "customElement": true,
-          "modulePath": "src/widgets/webwriter-slides.ts",
-          "definitionPath": "src/widgets/webwriter-slides.ts"
+          "modulePath": "src/widgets/webwriter-pages.ts",
+          "definitionPath": "src/widgets/webwriter-pages.ts"
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "WebwriterSlides",
+          "name": "WebwriterPages",
           "declaration": {
-            "name": "WebwriterSlides",
-            "module": "src/widgets/webwriter-slides.ts"
+            "name": "WebwriterPages",
+            "module": "src/widgets/webwriter-pages.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "webwriter-slides",
+          "name": "webwriter-pages",
           "declaration": {
-            "name": "WebwriterSlides",
-            "module": "src/widgets/webwriter-slides.ts"
+            "name": "WebwriterPages",
+            "module": "src/widgets/webwriter-pages.ts"
           }
         }
       ]

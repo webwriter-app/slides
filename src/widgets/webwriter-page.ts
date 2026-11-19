@@ -3,30 +3,35 @@ import { html, css } from "lit";
 import { LitElementWw } from "@webwriter/lit";
 import { customElement, property } from "lit/decorators.js";
 
-// @ts-ignore
 import "@shoelace-style/shoelace/dist/themes/light.css";
-import { snapdom } from "@zumer/snapdom";
+import "../components/page-media.css";
 
 /**
- * Represents a single slide in the `webwriter-slides` widget.
+ * Represents a single page in the `webwriter-pages` widget.
+ * Single-media pages remove padding and fit media without stretching or cropping.
  *
- * @slot default - The content displayed within the slide.
+ * @slot default - The content displayed within the page.
  */
-@customElement("webwriter-slide")
-export class WebwriterSlide extends LitElementWw {
-    /** Indicates whether the slide is currently active/visible. */
+@customElement("webwriter-page")
+export class WebwriterPage extends LitElementWw {
+    /** Indicates whether the page is currently active/visible. */
     @property({ type: Boolean, attribute: true, reflect: true })
     accessor active = false;
 
+    /** Plaintext tab label. An empty label shows the page-number placeholder. */
+    @property({ type: String, reflect: true, useDefault: true })
+    accessor label = "";
+
     /**
-     * Data URI string for the slide thumbnail (e.g., "data:image/png;base64,...").
-     * Used to display a preview image for the slide.
+     * Data URI string for the page thumbnail (e.g., "data:image/png;base64,...").
+     * Used to display a preview image for the page.
      */
     @property({ type: String, attribute: true, reflect: true })
     accessor thumbnail = "";
 
     static styles = css`
         :host {
+            --ww-widget-max: none;
             height: 100%;
             width: 100%;
             padding: var(--sl-spacing-small);
@@ -34,6 +39,7 @@ export class WebwriterSlide extends LitElementWw {
             display: block;
             overflow-y: auto;
             overflow-x: hidden;
+            scrollbar-width: thin;
             border: var(--sl-panel-border-width) solid var(--sl-panel-border-color) !important;
             border-radius: var(--sl-border-radius-medium);
         }

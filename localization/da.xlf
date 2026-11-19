@@ -1,25 +1,10 @@
-<xliff xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd" xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd" version="1.2">
   <file original="lit-localize-inputs" datatype="plaintext" source-language="en" target-language="da">
     <body>
-      <trans-unit id="se898a5a880c57718">
-        <source>Remove slide</source>
-        <target>Fjern slæden</target>
-      </trans-unit>
-      <trans-unit id="sa2322449a142ad50">
-        <source>Go to previous slide</source>
-        <target>Gå til forrige slide</target>
-      </trans-unit>
-      <trans-unit id="se8d0deb65adf4544">
-        <source>Go to next slide</source>
-        <target>Gå til næste slide</target>
-      </trans-unit>
       <trans-unit id="see7c7a973a9b2d6c">
         <source>Show in fullscreen</source>
         <target>Vis i fuld skærm</target>
-      </trans-unit>
-      <trans-unit id="s657514e10d2199ee">
-        <source>Add slide after current</source>
-        <target>Tilføj slide efter nuværende</target>
       </trans-unit>
       <trans-unit id="s5334c0927cf25b86">
         <source>Exit fullscreen</source>
@@ -33,14 +18,70 @@
         <source>Tabs</source>
         <target>Faner</target>
       </trans-unit>
+    <trans-unit id="s5c1ecf88259b79f9">
+  <source>Presentation</source>
+<target>Præsentation</target></trans-unit>
+<trans-unit id="s441b8d7365700a09">
+  <source>Duplicate page</source>
+</trans-unit>
+<trans-unit id="s4924ae578d75adec">
+  <source>Remove page</source>
+</trans-unit>
+<trans-unit id="s933b62519fffa7f7">
+  <source>Add page</source>
+</trans-unit>
+<trans-unit id="s6a89bb10338369b4">
+  <source>Go to previous page</source>
+</trans-unit>
+<trans-unit id="s7edad99c6b7bfe88">
+  <source>Go to next page</source>
+</trans-unit>
+<trans-unit id="s2e192b19ed15fcf6">
+  <source>Page</source>
+</trans-unit>
+<trans-unit id="s6ac0c20ddc5c15ff">
+  <source>Pages</source>
+</trans-unit>
+<trans-unit id="sd6988c0f16ce97ba">
+  <source>Duplicate current page</source>
+</trans-unit>
+<trans-unit id="sf33cb3bf48278173">
+  <source>Remove current page</source>
+</trans-unit>
+<trans-unit id="s4200371a855e0ae9">
+  <source>Scroll tabs backward</source>
+</trans-unit>
+<trans-unit id="s2c6d6feada924c0d">
+  <source>Scroll tabs forward</source>
+</trans-unit>
+      <trans-unit id="sf9aee319a006c9b4">
+        <source>Add</source>
+        <target>Tilføj</target>
+      </trans-unit>
+      <trans-unit id="sea4f08110bb8f15d">
+        <source>Remove</source>
+        <target>Fjern</target>
+      </trans-unit>
+      <trans-unit id="sfac15b89e0668996">
+        <source>Duplicate</source>
+        <target>Duplikér</target>
+      </trans-unit>
       <trans-unit id="s0043ccab8a7a7eaf">
         <source>Slides</source>
         <target>Lysbilleder</target>
       </trans-unit>
-      <trans-unit id="s7309c4598fa52557">
-        <source>Duplicate slide</source>
-        <target>Duplikat af dias</target>
+      <trans-unit id="s47ebf3a8fb3b10c1">
+        <source>Orientation</source>
+        <target>Retning</target>
       </trans-unit>
-    </body>
+      <trans-unit id="s3bb9ed9dd24e9172">
+        <source>Landscape</source>
+        <target>Liggende</target>
+      </trans-unit>
+      <trans-unit id="safd96a5026e4555a">
+        <source>Portrait</source>
+        <target>Stående</target>
+      </trans-unit>
+</body>
   </file>
 </xliff>

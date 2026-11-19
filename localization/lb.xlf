@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+<file target-language="lb" source-language="en" original="lit-localize-inputs" datatype="plaintext">
+<body>
+<trans-unit id="s7f59f507e02a2f38">
+  <source>View</source>
+<target>Vue</target></trans-unit>
+<trans-unit id="s03b454fb08e876ad">
+  <source>Tabs</source>
+<target>Tabs</target></trans-unit>
+<trans-unit id="s5c1ecf88259b79f9">
+  <source>Presentation</source>
+<target>Presentatioun</target></trans-unit>
+<trans-unit id="s5334c0927cf25b86">
+  <source>Exit fullscreen</source>
+<target>Vollbild verloossen</target></trans-unit>
+<trans-unit id="see7c7a973a9b2d6c">
+  <source>Show in fullscreen</source>
+<target>Am Vollbild weisen</target></trans-unit>
+<trans-unit id="s441b8d7365700a09">
+  <source>Duplicate page</source>
+</trans-unit>
+<trans-unit id="s4924ae578d75adec">
+  <source>Remove page</source>
+</trans-unit>
+<trans-unit id="s933b62519fffa7f7">
+  <source>Add page</source>
+</trans-unit>
+<trans-unit id="s6a89bb10338369b4">
+  <source>Go to previous page</source>
+</trans-unit>
+<trans-unit id="s7edad99c6b7bfe88">
+  <source>Go to next page</source>
+</trans-unit>
+<trans-unit id="s2e192b19ed15fcf6">
+  <source>Page</source>
+</trans-unit>
+<trans-unit id="s6ac0c20ddc5c15ff">
+  <source>Pages</source>
+</trans-unit>
+<trans-unit id="sd6988c0f16ce97ba">
+  <source>Duplicate current page</source>
+</trans-unit>
+<trans-unit id="sf33cb3bf48278173">
+  <source>Remove current page</source>
+</trans-unit>
+<trans-unit id="s4200371a855e0ae9">
+  <source>Scroll tabs backward</source>
+</trans-unit>
+<trans-unit id="s2c6d6feada924c0d">
+  <source>Scroll tabs forward</source>
+</trans-unit>
+      <trans-unit id="sf9aee319a006c9b4">
+        <source>Add</source>
+        <target>Addéieren</target>
+      </trans-unit>
+      <trans-unit id="sea4f08110bb8f15d">
+        <source>Remove</source>
+        <target>Ewechhuelen</target>
+      </trans-unit>
+      <trans-unit id="sfac15b89e0668996">
+        <source>Duplicate</source>
+        <target>Duplizéieren</target>
+      </trans-unit>
+      <trans-unit id="s0043ccab8a7a7eaf">
+        <source>Slides</source>
+        <target>Rutschen</target>
+      </trans-unit>
+      <trans-unit id="s47ebf3a8fb3b10c1">
+        <source>Orientation</source>
+        <target>Orientéierung</target>
+      </trans-unit>
+      <trans-unit id="s3bb9ed9dd24e9172">
+        <source>Landscape</source>
+        <target>Querformat</target>
+      </trans-unit>
+      <trans-unit id="safd96a5026e4555a">
+        <source>Portrait</source>
+        <target>Héichformat</target>
+      </trans-unit>
+</body>
+</file>
+</xliff>

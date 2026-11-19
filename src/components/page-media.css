@@ -1,0 +1,16 @@
+/* Light-DOM descendants of <picture> cannot be reached through ::slotted(). */
+webwriter-page:has(> :is(picture, img, video, audio, svg, canvas, iframe, embed, object):only-child) {
+    padding: 0;
+}
+
+webwriter-page > :is(picture, img, video, audio, svg, canvas, iframe, embed, object):only-child,
+webwriter-page > picture:only-child > img {
+    display: block;
+    box-sizing: border-box;
+    inline-size: 100% !important;
+    block-size: 100% !important;
+    max-inline-size: 100%;
+    max-block-size: 100%;
+    margin: 0;
+    object-fit: contain;
+}

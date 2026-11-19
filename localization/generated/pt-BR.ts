@@ -1,9 +1,8 @@
-
-    // Do not modify this file by hand!
+// Do not modify this file by hand!
     // Re-generate this file by running lit-localize
 
-    
-    
+
+
 
     /* eslint-disable no-irregular-whitespace */
     /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -12,12 +11,22 @@
       's0043ccab8a7a7eaf': `Slides`,
 's03b454fb08e876ad': `Guias`,
 's5334c0927cf25b86': `Sair da tela cheia`,
-'s657514e10d2199ee': `Adicionar slide após o atual`,
-'s7309c4598fa52557': `Slide duplicado`,
+'s5c1ecf88259b79f9': `Apresentação`,
 's7f59f507e02a2f38': `Ver`,
-'sa2322449a142ad50': `Ir para o slide anterior`,
-'se898a5a880c57718': `Remova a corrediça`,
-'se8d0deb65adf4544': `Ir para o próximo slide`,
+'sea4f08110bb8f15d': `Remover`,
 'see7c7a973a9b2d6c': `Mostrar em tela cheia`,
+'sf9aee319a006c9b4': `Adicionar`,
+'sfac15b89e0668996': `Duplicar`,
+'s441b8d7365700a09': `Duplicate page`,
+'s4924ae578d75adec': `Remove page`,
+'s933b62519fffa7f7': `Add page`,
+'s4200371a855e0ae9': `Scroll tabs backward`,
+'s6a89bb10338369b4': `Go to previous page`,
+'s2c6d6feada924c0d': `Scroll tabs forward`,
+'s7edad99c6b7bfe88': `Go to next page`,
+'s2e192b19ed15fcf6': `Page`,
+'s6ac0c20ddc5c15ff': `Pages`,
+'s47ebf3a8fb3b10c1': `Orientação`,
+'s3bb9ed9dd24e9172': `Paisagem`,
+'safd96a5026e4555a': `Retrato`,
     };
-  

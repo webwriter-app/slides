@@ -1,23 +1,32 @@
-
-    // Do not modify this file by hand!
+// Do not modify this file by hand!
     // Re-generate this file by running lit-localize
 
-    
-    
+
+
 
     /* eslint-disable no-irregular-whitespace */
     /* eslint-disable @typescript-eslint/no-explicit-any */
 
     export const templates = {
-      's7309c4598fa52557': `Duplicate slide`,
-'se898a5a880c57718': `Remove slide`,
-'s657514e10d2199ee': `Add slide after current`,
-'sa2322449a142ad50': `Go to previous slide`,
-'se8d0deb65adf4544': `Go to next slide`,
-'s5334c0927cf25b86': `Exit fullscreen`,
-'see7c7a973a9b2d6c': `Show in fullscreen`,
-'s7f59f507e02a2f38': `View`,
-'s03b454fb08e876ad': `Tabs`,
-'s0043ccab8a7a7eaf': `Slides`,
+      's0043ccab8a7a7eaf': `幻燈片`,
+'s03b454fb08e876ad': `標籤`,
+'s5334c0927cf25b86': `退出全螢幕`,
+'s5c1ecf88259b79f9': `簡報`,
+'s7f59f507e02a2f38': `檢視`,
+'sea4f08110bb8f15d': `移除`,
+'see7c7a973a9b2d6c': `以全螢幕顯示`,
+'sf9aee319a006c9b4': `新增`,
+'sfac15b89e0668996': `複製`,
+'s441b8d7365700a09': `Duplicate page`,
+'s4924ae578d75adec': `Remove page`,
+'s933b62519fffa7f7': `Add page`,
+'s4200371a855e0ae9': `Scroll tabs backward`,
+'s6a89bb10338369b4': `Go to previous page`,
+'s2c6d6feada924c0d': `Scroll tabs forward`,
+'s7edad99c6b7bfe88': `Go to next page`,
+'s2e192b19ed15fcf6': `Page`,
+'s6ac0c20ddc5c15ff': `Pages`,
+'s47ebf3a8fb3b10c1': `方向`,
+'s3bb9ed9dd24e9172': `橫向`,
+'safd96a5026e4555a': `直向`,
     };
-  
